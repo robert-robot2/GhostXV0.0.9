@@ -1,0 +1,9 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="GhostShell/GhostShell.csproj" Id="2398bbea-ce5b-48c7-9094-2b42d489e99a" />
+  <Project Path="GhostX/GhostX.vcxproj" Id="8322a81c-5821-4273-bbf3-d1c73ca69692" />
+</Solution>
