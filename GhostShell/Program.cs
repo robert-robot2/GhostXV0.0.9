@@ -7,6 +7,7 @@ namespace GhostShell
         [STAThread]
         static void Main()
         {
+            GhostUIHost.Start();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GhostForm());

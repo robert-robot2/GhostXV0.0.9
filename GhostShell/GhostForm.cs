@@ -20,7 +20,7 @@ namespace GhostShell
 
         // ---- Menu builder ----
         private GhostMenuBuilder _menuBuilder;
-
+        private Microsoft.Web.WebView2.WinForms.WebView2 _ghostUI;
         public GhostForm()
         {
             InitializeForm();
@@ -72,7 +72,15 @@ namespace GhostShell
             // ---- Menu strip ----
             _menuBuilder = new GhostMenuBuilder(_menuBgColor, _menuTextColor);
             _menuBuilder.Build(this);
-
+            _ghostUI = new Microsoft.Web.WebView2.WinForms.WebView2
+            {
+                Bounds = _renderPanel.ClientRectangle,
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom |
+         AnchorStyles.Left | AnchorStyles.Right,
+                Visible = false,
+            };
+            _renderPanel.Controls.Add(_ghostUI);
+            _ghostUI.BringToFront();
             // Wire menu callbacks
             _menuBuilder.OnExit += (s, e) => Close();
             _menuBuilder.OnBackgroundColor += OnPickBackgroundColor;
@@ -80,6 +88,31 @@ namespace GhostShell
             _menuBuilder.OnWindowTextColor += OnPickWindowTextColor;
             _menuBuilder.OnMenuBgColor += OnPickMenuBgColor;
             _menuBuilder.OnMenuTextColor += OnPickMenuTextColor;
+            _menuBuilder.OnToggleGhostUI += async (s, e) =>
+            {
+                if (!_ghostUI.Visible)
+                {
+                    await _ghostUI.EnsureCoreWebView2Async(null);
+                    _ghostUI.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
+                    await _ghostUI.CoreWebView2.CallDevToolsProtocolMethodAsync(
+                        "Security.setIgnoreCertificateErrors",
+                        "{\"ignore\":true}"
+                    );
+                    await _ghostUI.CoreWebView2.CallDevToolsProtocolMethodAsync(
+    "Page.setBypassCSP", "{\"enabled\":true}"
+);
+                    await _ghostUI.CoreWebView2.CallDevToolsProtocolMethodAsync(
+    "Network.setExtraHTTPHeaders",
+    "{\"headers\":{\"Cross-Origin-Embedder-Policy\":\"unsafe-none\"}}"
+);
+                    _ghostUI.CoreWebView2.Navigate("http://localhost:5050");
+                    _ghostUI.Visible = true;
+                }
+                else
+                {
+                    _ghostUI.Visible = false;
+                }
+            };
             _menuBuilder.OnAbout += OnAbout;
             _menuBuilder.OnVersion += OnVersion;
         }
