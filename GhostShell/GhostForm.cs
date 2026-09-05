@@ -22,7 +22,7 @@ namespace GhostShell
         private GhostMenuBuilder _menuBuilder;
 
         // ---- Add this field near the top with the other fields ----
-        private GhostSteamPanel _steamPanel;
+    
 
         private Microsoft.Web.WebView2.WinForms.WebView2 _ghostUI;
         public GhostForm()
@@ -73,14 +73,7 @@ namespace GhostShell
 
             Controls.Add(_renderPanel);
             // ---- In BuildUI(), after Controls.Add(_renderPanel) ----
-            _steamPanel = new GhostSteamPanel
-            {
-                Bounds = _renderPanel.Bounds,
-                Anchor = AnchorStyles.Top | AnchorStyles.Bottom |
-                         AnchorStyles.Left | AnchorStyles.Right,
-            };
-            _renderPanel.Controls.Add(_steamPanel);
-            _steamPanel.BringToFront();
+        
             // ---- Menu strip ----
             _menuBuilder = new GhostMenuBuilder(_menuBgColor, _menuTextColor);
             _menuBuilder.Build(this);
@@ -172,7 +165,6 @@ namespace GhostShell
                     // ---- In HookEngineEvents(), inside the _renderPanel.Resize handler,
                     //      after the GhostEngine_Resize call ----
                     _ghostUI.Bounds = _renderPanel.ClientRectangle;
-                    _steamPanel.Bounds = _renderPanel.ClientRectangle;
                 }
             };
 
