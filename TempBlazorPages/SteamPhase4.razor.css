@@ -1,0 +1,306 @@
+﻿
+.p4-page {
+    font-family: 'Segoe UI', sans-serif;
+    background: #06090f;
+    color: #dde4f0;
+    border-bottom: 3px solid #aa88ff;
+}
+
+.p4-banner {
+    background: linear-gradient(90deg, #06090f 0%, #1a0a2a 40%, #06090f 100%);
+    border-bottom: 1px solid #aa88ff40;
+    padding: 2.5rem 2rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+    .p4-banner::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 60% 80% at 50% -20%, #aa88ff14, transparent), repeating-linear-gradient(0deg, transparent, transparent 38px, #aa88ff06 39px), repeating-linear-gradient(90deg, transparent, transparent 38px, #aa88ff06 39px);
+    }
+
+.p4-phase-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #aa88ff10;
+    border: 1px solid #aa88ff40;
+    border-radius: 999px;
+    padding: 5px 18px;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #aa88ff;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+    .p4-phase-pill::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #aa88ff;
+        box-shadow: 0 0 8px #aa88ff;
+        animation: p4blink 1.4s ease-in-out infinite;
+    }
+
+@keyframes p4blink {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+.p4-banner h1 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 .75rem;
+    letter-spacing: -.03em;
+    position: relative;
+}
+
+    .p4-banner h1 em {
+        font-style: normal;
+        color: #aa88ff;
+    }
+
+.p4-banner p {
+    color: #7a9ab0;
+    font-size: 14px;
+    max-width: 680px;
+    line-height: 1.8;
+    margin: 0 auto;
+    position: relative;
+}
+
+.p4-section {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.p4-section-label {
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #aa88ff;
+    margin-bottom: .4rem;
+}
+
+.p4-section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 .5rem;
+}
+
+.p4-section-lead {
+    color: #7a9ab0;
+    font-size: 13px;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 0 2rem;
+}
+
+.p4-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.p4-metric {
+    background: #090e18;
+    border: 1px solid #1a0a2a;
+    border-radius: 10px;
+    padding: 1.1rem;
+    text-align: center;
+}
+
+    .p4-metric .val {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #aa88ff;
+    }
+
+    .p4-metric .lbl {
+        font-size: 11px;
+        color: #3a5a6a;
+        margin-top: 3px;
+    }
+
+.p4-car-wrap {
+    background: #070b12;
+    border: 1px solid #1a0a2a;
+    border-radius: 16px;
+    padding: 2rem;
+    overflow-x: auto;
+    position: relative;
+}
+
+    .p4-car-wrap svg text {
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+.p4-sep {
+    border: none;
+    border-top: 1px solid #1a0a2a;
+    margin: 3rem 0;
+}
+
+.p4-phase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.p4-phase-card {
+    background: #090e18;
+    border: 1px solid #1a0a2a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .2s, transform .2s;
+}
+
+    .p4-phase-card:hover {
+        border-color: #aa88ff40;
+        transform: translateY(-2px);
+    }
+
+    .p4-phase-card::after {
+        content: attr(data-num);
+        position: absolute;
+        right: 1rem;
+        top: .75rem;
+        font-size: 3rem;
+        font-weight: 800;
+        color: #aa88ff06;
+        line-height: 1;
+    }
+
+    .p4-phase-card h3 {
+        font-size: 14px;
+        font-weight: 700;
+        color: #aa88ff;
+        margin: 0 0 .5rem;
+    }
+
+    .p4-phase-card p {
+        font-size: 12px;
+        color: #6a8a9a;
+        line-height: 1.65;
+        margin: 0;
+    }
+
+.p4-flaw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.p4-flaw {
+    background: #0a0d16;
+    border-left: 3px solid;
+    border-radius: 0 10px 10px 0;
+    padding: 1.25rem 1.5rem;
+}
+
+    .p4-flaw.critical {
+        border-color: #ff4455;
+    }
+
+    .p4-flaw.major {
+        border-color: #ffaa00;
+    }
+
+    .p4-flaw.design {
+        border-color: #aa88ff;
+    }
+
+    .p4-flaw.thermal {
+        border-color: #ff6b30;
+    }
+
+.p4-flaw-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin-bottom: .4rem;
+}
+
+.p4-flaw.critical .p4-flaw-tag {
+    color: #ff4455;
+}
+
+.p4-flaw.major .p4-flaw-tag {
+    color: #ffaa00;
+}
+
+.p4-flaw.design .p4-flaw-tag {
+    color: #aa88ff;
+}
+
+.p4-flaw.thermal .p4-flaw-tag {
+    color: #ff6b30;
+}
+
+.p4-flaw h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #dde4f0;
+    margin: 0 0 .4rem;
+}
+
+.p4-flaw p {
+    font-size: 12px;
+    color: #5a7a8a;
+    line-height: 1.6;
+    margin: 0;
+}
+
+@keyframes p4flow {
+    to {
+        stroke-dashoffset: -20;
+    }
+}
+
+@keyframes p4pulse {
+    0%, 100% {
+        opacity: .6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.p4-flow {
+    stroke-dasharray: 6 4;
+    animation: p4flow 1.2s linear infinite;
+}
+
+.p4-pulse {
+    animation: p4pulse 2s ease-in-out infinite;
+}
+
+@media (max-width: 700px) {
+    .p4-section {
+        padding: 2.5rem 1.25rem;
+    }
+
+    .p4-banner {
+        padding: 2rem 1.25rem 1.25rem;
+    }
+}

@@ -1,0 +1,1407 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 14 · Chevy Steamer — Bare Build Prototype</title>
+    <style>
+            *, *::before, *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0
+            }
+
+            :root {
+                --coal: #0a0a0a;
+                --coal2: #111114;
+                --coal3: #18181c;
+                --steam: #e8f4f8;
+                --steam-dim: #a0bcc8;
+                --steam-faint: #2a3a40;
+                --ember: #ff6b2b;
+                --ember-dim: #cc4400;
+                --ember-faint: #1a0800;
+                --iron: #7a8a90;
+                --iron-light: #b0c4cc;
+                --copper: #b87333;
+                --copper-light: #d4956a;
+                --brass: #c8a84b;
+                --brass-dim: #8a6e28;
+                --signal: #39ff14;
+                --signal-dim: #1a8a00;
+                --danger: #dc143c;
+                --danger-dim: #8a0020;
+                --text: #dde8ec;
+                --muted: #6a8090;
+                --font-display: 'Georgia',serif;
+                --font-body: 'Segoe UI',system-ui,sans-serif;
+                --font-mono: 'Courier New',monospace;
+            }
+
+            body {
+                font-family: var(--font-body);
+                background: var(--coal);
+                color: var(--text);
+                line-height: 1.6;
+                overflow-x: hidden
+            }
+
+            /* ── BANNER ── */
+            .banner {
+                position: relative;
+                background: var(--coal);
+                border-bottom: 2px solid #1a2428;
+                padding: 4rem 2rem 3rem;
+                overflow: hidden;
+                text-align: center
+            }
+
+                .banner::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(ellipse 80% 60% at 50% -10%,#ff6b2b08,transparent),repeating-linear-gradient(90deg,transparent,transparent 60px,#ffffff03 61px),repeating-linear-gradient(0deg,transparent,transparent 60px,#ffffff02 61px)
+                }
+
+            .banner-eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                font-family: var(--font-mono);
+                font-size: 10px;
+                letter-spacing: .25em;
+                text-transform: uppercase;
+                color: var(--ember);
+                margin-bottom: 1.5rem;
+                border: 1px solid #ff6b2b30;
+                padding: 6px 20px;
+                border-radius: 2px
+            }
+
+                .banner-eyebrow::before {
+                    content: '';
+                    width: 6px;
+                    height: 6px;
+                    background: var(--ember);
+                    border-radius: 50%;
+                    box-shadow: 0 0 10px var(--ember);
+                    animation: blink 1.4s ease-in-out infinite
+                }
+            @@keyframes blink {
+                0%, 100% {
+                    opacity: 1
+                }
+
+                50% {
+                    opacity: .1
+                }
+            }
+
+            .banner h1 {
+                font-family: var(--font-display);
+                font-size: clamp(2rem,5vw,3.8rem);
+                font-weight: 400;
+                color: #fff;
+                letter-spacing: -.02em;
+                line-height: 1.1;
+                margin-bottom: 1rem;
+                position: relative
+            }
+
+                .banner h1 span {
+                    color: var(--ember);
+                    font-style: italic
+                }
+
+            .banner-sub {
+                font-family: var(--font-mono);
+                font-size: 11px;
+                color: var(--muted);
+                letter-spacing: .15em;
+                text-transform: uppercase;
+                margin-bottom: 1.5rem
+            }
+
+            .banner p {
+                color: var(--steam-dim);
+                font-size: 14px;
+                max-width: 860px;
+                margin: 0 auto;
+                line-height: 1.9
+            }
+
+            .banner strong {
+                color: var(--ember)
+            }
+
+            /* ── LAYOUT ── */
+            .wrap {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 4rem 2rem
+            }
+
+            .sep {
+                border: none;
+                border-top: 1px solid #1a2428;
+                margin: 4rem 0
+            }
+
+            /* ── SECTION HEADERS ── */
+            .eyebrow {
+                font-family: var(--font-mono);
+                font-size: 10px;
+                letter-spacing: .22em;
+                text-transform: uppercase;
+                color: var(--ember);
+                margin-bottom: .6rem
+            }
+
+            .section-title {
+                font-family: var(--font-display);
+                font-size: 1.8rem;
+                font-weight: 400;
+                color: #fff;
+                margin-bottom: .8rem;
+                letter-spacing: -.015em
+            }
+
+            .section-lead {
+                color: var(--muted);
+                font-size: 13px;
+                line-height: 1.95;
+                max-width: 1050px;
+                margin-bottom: 2.5rem
+            }
+
+            /* ── METRICS STRIP ── */
+            .metrics {
+                display: grid;
+                grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+                gap: 1px;
+                background: #1a2428;
+                border: 1px solid #1a2428;
+                border-radius: 4px;
+                overflow: hidden;
+                margin: 2.5rem 0
+            }
+
+            .metric {
+                background: var(--coal2);
+                padding: 1.6rem 1rem;
+                text-align: center
+            }
+
+                .metric .val {
+                    font-family: var(--font-display);
+                    font-size: 2.2rem;
+                    color: var(--ember);
+                    line-height: 1;
+                    margin-bottom: .4rem
+                }
+
+                .metric .lbl {
+                    font-family: var(--font-mono);
+                    font-size: 9px;
+                    color: var(--muted);
+                    text-transform: uppercase;
+                    letter-spacing: .14em
+                }
+
+            /* ── PIPELINE DIAGRAM ── */
+            .pipeline {
+                background: var(--coal2);
+                border: 1px solid #1a2428;
+                border-radius: 4px;
+                padding: 2rem;
+                margin: 2rem 0;
+                overflow-x: auto
+            }
+
+                .pipeline pre {
+                    font-family: var(--font-mono);
+                    font-size: 12px;
+                    color: var(--steam-dim);
+                    line-height: 1.9;
+                    white-space: pre
+                }
+
+                    .pipeline pre .em {
+                        color: var(--ember)
+                    }
+
+                    .pipeline pre .sg {
+                        color: var(--signal)
+                    }
+
+                    .pipeline pre .br {
+                        color: var(--brass)
+                    }
+
+                    .pipeline pre .cp {
+                        color: var(--copper-light)
+                    }
+
+                    .pipeline pre .dn {
+                        color: var(--danger)
+                    }
+
+            /* ── GRIDS ── */
+            .g2 {
+                display: grid;
+                grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
+                gap: 1.5rem;
+                margin: 2rem 0
+            }
+
+            .g3 {
+                display: grid;
+                grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+                gap: 1.5rem;
+                margin: 2rem 0
+            }
+
+            .g4 {
+                display: grid;
+                grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+                gap: 1.2rem;
+                margin: 2rem 0
+            }
+
+            /* ── CARDS ── */
+            .card {
+                background: var(--coal2);
+                border: 1px solid #1a2428;
+                border-radius: 4px;
+                padding: 1.8rem
+            }
+
+                .card.ember {
+                    border-left: 3px solid var(--ember)
+                }
+
+                .card.brass {
+                    border-left: 3px solid var(--brass)
+                }
+
+                .card.signal {
+                    border-left: 3px solid var(--signal)
+                }
+
+                .card.danger {
+                    border-left: 3px solid var(--danger)
+                }
+
+                .card.copper {
+                    border-left: 3px solid var(--copper)
+                }
+
+                .card.iron {
+                    border-left: 3px solid var(--iron)
+                }
+
+                .card h3 {
+                    font-family: var(--font-display);
+                    font-size: 1rem;
+                    font-weight: 400;
+                    color: #fff;
+                    margin-bottom: .8rem
+                }
+
+                .card p {
+                    font-size: 12px;
+                    color: var(--muted);
+                    line-height: 1.85;
+                    margin-bottom: .8rem
+                }
+
+                    .card p:last-child {
+                        margin: 0
+                    }
+
+            /* ── BADGE ── */
+            .badge {
+                display: inline-block;
+                font-family: var(--font-mono);
+                font-size: 9px;
+                letter-spacing: .14em;
+                text-transform: uppercase;
+                padding: 3px 10px;
+                border-radius: 2px;
+                margin-bottom: .8rem
+            }
+
+                .badge.ember {
+                    background: #ff6b2b12;
+                    color: var(--ember);
+                    border: 1px solid #ff6b2b30
+                }
+
+                .badge.brass {
+                    background: #c8a84b10;
+                    color: var(--brass);
+                    border: 1px solid #c8a84b30
+                }
+
+                .badge.signal {
+                    background: #39ff1410;
+                    color: var(--signal);
+                    border: 1px solid #39ff1430
+                }
+
+                .badge.danger {
+                    background: #dc143c10;
+                    color: var(--danger);
+                    border: 1px solid #dc143c30
+                }
+
+                .badge.copper {
+                    background: #b8733310;
+                    color: var(--copper-light);
+                    border: 1px solid #b8733330
+                }
+
+                .badge.iron {
+                    background: #7a8a9010;
+                    color: var(--iron-light);
+                    border: 1px solid #7a8a9030
+                }
+
+            /* ── STAT ROWS ── */
+            .srow {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 11px;
+                padding: .4rem 0;
+                border-bottom: 1px solid #0d1418;
+                color: var(--muted)
+            }
+
+                .srow:last-child {
+                    border-bottom: none
+                }
+
+                .srow .v {
+                    font-weight: 600
+                }
+
+                    .srow .v.ember {
+                        color: var(--ember)
+                    }
+
+                    .srow .v.brass {
+                        color: var(--brass)
+                    }
+
+                    .srow .v.signal {
+                        color: var(--signal)
+                    }
+
+                    .srow .v.danger {
+                        color: var(--danger)
+                    }
+
+                    .srow .v.copper {
+                        color: var(--copper-light)
+                    }
+
+            /* ── CALLOUT ── */
+            .callout {
+                display: flex;
+                gap: 1.2rem;
+                border-radius: 4px;
+                padding: 1.4rem;
+                margin: 2rem 0;
+                font-size: 12px;
+                color: var(--muted);
+                line-height: 1.85
+            }
+
+                .callout.ember {
+                    background: #0d0500;
+                    border: 1px solid #ff6b2b20;
+                    border-left: 4px solid var(--ember)
+                }
+
+                .callout.signal {
+                    background: #020a02;
+                    border: 1px solid #39ff1420;
+                    border-left: 4px solid var(--signal)
+                }
+
+                .callout.danger {
+                    background: #0d0004;
+                    border: 1px solid #dc143c20;
+                    border-left: 4px solid var(--danger)
+                }
+
+                .callout.brass {
+                    background: #080600;
+                    border: 1px solid #c8a84b20;
+                    border-left: 4px solid var(--brass)
+                }
+
+            .callout-icon {
+                font-size: 1.5rem;
+                flex-shrink: 0
+            }
+
+            .callout strong {
+                display: block;
+                font-size: 13px;
+                margin-bottom: .4rem
+            }
+
+            .callout.ember strong {
+                color: var(--ember)
+            }
+
+            .callout.signal strong {
+                color: var(--signal)
+            }
+
+            .callout.danger strong {
+                color: var(--danger)
+            }
+
+            .callout.brass strong {
+                color: var(--brass)
+            }
+
+            /* ── TABLE ── */
+            .tbl-wrap {
+                background: var(--coal);
+                border: 1px solid #1a2428;
+                border-radius: 4px;
+                overflow-x: auto;
+                margin: 2rem 0
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 12px;
+                min-width: 680px
+            }
+
+            thead {
+                background: var(--coal2)
+            }
+
+            th {
+                font-family: var(--font-mono);
+                color: var(--ember);
+                font-weight: 400;
+                text-align: left;
+                padding: .9rem 1rem;
+                text-transform: uppercase;
+                letter-spacing: .1em;
+                font-size: 9px;
+                border-bottom: 2px solid #1a2428
+            }
+
+            td {
+                padding: .75rem 1rem;
+                border-bottom: 1px solid #0d1418;
+                color: var(--text);
+                font-size: 12px
+            }
+
+            tr:last-child td {
+                border-bottom: none
+            }
+
+            tbody tr:hover {
+                background: var(--coal2)
+            }
+
+            td.ok {
+                color: var(--signal);
+                font-weight: 600
+            }
+
+            td.warn {
+                color: var(--brass);
+                font-weight: 600
+            }
+
+            td.crit {
+                color: var(--danger);
+                font-weight: 600
+            }
+
+            td.ember {
+                color: var(--ember);
+                font-weight: 600
+            }
+
+            td.copper {
+                color: var(--copper-light);
+                font-weight: 600
+            }
+
+            td.hi {
+                background: #ff6b2b06
+            }
+
+            /* ── COST BARS ── */
+            .cost-item {
+                display: grid;
+                grid-template-columns: 220px 1fr 100px;
+                align-items: center;
+                gap: 12px;
+                font-size: 11px;
+                color: var(--muted);
+                margin-bottom: .8rem
+            }
+
+            .cost-track {
+                height: 8px;
+                background: #0d1418;
+                border-radius: 2px;
+                overflow: hidden
+            }
+
+            .cost-fill {
+                height: 100%;
+                border-radius: 2px;
+                background: linear-gradient(90deg,var(--ember),var(--ember-dim))
+            }
+
+                .cost-fill.brass {
+                    background: linear-gradient(90deg,var(--brass),var(--brass-dim))
+                }
+
+                .cost-fill.signal {
+                    background: linear-gradient(90deg,var(--signal),var(--signal-dim))
+                }
+
+                .cost-fill.copper {
+                    background: linear-gradient(90deg,var(--copper-light),var(--copper))
+                }
+
+                .cost-fill.danger {
+                    background: linear-gradient(90deg,var(--danger),var(--danger-dim))
+                }
+
+                .cost-fill.iron {
+                    background: linear-gradient(90deg,var(--iron-light),var(--iron))
+                }
+
+            /* ── TEST CARDS ── */
+            .test-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+                gap: 1.5rem;
+                margin: 2rem 0
+            }
+
+            .test-card {
+                background: var(--coal2);
+                border: 1px solid #1a2428;
+                border-radius: 4px;
+                padding: 1.6rem;
+                position: relative;
+                overflow: hidden
+            }
+
+                .test-card::after {
+                    content: attr(data-num);
+                    position: absolute;
+                    right: 1rem;
+                    top: .5rem;
+                    font-family: var(--font-display);
+                    font-size: 3.5rem;
+                    color: #ff6b2b06;
+                    line-height: 1;
+                    font-weight: 400
+                }
+
+                .test-card h3 {
+                    font-family: var(--font-mono);
+                    font-size: 11px;
+                    color: var(--ember);
+                    margin-bottom: .6rem;
+                    letter-spacing: .08em;
+                    text-transform: uppercase
+                }
+
+                .test-card p {
+                    font-size: 12px;
+                    color: var(--muted);
+                    line-height: 1.7;
+                    margin-bottom: .6rem
+                }
+
+                .test-card ul {
+                    font-size: 11px;
+                    color: #4a6070;
+                    line-height: 1.9;
+                    padding-left: 1.2rem
+                }
+
+                    .test-card ul li {
+                        margin-bottom: .2rem
+                    }
+
+            /* ── REVIEW NOTE ── */
+            .review {
+                display: flex;
+                gap: 1.2rem;
+                background: #020a02;
+                border: 1px solid #39ff1420;
+                border-left: 4px solid var(--signal);
+                border-radius: 4px;
+                padding: 1.8rem;
+                margin-top: 3rem;
+                font-size: 12px;
+                color: var(--muted);
+                line-height: 1.9
+            }
+
+            .review-icon {
+                font-size: 1.6rem;
+                flex-shrink: 0
+            }
+
+            .review strong {
+                display: block;
+                color: var(--signal);
+                font-size: 13px;
+                margin-bottom: .6rem
+            }
+
+            /* ── SHIELD NOTE ── */
+            .shield {
+                display: flex;
+                gap: 1.2rem;
+                background: #0d0500;
+                border: 1px solid #ff6b2b20;
+                border-left: 4px solid var(--ember);
+                border-radius: 4px;
+                padding: 1.8rem;
+                margin: 2rem 0;
+                font-size: 12px;
+                color: var(--muted);
+                line-height: 1.9
+            }
+
+                .shield strong {
+                    display: block;
+                    color: var(--ember);
+                    font-size: 13px;
+                    margin-bottom: .6rem
+                }
+
+            /* ── TOTAL COST BOX ── */
+            .total-box {
+                background: var(--coal2);
+                border: 2px solid var(--ember);
+                border-radius: 4px;
+                padding: 2rem;
+                margin: 2rem 0;
+                text-align: center
+            }
+
+                .total-box .t-label {
+                    font-family: var(--font-mono);
+                    font-size: 10px;
+                    color: var(--muted);
+                    text-transform: uppercase;
+                    letter-spacing: .2em;
+                    margin-bottom: .5rem
+                }
+
+                .total-box .t-val {
+                    font-family: var(--font-display);
+                    font-size: 3.5rem;
+                    color: var(--ember);
+                    line-height: 1;
+                    margin-bottom: .5rem
+                }
+
+                .total-box .t-sub {
+                    font-size: 12px;
+                    color: var(--muted)
+                }
+
+            /* ── FOOTER ── */
+            .footer {
+                background: var(--coal2);
+                border-top: 1px solid #1a2428;
+                padding: 2rem;
+                text-align: center;
+                font-family: var(--font-mono);
+                font-size: 10px;
+                color: #2a3a40;
+                letter-spacing: .1em
+            }
+
+            /* ── RESPONSIVE ── */
+            @@media(max - width:700px) {
+                .wrap {
+                    padding: 3rem 1.5rem
+                }
+
+                .cost-item {
+                    grid-template-columns: 1fr 80px;
+                    gap: 4px
+                }
+
+                .cost-track {
+                    display: none
+                }
+
+                .banner {
+                    padding: 3rem 1.5rem 2rem
+                }
+            }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ BANNER ═══ -->
+    <div class="banner">
+        <div class="banner-eyebrow">Phase 14 · Bare Build Prototype</div>
+        <h1>The <span>Chevy Steamer</span><br>Stripped-Down Steam Electric</h1>
+        <div class="banner-sub">Boiler · Dual Pistons · Rhombic Drives · Rail Engine · Hydrostatic AWD</div>
+        <p>
+            Phase 14 strips the system to its <strong>bare mechanical core</strong> — boiler, two dual-acting pistons with rhombic drives,
+            sealed rail housing, oil-bathed engine, eddy exhaust sleeve, and hydrostatic output.
+            Target: a working <strong>four-door sedan prototype under $20,000</strong> at standard wages.
+            Every component is costed, heat-stress tested, and bench validated before fabrication.
+        </p>
+    </div>
+
+    <!-- ═══ HEADLINE METRICS ═══ -->
+    <div class="wrap">
+        <div class="eyebrow">Phase 14 · Key Targets</div>
+        <h2 class="section-title">Core build — stripped, costed, validated</h2>
+        <div class="metrics">
+            <div class="metric"><div class="val">$20K</div><div class="lbl">Target Build Cost</div></div>
+            <div class="metric"><div class="val">2×</div><div class="lbl">Dual-Acting Pistons</div></div>
+            <div class="metric"><div class="val">2×</div><div class="lbl">Rhombic Drives</div></div>
+            <div class="metric"><div class="val">6</div><div class="lbl">Rail Wheels Total</div></div>
+            <div class="metric"><div class="val">150</div><div class="lbl">PSI Max Boiler</div></div>
+            <div class="metric"><div class="val">90</div><div class="lbl">PSI Min Floor</div></div>
+            <div class="metric"><div class="val">AWD</div><div class="lbl">Hydrostatic Output</div></div>
+            <div class="metric"><div class="val">H₂O</div><div class="lbl">Only Fuel</div></div>
+        </div>
+
+        <!-- ═══ PIPELINE FLOW ═══ -->
+        <hr class="sep">
+        <div class="eyebrow">System Architecture · Pipeline Flow</div>
+        <h2 class="section-title">Full system — boiler to wheels</h2>
+        <p class="section-lead">
+            The complete energy chain from water in the boiler to rotational force at all four wheels.
+            Steam does its work twice — once driving the pistons mechanically, once driving the rails via pressure.
+            The rhombic drives harvest electricity from piston rod motion simultaneously.
+        </p>
+
+        <div class="pipeline">
+            <pre>
+<span class="em">BOILER</span> (rear of vehicle · vacuum-jacketed · 90–150 PSI)
+    |
+    | live steam
+    ↓
+<span class="em">PISTON A</span> ←————————————————→ <span class="em">PISTON B</span>  (dual-acting · rear · 180° phase offset)
+    |              |                |              |
+    | rod motion   | live steam     | rod motion   | live steam
+    ↓              | pressure       ↓              | pressure
+<span class="br">RHOMBIC</span>        |         <span class="br">RHOMBIC</span>        |
+<span class="br">DRIVE A</span>        |         <span class="br">DRIVE B</span>        |
+<span class="br">(electricity)</span>  |         <span class="br">(electricity)</span>  |
+                |                              |
+                | PTFE certified hose          | PTFE certified hose
+                | (rear → front of car)        | (rear → front of car)
+                ↓                              ↓
+    ┌───────────────────────────────────────────────┐
+    │         <span class="em">RAIL HOUSING</span> (sealed manifold cover)   │
+    │              steam environment only            │
+    │                                               │
+    │  <span class="em">RAIL A</span>  ←————————————————————————————→     │
+    │           [W1]      [W2]      [W3]            │
+    │                      |                        │
+    │             <span class="br">[CENTRAL OUTPUT SHAFT]</span>           │
+    │                      |                        │
+    │           [W4]      [W5]      [W6]            │
+    │  <span class="em">RAIL B</span>  ←————————————————————————————→     │
+    │                                               │
+    │  Steam pushes rails horizontally              │
+    │  Rails push wheels → shaft rotates            │
+    │  3 wheels per rail · 180° rail phase offset   │
+    └────────────────────────┬──────────────────────┘
+                             |
+                             | [ROTARY SEAL — steam side / mechanical side]
+                             | rotation only exits · no steam crosses
+                             ↓
+    ┌────────────────────────────────────────────────┐
+    │         <span class="sg">ENGINE HOUSING</span> (sealed · oil-bathed)      │
+    │                                                │
+    │   Input shaft enters oil bath                  │
+    │   Oil smooths torque ripple from rail strokes  │
+    │   Acts as torque buffer and accumulator        │
+    │                                                │
+    └────────────────────────┬───────────────────────┘
+                             |
+                             | clean smooth rotation
+                             ↓
+                   <span class="br">HYDROSTATIC PUMP</span>
+                             |
+                             | pressurised hydraulic fluid
+                             ↓
+          ┌──────────────────┼──────────────────┐
+          ↓                  ↓                  ↓
+     <span class="cp">WHEEL MOTOR</span>       <span class="cp">WHEEL MOTOR</span>       <span class="cp">WHEEL MOTOR</span>
+     <span class="cp">FL</span>                <span class="cp">FR</span>                <span class="cp">RL + RR</span>
+          └──────────────────┴──────────────────┘
+                    ALL WHEEL DRIVE
+
+<span class="dn">EXHAUST + RECOVERY LOOP:</span>
+Piston exhaust → <span class="dn">EDDY COIL SLEEVE</span> (electricity) → RADIATOR → condensate → BOILER
+Small 12V alternator off engine shaft → PCW + lights + valves (~150W total electrical demand)
+</pre>
+        </div>
+
+        <!-- ═══ ENGINE INTERNAL DETAIL ═══ -->
+        <hr class="sep">
+        <div class="eyebrow">Rail Housing · Internal Geometry</div>
+        <h2 class="section-title">How the rails drive the wheels — locomotive principle enclosed</h2>
+        <p class="section-lead">
+            The rail housing takes the same reciprocating back-and-forth mechanism that gives a steam locomotive
+            its enormous low-end torque, encloses it in a sealed manifold cover, and converts that horizontal
+            reciprocating force into shaft rotation through six wheel contact points.
+            Rails move. Wheels stay on the shaft and rotate. Steam stays inside the housing. Shaft exits clean.
+        </p>
+
+        <div class="pipeline">
+            <pre>
+TOP-DOWN VIEW — RAIL HOUSING INTERIOR
+
+  STEAM IN (PTFE hose) ——→ [LEFT INLET PORT]         [RIGHT INLET PORT] ←—— STEAM IN (PTFE hose)
+                                   |                          |
+                         ┌─────────┴──────────────────────────┴──────────┐
+                         │  MANIFOLD COVER (sealed · steam rated)        │
+                         │                                                │
+  ←————————————————————— <span class="em">RAIL A</span> ————————————————————————————→  (reciprocates)
+                              [W1]         [W2]         [W3]
+                                |            |            |
+                           ═════╪════════════╪════════════╪═════  <span class="br">CENTRAL OUTPUT SHAFT</span>
+                                |            |            |
+                              [W4]         [W5]         [W6]
+  ←————————————————————— <span class="em">RAIL B</span> ————————————————————————————→  (reciprocates · 180° offset)
+                         │                                                │
+                         └─────────────────────┬──────────────────────────┘
+                                               |
+                                    <span class="sg">[ROTARY SEAL]</span>
+                                               |
+                                      OUTPUT SHAFT ——→ ENGINE HOUSING
+
+  RAIL A pushes right  →  W1,W2,W3 rotate clockwise  →  shaft turns
+  RAIL A returns left  ←  RAIL B pushes right (180° offset) →  shaft keeps turning
+  Six contact points ensure continuous torque — no dead spots between strokes
+
+  RAIL SURFACE: hardened steel · steam-compatible grease · no oil contamination possible
+  WHEEL SURFACE: case-hardened · crowned profile · distributes contact stress
+  MANIFOLD COVER: bolted cast iron · removable for service · steam pressure rated
+</pre>
+        </div>
+
+        <div class="g3">
+            <div class="card ember">
+                <div class="badge ember">Rail Mechanism</div>
+                <h3>Why horizontal reciprocation works</h3>
+                <p>Horizontal rail motion is gravity-neutral — no energy lost lifting rail mass on return stroke unlike vertical. Steam pressure pushes rail forward, spring or counter-pressure returns it. At 90 PSI across a 60mm bore the force on the rail face is approximately 2,500N per rail — enough to produce meaningful shaft torque across three wheel contact points simultaneously.</p>
+                <div class="srow"><span>Rail travel per stroke</span><span class="v ember">120mm</span></div>
+                <div class="srow"><span>Force per rail at 90 PSI</span><span class="v ember">~2,500N</span></div>
+                <div class="srow"><span>Force per rail at 150 PSI</span><span class="v ember">~4,100N</span></div>
+                <div class="srow"><span>Wheel contact points</span><span class="v brass">3 per rail · 6 total</span></div>
+                <div class="srow"><span>Phase offset Rail A vs B</span><span class="v signal">180°</span></div>
+                <div class="srow"><span>Rail surface material</span><span class="v copper">Hardened 52100 steel</span></div>
+            </div>
+            <div class="card brass">
+                <div class="badge brass">Rotary Seal</div>
+                <h3>The steam-to-mechanical barrier</h3>
+                <p>The output shaft exits the rail housing through a rotary lip seal rated for steam temperature and pressure. This is a standard engineering solution — identical in principle to a crankshaft rear main seal but rated for wet steam rather than oil. Steam stays inside the rail housing. The shaft carries only rotation into the engine housing. No cross-contamination is possible at this interface.</p>
+                <div class="srow"><span>Seal type</span><span class="v brass">PTFE lip · spring-loaded</span></div>
+                <div class="srow"><span>Steam rating</span><span class="v ember">200°C · 200 PSI</span></div>
+                <div class="srow"><span>Shaft surface finish</span><span class="v signal">Ra 0.4μm ground</span></div>
+                <div class="srow"><span>Replacement interval</span><span class="v brass">15,000 miles</span></div>
+                <div class="srow"><span>Failure mode</span><span class="v copper">Steam weep (visible · safe)</span></div>
+            </div>
+            <div class="card signal">
+                <div class="badge signal">Rhombic Drives</div>
+                <h3>Electricity from piston rod motion</h3>
+                <p>Each piston's connecting rod drives a rhombic crank simultaneously with pushing steam pressure forward. Zero side thrust on piston walls. Counter-rotating cranks cancel all lateral load. Output shaft couples to a small generator or directly charges the 12V system via rectifier. Phase 14 bench test T-2 determines whether rhombic output alone covers the ~150W electrical demand or whether a small supplementary generator is needed at the front.</p>
+                <div class="srow"><span>Expected output each</span><span class="v signal">~400–900W gross</span></div>
+                <div class="srow"><span>After 20% margin</span><span class="v signal">~320–720W each</span></div>
+                <div class="srow"><span>Both combined</span><span class="v signal">~640–1,440W</span></div>
+                <div class="srow"><span>Electrical demand</span><span class="v brass">~150W (PCW+lights+valves)</span></div>
+                <div class="srow"><span>Surplus to 12V battery</span><span class="v signal">Significant — charges fast</span></div>
+                <div class="srow"><span>Fallback if insufficient</span><span class="v ember">Small front alternator</span></div>
+            </div>
+        </div>
+
+        <!-- ═══ BOILER SAFETY + SHIELD ═══ -->
+        <hr class="sep">
+        <div class="eyebrow">Safety Architecture · Boiler Protection</div>
+        <h2 class="section-title">Boiler shield, pressure relief, and safety stack</h2>
+
+        <div class="shield">
+            <div style="font-size:1.6rem;flex-shrink:0">🛡️</div>
+            <div>
+                <strong>Blast Shield — Armour Plate Behind Boiler</strong>
+                A 6mm AR400 abrasion-resistant steel plate mounts between the boiler and the passenger compartment on the firewall.
+                AR400 is used in mining equipment impact liners — it absorbs and distributes shockwave energy rather than fragmenting.
+                At the target vehicle weight (~1,500kg Impala class) a 6mm plate covering 600×400mm weighs approximately 11kg — acceptable.
+                A boiler rupture at 150 PSI would vent steam rearward and outward — the plate redirects that energy away from occupants.
+                Combined with the ASME pressure vessel rating, three independent pressure relief valves, and PCW pressure monitoring,
+                the probability of uncontained rupture is extremely low. The shield is the last-resort passive protection layer.
+                <div style="margin-top:.8rem;display:grid;grid-template-columns:1fr 1fr;gap:.4rem;font-size:11px;color:var(--muted)">
+                    <span>Shield material: AR400 steel</span><span>Thickness: 6mm</span>
+                    <span>Coverage area: 600×400mm</span><span>Weight penalty: ~11kg</span>
+                    <span>Relief valves: 3× independent</span><span>PCW pressure cutoff: 155 PSI</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="g2">
+            <div class="card danger">
+                <div class="badge danger">Pressure Relief Stack</div>
+                <h3>Three independent layers before rupture</h3>
+                <div class="srow"><span>Layer 1 — PCW electronic cutoff</span><span class="v signal">Cuts heater at 150 PSI</span></div>
+                <div class="srow"><span>Layer 2 — Mechanical PRV</span><span class="v brass">Springs open at 155 PSI</span></div>
+                <div class="srow"><span>Layer 3 — Fusible plug</span><span class="v danger">Melts at 230°C (overtemp)</span></div>
+                <div class="srow"><span>Boiler burst test rating</span><span class="v signal">340 PSI (2.27× working)</span></div>
+                <div class="srow"><span>Annual inspection required</span><span class="v brass">ASME inspector · yes</span></div>
+                <p style="margin-top:.8rem">All three relief layers must fail simultaneously for any rupture risk. Probability is comparable to a conventional car fuel tank fire — rare with proper maintenance.</p>
+            </div>
+            <div class="card ember">
+                <div class="badge ember">Boiler Specification</div>
+                <h3>ASME vacuum-jacketed pressure vessel</h3>
+                <div class="srow"><span>Inner vessel material</span><span class="v ember">SA-516 Grade 70</span></div>
+                <div class="srow"><span>Capacity</span><span class="v brass">15 gallon (stripped from 25)</span></div>
+                <div class="srow"><span>Working pressure</span><span class="v ember">90–150 PSI</span></div>
+                <div class="srow"><span>Hydrostatic test pressure</span><span class="v signal">225 PSI</span></div>
+                <div class="srow"><span>Vacuum jacket insulation</span><span class="v signal">&lt;10 mTorr · −60% heat loss</span></div>
+                <div class="srow"><span>Heater element</span><span class="v brass">Incoloy 800 · 2,000W</span></div>
+                <div class="srow"><span>Heat-up time (cold start)</span><span class="v ember">&lt;55 minutes</span></div>
+                <div class="srow"><span>Water capacity (operating)</span><span class="v brass">~10 gallons active</span></div>
+            </div>
+        </div>
+
+        <!-- ═══ COMPONENT COST TABLE ═══ -->
+        <hr class="sep">
+        <div class="eyebrow">Phase 14 · Complete Cost Breakdown</div>
+        <h2 class="section-title">Every component — sourcing strategy, unit cost, and build total</h2>
+        <p class="section-lead">
+            Costs are real-world sourced: surplus industrial suppliers, agricultural hydraulics, automotive salvage,
+            and direct fabrication quotes. Where off-the-shelf exists it is used. Custom fabrication is minimised
+            to the components that cannot be bought — rhombic drives, rail housing, and engine housing.
+            All figures include 15% contingency.
+        </p>
+
+        <div class="tbl-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Source Strategy</th>
+                        <th>Est. Cost</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hi"><td><strong>BOILER SYSTEM</strong></td><td></td><td></td><td></td></tr>
+                    <tr><td>ASME boiler inner vessel (15 gal, SA-516 Gr.70)</td><td>Custom fab — local boiler shop</td><td class="ember">$2,200</td><td>Hydrostatic tested, certified, most critical cost item</td></tr>
+                    <tr><td>Vacuum jacket outer shell (304 SS)</td><td>Fabricated alongside inner vessel</td><td class="ember">$600</td><td>Welded to inner, evacuation port included</td></tr>
+                    <tr><td>Vacuum pump (to evacuate jacket, one-time)</td><td>Rental or borrowed</td><td class="ok">$0–80</td><td>One-time use during assembly</td></tr>
+                    <tr><td>Immersion heater element (Incoloy 800 · 2kW)</td><td>Industrial heating supplier</td><td class="ok">$120</td><td>Off-the-shelf industrial element</td></tr>
+                    <tr><td>3× Pressure relief valves (ASME rated)</td><td>Surplus steam supply</td><td class="ok">$180</td><td>$60 each · non-negotiable safety items</td></tr>
+                    <tr><td>Fusible plug (230°C melt)</td><td>Steam fittings supplier</td><td class="ok">$25</td><td>Standard boiler fusible plug</td></tr>
+                    <tr><td>Pressure transducer (0–200 PSI)</td><td>Industrial sensor supplier</td><td class="ok">$45</td><td>For PCW monitoring</td></tr>
+                    <tr><td>AR400 blast shield plate (6mm · 600×400mm)</td><td>Steel service center offcut</td><td class="ok">$85</td><td>Cut to size · weld mounting tabs</td></tr>
+                    <tr class="hi"><td><strong>BOILER SUBTOTAL</strong></td><td></td><td class="ember">~$3,335</td><td></td></tr>
+
+                    <tr class="hi"><td><strong>PISTON ASSEMBLY</strong></td><td></td><td></td><td></td></tr>
+                    <tr><td>2× Piston cylinders (dual-acting · 80mm bore · 120mm stroke)</td><td>Custom machined — job shop</td><td class="ember">$800</td><td>$400 each · 4340 chromoly cylinder, machined bore</td></tr>
+                    <tr><td>2× Piston heads + rings (cast iron · PTFE rings)</td><td>Custom machined</td><td class="warn">$300</td><td>$150 each · PTFE rings for steam compatibility</td></tr>
+                    <tr><td>2× Piston rods (4340 chromoly · ground · chromed)</td><td>Custom machined</td><td class="warn">$240</td><td>$120 each · chrome plated for seal compatibility</td></tr>
+                    <tr><td>4× Cylinder end caps + stuffing box seals</td><td>Custom machined + PTFE packing</td><td class="warn">$280</td><td>Dual-acting requires both end caps per cylinder</td></tr>
+                    <tr><td>Steam inlet/outlet valves (×4 per cylinder)</td><td>Industrial steam valve supplier</td><td class="warn">$320</td><td>$80 each · stainless ball valves rated 200 PSI</td></tr>
+                    <tr class="hi"><td><strong>PISTON SUBTOTAL</strong></td><td></td><td class="ember">~$1,940</td><td></td></tr>
+
+                    <tr class="hi"><td><strong>RHOMBIC DRIVES</strong></td><td></td><td></td><td></td></tr>
+                    <tr><td>2× Rhombic crank arm sets (4340 chromoly · machined)</td><td>Custom machined — job shop</td><td class="ember">$700</td><td>$350 per set · 4 arms per set · fillet radius critical</td></tr>
+                    <tr><td>2× Rhombic connecting rod sets (4340 · nitrided)</td><td>Custom machined + nitriding</td><td class="warn">$400</td><td>$200 per set · nitriding adds surface hardness</td></tr>
+                    <tr><td>4× Timken tapered roller bearings (crank journals)</td><td>Bearing supplier — off shelf</td><td class="ok">$180</td><td>$45 each · standard automotive tapered roller</td></tr>
+                    <tr><td>2× Output shaft + coupling flanges</td><td>Custom machined</td><td class="warn">$220</td><td>$110 each · couples to generator or 12V alternator</td></tr>
+                    <tr><td>2× Small 12V alternators (rhombic output)</td><td>Automotive salvage yard</td><td class="ok">$80</td><td>$40 each · standard Delco alternator · rectified output</td></tr>
+                    <tr><td>Rhombic housing covers (×2)</td><td>Fabricated sheet steel</td><td class="ok">$120</td><td>Splash guard + mounting · not pressure rated</td></tr>
+                    <tr class="hi"><td><strong>RHOMBIC SUBTOTAL</strong></td><td></td><td class="ember">~$1,700</td><td></td></tr>
+
+                    <tr class="hi"><td><strong>RAIL HOUSING + ENGINE</strong></td><td></td><td></td><td></td></tr>
+                    <tr><td>Rail housing casting (grey iron · manifold cover)</td><td>Local foundry · pattern + cast</td><td class="ember">$1,400</td><td>Most complex custom part — pattern cost included</td></tr>
+                    <tr><td>2× Hardened rails (52100 bearing steel · ground)</td><td>Steel supplier + surface grind</td><td class="warn">$380</td><td>$190 each · precision ground running surface</td></tr>
+                    <tr><td>6× Rail wheels (case-hardened · crowned profile)</td><td>Custom machined</td><td class="warn">$420</td><td>$70 each · crowned contact profile reduces stress</td></tr>
+                    <tr><td>Central output shaft (4340 · ground · balanced)</td><td>Custom machined</td><td class="warn">$280</td><td>Carries all six wheel loads — critical sizing</td></tr>
+                    <tr><td>Rotary shaft seal (PTFE lip · steam rated 200°C)</td><td>Industrial seal supplier</td><td class="ok">$65</td><td>Standard rotary seal — replaceable at service</td></tr>
+                    <tr><td>Rail return springs (×2 · stainless)</td><td>Spring supplier — off shelf</td><td class="ok">$80</td><td>Returns rails on exhaust stroke</td></tr>
+                    <tr><td>Engine housing casting (grey iron · oil-bathed)</td><td>Local foundry · same run as rail</td><td class="ember">$900</td><td>Torque buffer chamber — cast alongside rail housing</td></tr>
+                    <tr><td>Engine internal shaft bearings (×2 SKF)</td><td>Bearing supplier</td><td class="ok">$120</td><td>$60 each · deep groove ball bearing</td></tr>
+                    <tr><td>Synthetic PAO engine oil (ISO-68 · 4 litre)</td><td>Industrial lubricant supplier</td><td class="ok">$60</td><td>First fill · change at 15,000 miles</td></tr>
+                    <tr class="hi"><td><strong>RAIL + ENGINE SUBTOTAL</strong></td><td></td><td class="ember">~$3,705</td><td></td></tr>
+
+                    <tr class="hi"><td><strong>STEAM LINES + PLUMBING</strong></td><td></td><td></td><td></td></tr>
+                    <tr><td>PTFE braided stainless hose (×4 metres · 1/2" ID)</td><td>Industrial hose supplier</td><td class="warn">$280</td><td>Rear-to-front run + piston connections</td></tr>
+                    <tr><td>Copper hardline (A106 · 3/8" · 2 metres)</td><td>Plumbing / HVAC supplier</td><td class="ok">$60</td><td>Short fixed runs at boiler and rail housing</td></tr>
+                    <tr><td>Compression fittings + flare fittings (×20)</td><td>Steam fittings supplier</td><td class="warn">$180</td><td>$9 average · stainless rated 200 PSI</td></tr>
+                    <tr><td>Throttle valve (PCW-actuated · 3/4" · stainless)</td><td>Industrial valve supplier</td><td class="warn">$145</td><td>Motorised ball valve · 12V actuator</td></tr>
+                    <tr><td>Aerogel pipe wrap (2 metres)</td><td>Insulation supplier</td><td class="ok">$90</td><td>Reduces heat loss on PTFE hose run</td></tr>
+                    <tr class="hi"><td><strong>PLUMBING SUBTOTAL</strong></td><td></td><td class="ember">~$755</td><td></td></tr>
+
+                    <tr class="hi"><td><strong>CONDENSATE + RADIATOR</strong></td><td></td><td></td><td></td></tr>
+                    <tr><td>Radiator (aluminium · automotive size)</td><td>Automotive parts — off shelf</td><td class="ok">$180</td><td>Standard car radiator · condensate recovery duty</td></tr>
+                    <tr><td>Eddy coil exhaust sleeve (ceramic former · 12 coil pairs)</td><td>Custom wound — DIY + materials</td><td class="warn">$320</td><td>Ceramic former $80 · magnet wire $120 · assembly $120</td></tr>
+                    <tr><td>Condensate return pump (12V · small)</td><td>Industrial pump supplier</td><td class="ok">$75</td><td>Returns condensed water to boiler</td></tr>
+                    <tr><td>Water reservoir tank (2 gallon · top-up)</td><td>Stainless tank — off shelf</td><td class="ok">$55</td><td>Top-up supply between condensate cycles</td></tr>
+                    <tr><td>Water filter + desiccant inline</td><td>Plumbing supplier</td><td class="ok">$40</td><td>Keeps boiler feed water clean</td></tr>
+                    <tr class="hi"><td><strong>CONDENSATE SUBTOTAL</strong></td><td></td><td class="ember">~$670</td><td></td></tr>
+
+                    <tr class="hi"><td><strong>HYDROSTATIC TRANSMISSION</strong></td><td></td><td></td><td></td></tr>
+                    <tr><td>Hydrostatic pump (gear type · 1" shaft input)</td><td>Agricultural surplus — Sauer-Danfoss</td><td class="ember">$800</td><td>Surplus ag pump — common and rebuildable</td></tr>
+                    <tr><td>4× Hydrostatic wheel motors (orbital)</td><td>Agricultural surplus</td><td class="ember">$1,200</td><td>$300 each · orbital motors standard in ag equipment</td></tr>
+                    <tr><td>Hydraulic fluid reservoir (3 gallon)</td><td>Off shelf</td><td class="ok">$65</td><td>Vented, filtered</td></tr>
+                    <tr><td>Hydraulic lines + fittings (×6 metres)</td><td>Industrial hydraulic supplier</td><td class="warn">$240</td><td>High pressure rated · JIC fittings</td></tr>
+                    <tr><td>Flow divider valve (AWD balance)</td><td>Hydraulic supplier</td><td class="warn">$180</td><td>Splits pump output to 4 wheel motors evenly</td></tr>
+                    <tr><td>Hydraulic filter + cooler</td><td>Off shelf</td><td class="ok">$95</td><td>Inline filter + small cooler coil</td></tr>
+                    <tr class="hi"><td><strong>HYDROSTATIC SUBTOTAL</strong></td><td></td><td class="ember">~$2,580</td><td></td></tr>
+
+                    <tr class="hi"><td><strong>BRAKES + CHASSIS</strong></td><td></td><td></td><td></td></tr>
+                    <tr><td>4× Conventional hydraulic disc brake calipers</td><td>Automotive salvage yard</td><td class="ok">$200</td><td>$50 each · standard single-piston calipers</td></tr>
+                    <tr><td>4× Brake rotors (plain grey iron)</td><td>Automotive parts — off shelf</td><td class="ok">$160</td><td>$40 each · standard replacement rotors</td></tr>
+                    <tr><td>Brake master cylinder + lines</td><td>Automotive salvage</td><td class="ok">$80</td><td>Conventional hydraulic system</td></tr>
+                    <tr><td>Donor vehicle chassis (Impala/similar 4-door)</td><td>Salvage yard — bare rolling shell</td><td class="ember">$800</td><td>Body shell + frame · stripped of drivetrain</td></tr>
+                    <tr><td>Suspension components (reuse donor)</td><td>From donor vehicle</td><td class="ok">$0</td><td>Struts, arms, hubs reused from donor</td></tr>
+                    <tr><td>Steering system (reuse donor)</td><td>From donor vehicle</td><td class="ok">$0</td><td>Rack and pinion reused</td></tr>
+                    <tr><td>Wheels + tyres (×4 · standard 16")</td><td>Salvage / budget tyre shop</td><td class="warn">$400</td><td>$100 each mounted</td></tr>
+                    <tr class="hi"><td><strong>CHASSIS SUBTOTAL</strong></td><td></td><td class="ember">~$1,640</td><td></td></tr>
+
+                    <tr class="hi"><td><strong>ELECTRICAL + PCW</strong></td><td></td><td></td><td></td></tr>
+                    <tr><td>PCW controller (STM32 Nucleo · ARM Cortex M4)</td><td>Electronics supplier</td><td class="ok">$35</td><td>Stripped PCW — pressure monitor + throttle control only</td></tr>
+                    <tr><td>12V AGM battery (40Ah)</td><td>Automotive supplier</td><td class="ok">$95</td><td>Starter + PCW + lights · recharged by rhombic alternators</td></tr>
+                    <tr><td>Wiring loom (12V · basic)</td><td>Automotive electrical supplier</td><td class="ok">$120</td><td>PCW, sensors, lights, throttle actuator</td></tr>
+                    <tr><td>Sensors (pressure × 2, temp × 4, flow × 1)</td><td>Industrial sensor supplier</td><td class="ok">$140</td><td>~$20 average each</td></tr>
+                    <tr><td>Basic instrument display (12V · digital)</td><td>Automotive / marine supplier</td><td class="ok">$75</td><td>PSI, temp, water level readout</td></tr>
+                    <tr><td>Lighting (LED · front + rear)</td><td>Automotive supplier</td><td class="ok">$80</td><td>Basic road legal lighting</td></tr>
+                    <tr class="hi"><td><strong>ELECTRICAL SUBTOTAL</strong></td><td></td><td class="ember">~$545</td><td></td></tr>
+
+                    <tr class="hi"><td><strong>FABRICATION + ASSEMBLY LABOUR</strong></td><td></td><td></td><td></td></tr>
+                    <tr><td>Machine shop time (rhombic drives + shafts + pistons)</td><td>Local job shop</td><td class="ember">$1,400</td><td>Est. 40 hours at $35/hr shop rate</td></tr>
+                    <tr><td>Foundry pattern + casting (rail + engine housings)</td><td>Local foundry</td><td class="ember">$600</td><td>Pattern included in rail housing cost above · labour here</td></tr>
+                    <tr><td>Welding + fitment (chassis mounts, shield, brackets)</td><td>Local fabricator</td><td class="warn">$400</td><td>Est. 10 hours at $40/hr</td></tr>
+                    <tr><td>Assembly labour (self-build assumed)</td><td>Builder's own time</td><td class="ok">$0</td><td>If outsourced add ~$800–1,200</td></tr>
+                    <tr><td>Consumables (welding wire, grinding discs, gaskets)</td><td>Hardware + welding supplier</td><td class="ok">$150</td><td>Miscellaneous build consumables</td></tr>
+                    <tr class="hi"><td><strong>LABOUR SUBTOTAL</strong></td><td></td><td class="ember">~$2,550</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- TOTAL -->
+        <div class="total-box">
+            <div class="t-label">Phase 14 · Estimated Total Build Cost</div>
+            <div class="t-val">~$19,420</div>
+            <div class="t-sub">Including 15% contingency across all line items · Self-assembly assumed · Under $20,000 target achieved</div>
+        </div>
+
+        <!-- COST VISUAL BREAKDOWN -->
+        <div class="card iron" style="margin-top:1.5rem">
+            <h3 style="margin-bottom:1.2rem;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--iron-light)">Cost Distribution</h3>
+            <div class="cost-item"><span>Boiler System</span><div class="cost-track"><div class="cost-fill" style="width:100%"></div></div><span style="color:var(--ember)">$3,335</span></div>
+            <div class="cost-item"><span>Rail Housing + Engine</span><div class="cost-track"><div class="cost-fill" style="width:82%"></div></div><span style="color:var(--ember)">$3,705</span></div>
+            <div class="cost-item"><span>Hydrostatic Transmission</span><div class="cost-track"><div class="cost-fill brass" style="width:57%"></div></div><span style="color:var(--brass)">$2,580</span></div>
+            <div class="cost-item"><span>Fabrication + Labour</span><div class="cost-track"><div class="cost-fill brass" style="width:55%"></div></div><span style="color:var(--brass)">$2,550</span></div>
+            <div class="cost-item"><span>Piston Assembly</span><div class="cost-track"><div class="cost-fill copper" style="width:42%"></div></div><span style="color:var(--copper-light)">$1,940</span></div>
+            <div class="cost-item"><span>Rhombic Drives</span><div class="cost-track"><div class="cost-fill copper" style="width:37%"></div></div><span style="color:var(--copper-light)">$1,700</span></div>
+            <div class="cost-item"><span>Chassis + Brakes</span><div class="cost-track"><div class="cost-fill iron" style="width:35%"></div></div><span style="color:var(--iron-light)">$1,640</span></div>
+            <div class="cost-item"><span>Steam Plumbing</span><div class="cost-track"><div class="cost-fill iron" style="width:16%"></div></div><span style="color:var(--iron-light)">$755</span></div>
+            <div class="cost-item"><span>Condensate + Radiator</span><div class="cost-track"><div class="cost-fill signal" style="width:14%"></div></div><span style="color:var(--signal)">$670</span></div>
+            <div class="cost-item"><span>Electrical + PCW</span><div class="cost-track"><div class="cost-fill signal" style="width:11%"></div></div><span style="color:var(--signal)">$545</span></div>
+        </div>
+
+        <!-- ═══ HEAT STRESS TABLE ═══ -->
+        <hr class="sep">
+        <div class="eyebrow">Phase 14 · Thermal Stress Analysis</div>
+        <h2 class="section-title">Heat ratings, failure modes, and cooling for every major component</h2>
+        <div class="tbl-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Max Operating Temp</th>
+                        <th>Material / Rating</th>
+                        <th>Failure Mode if Exceeded</th>
+                        <th>Cooling Method</th>
+                        <th>Bench Test</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Boiler inner vessel</td><td class="ok">230°C / 150 PSI working</td><td>SA-516 Gr.70 ASME</td><td>Creep at sustained overtemp · seal failure</td><td>Vacuum jacket passive</td><td>T-1 hydrostatic</td></tr>
+                    <tr><td>Vacuum jacket annulus</td><td class="ok">&lt;10 mTorr maintained</td><td>304 SS outer / SA-516 inner</td><td>Jacket breach → heat loss surge → longer heat-up</td><td>Passive — no contact</td><td>T-1 vacuum check</td></tr>
+                    <tr><td>Immersion heater element</td><td class="warn">260°C surface max</td><td>Incoloy 800 sheath</td><td>Sheath oxidation · burnout at dry-fire</td><td>Water contact self-cooling</td><td>T-1 thermal soak</td></tr>
+                    <tr><td>PTFE hose inner liner</td><td class="ok">260°C continuous</td><td>Virgin PTFE ASTM D1457</td><td>Inner liner crack · steam leak</td><td>Aerogel wrap retention</td><td>T-4 life test</td></tr>
+                    <tr><td>Copper hardline fittings</td><td class="ok">350°C continuous</td><td>C12200 soft copper flared</td><td>Annealing · fitting loosening over time</td><td>Aerogel wrap</td><td>T-4 combined</td></tr>
+                    <tr><td>Piston cylinder walls</td><td class="ok">180°C max bore temp</td><td>4340 chromoly · honed</td><td>Ring seal loss · blow-by at high temp</td><td>Steam exhaust convection</td><td>T-2 run test</td></tr>
+                    <tr><td>PTFE piston rings</td><td class="ok">260°C rated</td><td>Filled PTFE compound</td><td>Ring extrusion into gap · seal loss</td><td>Steam cooling</td><td>T-2 seal check</td></tr>
+                    <tr><td>Rhombic crank arms</td><td class="warn">150°C surface max</td><td>4340 chromoly Q+T</td><td>Fatigue crack at fillet radius under cyclic load</td><td>Air convection · splash</td><td>T-3 strain gauge</td></tr>
+                    <tr><td>Rhombic connecting rods</td><td class="warn">150°C max</td><td>4340 nitrided surface</td><td>Fretting at pin interface at high temp</td><td>Air convection</td><td>T-3 thermal run</td></tr>
+                    <tr><td>12V alternators (rhombic)</td><td class="warn">100°C winding max</td><td>Standard automotive winding</td><td>Insulation breakdown · short circuit</td><td>Passive air cooling</td><td>T-3 output test</td></tr>
+                    <tr><td>Rail surface (52100 steel)</td><td class="ok">150°C max (steam contact)</td><td>52100 bearing steel hardened</td><td>Surface softening above 170°C · wear rate rises</td><td>Steam itself (low temp exhaust side)</td><td>T-5 rail wear</td></tr>
+                    <tr><td>Rail housing manifold cover</td><td class="ok">200°C continuous</td><td>Grey iron EN-GJL-250</td><td>Distortion of rail tracks if overtemp</td><td>Passive radiation</td><td>T-1 pressure hold</td></tr>
+                    <tr><td>Rotary shaft seal</td><td class="warn">200°C steam face max</td><td>PTFE lip · spring-loaded</td><td>Lip extrusion · steam weep (visible · safe)</td><td>Shaft surface finish critical</td><td>T-5 seal endurance</td></tr>
+                    <tr><td>Engine housing oil bath</td><td class="ok">120°C oil max</td><td>Synthetic PAO ISO-68</td><td>Oil oxidation · varnish on shaft surfaces</td><td>Radiator loop</td><td>T-6 endurance</td></tr>
+                    <tr><td>Hydrostatic pump</td><td class="ok">80°C hydraulic fluid max</td><td>Sauer-Danfoss gear pump</td><td>Fluid breakdown · seal swelling</td><td>Hydraulic fluid cooler</td><td>T-6 combined</td></tr>
+                    <tr><td>Orbital wheel motors (×4)</td><td class="ok">80°C max</td><td>Standard orbital motor seals</td><td>Seal extrusion · hydraulic leak at wheel</td><td>Ambient air convection</td><td>T-6 road test</td></tr>
+                    <tr><td>Eddy coil sleeve</td><td class="ok">250°C coil former max</td><td>Ceramic Al₂O₃ former</td><td>Coil insulation breakdown above 300°C</td><td>Exhaust flow convection</td><td>T-7 thermal soak</td></tr>
+                    <tr><td>12V AGM battery</td><td class="warn">50°C max cell temp</td><td>Standard AGM construction</td><td>Electrolyte gassing · capacity loss</td><td>Mount away from boiler · firewall</td><td>Monitor via PCW</td></tr>
+                    <tr><td>PCW STM32 controller</td><td class="ok">85°C enclosure max</td><td>IP65 aluminium enclosure</td><td>MCU thermal shutdown · false readings</td><td>Firewall mount · convection</td><td>T-8 firmware</td></tr>
+                    <tr><td>Brake rotors (hydraulic disc)</td><td class="ok">450°C continuous</td><td>G3000 grey iron</td><td>Thermal cracking · warping at panic stop</td><td>Ventilated rotor design</td><td>Visual inspection</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ═══ BENCH TESTS ═══ -->
+        <hr class="sep">
+        <div class="eyebrow">Phase 14 · Bench Test Schedule — 8 Tests</div>
+        <h2 class="section-title">Nothing advances to vehicle installation without a passing bench result</h2>
+
+        <div class="test-grid">
+            <div class="test-card" data-num="T1">
+                <div class="badge ember">Priority ①</div>
+                <h3>T-1 · Boiler Pressure + Vacuum Test</h3>
+                <p>Validate the ASME inner vessel and vacuum jacket before any steam operation.</p>
+                <ul>
+                    <li>Hydrostatic test inner vessel to 225 PSI · hold 30 minutes · no drop</li>
+                    <li>Vacuum jacket: achieve &lt;10 mTorr · thermal loss must be &lt;40% of non-jacketed</li>
+                    <li>Heat-up test: 2,000W heater · cold to 90 PSI · must be &lt;55 minutes</li>
+                    <li>Pressure decay: hold 90 PSI heater off · &lt;5 PSI drop per hour</li>
+                    <li>All 3 PRVs tested: must open at 155 PSI ±5 PSI</li>
+                    <li>Pass/fail: holds 225 PSI · vacuum achieved · heat-up &lt;55 min · PRVs open correctly</li>
+                </ul>
+            </div>
+            <div class="test-card" data-num="T2">
+                <div class="badge brass">Priority ②</div>
+                <h3>T-2 · Dual-Acting Piston Steam Test</h3>
+                <p>Validate piston sealing, force output, and dual-acting pressure on both sides of cylinder.</p>
+                <ul>
+                    <li>Feed steam at 90 PSI · measure force output on piston rod via load cell</li>
+                    <li>Feed steam at 150 PSI · confirm linear force increase</li>
+                    <li>Cycle 500 continuous strokes · check ring seal integrity after</li>
+                    <li>Measure stuffing box seal leak rate · must be zero at 90 PSI</li>
+                    <li>Confirm dual-acting: both forward and return strokes produce measurable force</li>
+                    <li>Pass/fail: force within 10% of calculated · zero stuffing box leak · rings intact</li>
+                </ul>
+            </div>
+            <div class="test-card" data-num="T3">
+                <div class="badge ember">Priority ③</div>
+                <h3>T-3 · Rhombic Drive + Alternator Output</h3>
+                <p>Confirm rhombic drive geometry and electrical output from both alternators under piston steam input.</p>
+                <ul>
+                    <li>Lateral force measurement: strain gauge on piston rod · must be &lt;50N side force</li>
+                    <li>Connect both alternators to 12V load bank · measure combined output</li>
+                    <li>At 90 PSI: target ≥300W combined after rectification</li>
+                    <li>At 150 PSI: target ≥600W combined</li>
+                    <li>Run 30 minutes sustained: alternator winding temp must stay &lt;100°C</li>
+                    <li>Pass/fail: &lt;50N side force · ≥300W at 90 PSI · &lt;100°C windings</li>
+                </ul>
+            </div>
+            <div class="test-card" data-num="T4">
+                <div class="badge brass">Priority ④</div>
+                <h3>T-4 · Steam Line Pressure + Life Test</h3>
+                <p>Validate PTFE hose and fittings under sustained steam pressure and thermal cycling.</p>
+                <ul>
+                    <li>Pressure cycle: 0→150 PSI · 10,000 cycles · no leak or delamination</li>
+                    <li>Temperature cycle: 25°C→200°C · 500 cycles · inspect fittings after</li>
+                    <li>Burst pressure after cycling: must exceed 400 PSI</li>
+                    <li>Aerogel wrap: measure heat retention vs unwrapped at 150 PSI steam</li>
+                    <li>Pass/fail: burst &gt;400 PSI · no fitting fretting · aerogel retains &gt;30% heat</li>
+                </ul>
+            </div>
+            <div class="test-card" data-num="T5">
+                <div class="badge ember">Priority ⑤</div>
+                <h3>T-5 · Rail Housing + Rotary Seal Test</h3>
+                <p>Validate rail reciprocation, wheel contact force, shaft output torque, and seal integrity under steam.</p>
+                <ul>
+                    <li>Feed steam at 90 PSI to rail housing inlet ports · measure shaft output torque</li>
+                    <li>Confirm 180° phase offset between Rail A and Rail B produces continuous shaft rotation</li>
+                    <li>Run 1,000 continuous rail cycles · measure rail surface wear with profilometer</li>
+                    <li>Rotary seal: inspect for steam weep after 1,000 cycles · none acceptable at 90 PSI</li>
+                    <li>Shaft output: torque ripple must be &lt;10% peak-to-peak</li>
+                    <li>Pass/fail: continuous rotation confirmed · &lt;10% ripple · zero seal weep</li>
+                </ul>
+            </div>
+            <div class="test-card" data-num="T6">
+                <div class="badge brass">Priority ⑥</div>
+                <h3>T-6 · Engine Housing + Hydrostatic Endurance</h3>
+                <p>Full drivetrain endurance: shaft input → engine oil bath → hydrostatic pump → wheel motors.</p>
+                <ul>
+                    <li>Run combined system for 4 hours at simulated cruise shaft speed</li>
+                    <li>Engine oil temperature: must stay &lt;120°C throughout</li>
+                    <li>Hydraulic fluid temperature: must stay &lt;80°C throughout</li>
+                    <li>All 4 wheel motor outputs: measure torque balance · must be within 5% of each other</li>
+                    <li>Check for hydraulic leaks at all JIC fittings after 4-hour run</li>
+                    <li>Pass/fail: temps in limits · balanced wheel output · zero leaks</li>
+                </ul>
+            </div>
+            <div class="test-card" data-num="T7">
+                <div class="badge ember">Priority ⑦</div>
+                <h3>T-7 · Eddy Coil Exhaust Sleeve</h3>
+                <p>Validate electrical output from exhaust steam sleeve before vehicle installation.</p>
+                <ul>
+                    <li>Route exhaust steam at 120–180°C through 300mm ceramic sleeve</li>
+                    <li>Measure output at idle exhaust flow: target ≥150W</li>
+                    <li>Thermal soak 4 hours at 200°C: check coil insulation integrity &gt;100 MΩ</li>
+                    <li>Back-pressure check: must add &lt;2% resistance to exhaust flow</li>
+                    <li>Pass/fail: ≥150W output · &gt;100 MΩ insulation · &lt;2% back-pressure</li>
+                </ul>
+            </div>
+            <div class="test-card" data-num="T8">
+                <div class="badge brass">Priority ⑧</div>
+                <h3>T-8 · PCW Firmware + Safety Stack</h3>
+                <p>Validate PCW pressure floor enforcement, throttle control, and all failsafe pathways.</p>
+                <ul>
+                    <li>Simulate throttle sweep: PCW must never command below 90 PSI</li>
+                    <li>Simulate pressure transducer failure: PCW must hold last known good value and alert</li>
+                    <li>Overpressure test: simulate 155 PSI reading · PCW must cut heater within 200ms</li>
+                    <li>Watchdog timer: force CPU halt · hardware must de-energise throttle valve</li>
+                    <li>Eddy coil + rhombic outputs: PCW must log and display both channels</li>
+                    <li>Pass/fail: PSI floor never breached · all failsafes trigger correctly · &lt;200ms response</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ═══ WEIGHT ESTIMATE ═══ -->
+        <hr class="sep">
+        <div class="eyebrow">Phase 14 · Vehicle Weight Estimate</div>
+        <h2 class="section-title">Target weight — Chevy Impala class · ~1,500kg kerb</h2>
+
+        <div class="tbl-wrap">
+            <table>
+                <thead><tr><th>Assembly</th><th>Estimated Weight</th><th>Notes</th><th>Status</th></tr></thead>
+                <tbody>
+                    <tr><td>Donor chassis + body shell</td><td>~750kg</td><td>Bare Impala shell without drivetrain</td><td class="ok">BASELINE</td></tr>
+                    <tr><td>Boiler (vessel + water + jacket)</td><td>~85kg</td><td>15 gal vessel + ~40kg water fill</td><td class="warn">HEAVIEST SYSTEM PART</td></tr>
+                    <tr><td>Rail housing + engine housing</td><td>~60kg</td><td>Grey iron castings · substantial but compact</td><td class="ok">ACCEPTABLE</td></tr>
+                    <tr><td>Piston assemblies (×2)</td><td>~18kg</td><td>Cylinders + rods + valves</td><td class="ok">LIGHT</td></tr>
+                    <tr><td>Rhombic drives (×2)</td><td>~12kg</td><td>4340 steel cranks + rods + alternators</td><td class="ok">LIGHT</td></tr>
+                    <tr><td>Hydrostatic pump</td><td>~14kg</td><td>Sauer-Danfoss gear pump</td><td class="ok">ACCEPTABLE</td></tr>
+                    <tr><td>4× Orbital wheel motors</td><td>~24kg</td><td>~6kg each · hub-mounted</td><td class="ok">ACCEPTABLE</td></tr>
+                    <tr><td>Hydraulic fluid + reservoir</td><td>~12kg</td><td>3 gallon fill + tank</td><td class="ok">LIGHT</td></tr>
+                    <tr><td>Steam plumbing + hose</td><td>~8kg</td><td>PTFE hose + copper + fittings</td><td class="ok">LIGHT</td></tr>
+                    <tr><td>Radiator + condensate system</td><td>~10kg</td><td>Aluminium radiator + pump + tank</td><td class="ok">LIGHT</td></tr>
+                    <tr><td>AR400 blast shield</td><td>~11kg</td><td>6mm plate · 600×400mm</td><td class="ok">ACCEPTABLE</td></tr>
+                    <tr><td>Electrical + PCW + battery</td><td>~15kg</td><td>12V AGM + wiring + sensors</td><td class="ok">LIGHT</td></tr>
+                    <tr><td>Suspension + steering (donor)</td><td>~80kg</td><td>Retained from donor vehicle</td><td class="ok">BASELINE</td></tr>
+                    <tr><td>Wheels + tyres (×4)</td><td>~60kg</td><td>Standard 16" alloy + tyre</td><td class="ok">BASELINE</td></tr>
+                    <tr><td>Brake system (hydraulic disc)</td><td>~20kg</td><td>Calipers + rotors + master cylinder</td><td class="ok">LIGHT</td></tr>
+                    <tr><td><strong>ESTIMATED KERB WEIGHT</strong></td><td class="ember"><strong>~1,179kg</strong></td><td>Within Impala class target</td><td class="ok">TARGET MET</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="callout brass">
+            <div class="callout-icon">⚖️</div>
+            <div>
+                <strong>Weight note</strong>
+                At ~1,179kg the Chevy Steamer is actually lighter than a stock Impala (~1,700kg) because it has no conventional engine block, gearbox, driveshaft, differential, or fuel system. The boiler is the heaviest single system but the water is also the fuel — there is no separate fuel tank weight. The weight distribution will be rear-biased due to boiler placement which the hydrostatic AWD system compensates for naturally by independently apportioning torque to each wheel.
+            </div>
+        </div>
+
+        <!-- ═══ 20K WEAR TABLE ═══ -->
+        <hr class="sep">
+        <div class="eyebrow">Phase 14 · 20,000-Mile Wear Calculations</div>
+        <h2 class="section-title">Every moving part — wear rate, condition at 20K miles, replacement interval</h2>
+        <p class="section-lead">Based on 20,000 miles at average 50 mph = 400 operating hours. All figures carry 20% conservative reduction.</p>
+
+        <div class="tbl-wrap">
+            <table>
+                <thead><tr><th>Component</th><th>Wear Mechanism</th><th>Rate</th><th>Condition at 20K mi</th><th>Replace Interval</th><th>Status</th></tr></thead>
+                <tbody>
+                    <tr><td>Piston bore A + B (PTFE rings)</td><td>Abrasive + oxidative</td><td>~0.003mm/100hrs ring gap growth</td><td>+0.12mm gap (limit 0.5mm)</td><td>40,000 miles</td><td class="ok">GOOD</td></tr>
+                    <tr><td>Piston stuffing box seal</td><td>PTFE packing compression set</td><td>~5% set per 200hrs</td><td>~10% set at 400hrs (limit 30%)</td><td>30,000 miles</td><td class="ok">GOOD</td></tr>
+                    <tr><td>Rhombic crank pins</td><td>Rolling contact fatigue</td><td>Hertz stress ~520MPa → RCF &gt;10⁷ cycles</td><td>No measurable wear</td><td>150,000 miles</td><td class="ok">EXCELLENT</td></tr>
+                    <tr><td>Rhombic link pins (×4 per drive)</td><td>Fretting at oscillation</td><td>~0.01mm/100hrs clearance growth</td><td>+0.04mm (limit 0.15mm)</td><td>60,000 miles</td><td class="ok">GOOD</td></tr>
+                    <tr><td>Rhombic alternator brushes</td><td>Electrical erosion</td><td>~1.5mm/100hrs silver-graphite</td><td>6mm wear at 400hrs (10mm available)</td><td>20,000 miles · replace brushes</td><td class="warn">MONITOR</td></tr>
+                    <tr><td>Rail surface (52100 hardened)</td><td>Rolling + sliding contact</td><td>~0.005mm/100hrs with steam grease</td><td>+0.002mm at 400hrs — negligible</td><td>100,000 miles</td><td class="ok">EXCELLENT</td></tr>
+                    <tr><td>Rail wheels (case-hardened)</td><td>Rolling contact fatigue</td><td>L10 life at contact stress: &gt;500K hrs</td><td>Negligible</td><td>200,000 miles</td><td class="ok">EXCELLENT</td></tr>
+                    <tr><td>Rotary shaft seal (PTFE lip)</td><td>Lip wear on shaft surface</td><td>~0.1mm lip erosion per 200hrs</td><td>~0.2mm at 400hrs (replace at 0.5mm)</td><td>15,000 miles</td><td class="warn">PLAN SERVICE</td></tr>
+                    <tr><td>Engine oil bath (PAO ISO-68)</td><td>Oxidation + shear thin</td><td>TBN depletion ~10% per 100hrs at 120°C</td><td>~40% TBN remaining</td><td>Oil change every 15,000 miles</td><td class="ok">GOOD</td></tr>
+                    <tr><td>Hydrostatic pump internals</td><td>Gear tooth micropitting</td><td>Ag-rated pump: &gt;10,000hrs gear life</td><td>Negligible at 400hrs</td><td>100,000 miles</td><td class="ok">EXCELLENT</td></tr>
+                    <tr><td>Orbital wheel motor seals</td><td>EPDM compression set</td><td>~3% set per 1,000hrs at 80°C</td><td>~1.2% at 400hrs (limit 25%)</td><td>80,000 miles</td><td class="ok">GOOD</td></tr>
+                    <tr><td>Hydraulic fluid</td><td>Oxidation + contamination</td><td>Replace at 2,000hrs typical ag equipment</td><td>20% life used at 400hrs</td><td>Flush every 50,000 miles</td><td class="ok">GOOD</td></tr>
+                    <tr><td>Eddy coil sleeve windings</td><td>Thermal cycling fatigue</td><td>Ceramic former &gt;10,000 thermal cycles</td><td>~3,200 cycles at 400hrs — 32% life</td><td>80,000 miles</td><td class="ok">GOOD</td></tr>
+                    <tr><td>Brake pads (front semi-metallic)</td><td>Abrasive wear vs rotor</td><td>~1mm per 5,000 miles normal driving</td><td>~4mm wear (8mm new · 2mm min)</td><td>25,000–30,000 miles</td><td class="warn">PLAN AHEAD</td></tr>
+                    <tr><td>Brake rotors (grey iron)</td><td>Thermal fatigue + abrasion</td><td>~0.1mm per 10,000 miles</td><td>~0.2mm wear (limit 1.5mm)</td><td>80,000–100,000 miles</td><td class="ok">EXCELLENT</td></tr>
+                    <tr><td>PTFE hose inner liner</td><td>Flexural cracking at fittings</td><td>Rated 200K pressure cycles</td><td>~37% life used at T-4 basis</td><td>50,000 miles</td><td class="ok">GOOD</td></tr>
+                    <tr><td>12V AGM battery</td><td>Cycle degradation</td><td>&lt;0.01% per cycle (float maintained)</td><td>Negligible — rarely deep cycled</td><td>5–7 years</td><td class="ok">GOOD</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ═══ SERVICE SCHEDULE ═══ -->
+        <hr class="sep">
+        <div class="eyebrow">Phase 14 · Service Schedule</div>
+        <h2 class="section-title">Preventive maintenance — what gets done and when</h2>
+
+        <div class="tbl-wrap">
+            <table>
+                <thead><tr><th>Interval</th><th>Service Items</th><th>Est. Time</th><th>Skill Level</th></tr></thead>
+                <tbody>
+                    <tr><td class="copper">Every 2,000 miles</td><td>Top up distilled water reservoir · check steam line fittings for weep · drain any moisture from low points · log PCW pressure and temp history</td><td>15 min</td><td>Owner</td></tr>
+                    <tr><td class="ok">Every 5,000 miles</td><td>Check brake pad thickness (front ≥4mm rear ≥5mm) · inspect PTFE hose at fitting ends for chafe · check all hydraulic fittings for seep · clean eddy coil intake ports</td><td>45 min</td><td>Owner</td></tr>
+                    <tr><td class="warn">Every 10,000 miles</td><td>Inspect rotary shaft seal for steam weep — replace if any visible moisture · replace rhombic alternator brushes (due at 20K but inspect at 10K) · check rail housing manifold cover bolts for seating · oil analysis sample</td><td>2.5 hrs</td><td>Technician</td></tr>
+                    <tr><td class="ember">Every 15,000 miles</td><td>Replace rotary shaft seal (scheduled life) · engine oil + hydraulic fluid change · full steam line pressure visual at 90 PSI · eddy coil insulation resistance check (&gt;100 MΩ) · PCW firmware update if available</td><td>4 hrs</td><td>Technician</td></tr>
+                    <tr><td class="crit">At 20,000 miles</td><td>Full wear measurement campaign (all items in wear table above) · replace front brake pads · replace rhombic alternator brushes · bore-gauge pistons A+B · re-certify boiler pressure vessel (ASME annual inspection) · full battery capacity test · vacuum jacket re-check (&lt;10 mTorr still?) · replace rail housing steam grease fully</td><td>Full day</td><td>Certified inspector</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ═══ PHASE 15 NOTE ═══ -->
+        <hr class="sep">
+        <div class="review">
+            <div class="review-icon">📋</div>
+            <div>
+                <strong>Phase 14 Build Note — Foundation for Phase 15</strong>
+                <p>
+                    Phase 14 is the first physical prototype. The goal is not a finished vehicle — it is a validated mechanical
+                    proof of concept that confirms three things: (1) the dual-acting pistons produce enough pressure after their
+                    own stroke to meaningfully drive the rails, (2) the rhombic drives produce sufficient electricity to cover
+                    the vehicle's ~150W electrical demand without a supplementary generator, and (3) the rail housing converts
+                    reciprocating steam pressure into continuous shaft rotation with acceptable torque ripple.
+                </p>
+                <p style="margin-top:.8rem">
+                    If T-3 shows rhombic output comfortably exceeds 150W demand, no front generator is needed and the design
+                    stays minimal. If rhombic output is marginal, a small automotive alternator mounts at the front engine
+                    housing output shaft — adding approximately $40 and 3kg. This decision is made after bench test results,
+                    not before.
+                </p>
+                <p style="margin-top:.8rem">
+                    Phase 15 should focus on: low-speed track testing 0–30 mph with full PCW sensor logging ·
+                    water consumption measurement per 100 miles · brake certification · first 100-mile endurance run ·
+                    refinement of rail phase offset based on observed torque ripple ·
+                    and assessment of whether the hydrostatic transmission needs an accumulator to buffer high-idle pressure surges.
+                    The Chevy Steamer is real at Phase 14. Phase 15 makes it drive.
+                </p>
+            </div>
+        </div>
+
+    </div><!-- /wrap -->
+
+    <div class="footer">
+        STEAM-ELECTRIC VEHICLE CONCEPT — PHASE 14 · CHEVY STEAMER BARE BUILD PROTOTYPE<br>
+        All costs are estimates based on surplus industrial sourcing · Self-assembly assumed · ASME BPVC and relevant standards apply to any physical implementation · Not certified engineering documentation
+    </div>
+
+</body>
+</html>

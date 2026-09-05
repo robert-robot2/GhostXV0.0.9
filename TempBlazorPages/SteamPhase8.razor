@@ -1,0 +1,1633 @@
+﻿@* ============================================================
+   PHASE 8 — GRID-SOLAR HYBRID STEAM ELECTRIC
+   Gold (#FFD700 / #FFC300) + Ultramarine Blue (#4169E1 / #0047AB)
+   ============================================================ *@
+
+<!-- =====================================================
+     PHASE 8 BANNER
+     ===================================================== -->
+<div class="p8-banner">
+    <div class="p8-phase-pill">Phase 8 · Grid-Solar Hybrid Steam Electric</div>
+    <h1>Steam-Rail <em>Solar-Grid Charged</em> Hybrid Drive</h1>
+    <p>
+        Phase 8 introduces a 40kWh plug-in EV battery as the primary energy source, charged from
+        the grid or an integrated solar array. The roof-mounted solar panel array provides continuous
+        top-up while parked or driving. Six spinning alternators remain — feeding recovered energy
+        back to Battery A. Battery B stays as the dedicated backup and EV motor supply.
+        No fossil fuels. No combustion. Sunlight and grid electricity in, torque out.
+    </p>
+</div>
+
+<!-- =====================================================
+     PHASE 8 HEADLINE METRICS
+     ===================================================== -->
+<div class="p8-section">
+
+    <div class="p8-section-label">Phase 8 · Complete System Specification</div>
+    <h2 class="p8-section-title">40kWh plug-in · solar roof array · dual-rail steam · 6-alternator regen</h2>
+    <p class="p8-section-lead">
+        Phase 8 solves the energy source problem cleanly. A 40kWh lithium EV battery pack
+        (Battery A) replaces the AGM unit, bringing enough stored energy for 200+ miles of
+        steam-powered driving on a single charge. Grid charging via a standard J1772 port
+        fills the pack overnight. An integrated roof solar array — with optional front and
+        rear hood mod panels — provides continuous renewable top-up. The six alternators
+        from Phase 7 stay in place, their recovered energy extending range further.
+        Battery B (LiFePO₄ 200Ah) remains dedicated to the backup EV motor and emergency systems.
+    </p>
+
+    <div class="p8-headline-metrics">
+        <div class="p8-metric-highlight">
+            <div class="p8-metric-val">40</div>
+            <div class="p8-metric-lbl">kWh Battery A</div>
+        </div>
+        <div class="p8-metric-highlight">
+            <div class="p8-metric-val">2kW</div>
+            <div class="p8-metric-lbl">Roof Solar Array</div>
+        </div>
+        <div class="p8-metric-highlight">
+            <div class="p8-metric-val">3.4kW</div>
+            <div class="p8-metric-lbl">Max Solar (all panels)</div>
+        </div>
+        <div class="p8-metric-highlight">
+            <div class="p8-metric-val">J1772</div>
+            <div class="p8-metric-lbl">Charge Port</div>
+        </div>
+        <div class="p8-metric-highlight">
+            <div class="p8-metric-val">200+</div>
+            <div class="p8-metric-lbl">Target Miles</div>
+        </div>
+        <div class="p8-metric-highlight">
+            <div class="p8-metric-val">0</div>
+            <div class="p8-metric-lbl">Fossil Fuels</div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         PHASE 8 SCHEMATIC SVG
+         =================================================== -->
+    <hr class="p8-sep" />
+    <div class="p8-section-label">System Architecture</div>
+    <h2 class="p8-section-title">Live flow diagram — sun/grid → battery → steam → wheels → regen</h2>
+
+    <div class="p8-schematic-container">
+        <svg id="p8-svg" width="100%" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Gold gradient -->
+                <linearGradient id="p8goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#FFD700" stop-opacity="0.95" />
+                    <stop offset="100%" stop-color="#FFC300" stop-opacity="0.95" />
+                </linearGradient>
+                <!-- Blue gradient -->
+                <linearGradient id="p8blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#4169E1" />
+                    <stop offset="100%" stop-color="#0047AB" />
+                </linearGradient>
+                <!-- Solar gradient -->
+                <linearGradient id="p8solarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFD700" />
+                    <stop offset="100%" stop-color="#FF8C00" />
+                </linearGradient>
+                <!-- Steam gradient -->
+                <linearGradient id="p8steamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#00cfff" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#4169E1" stop-opacity="0.9" />
+                </linearGradient>
+                <!-- Regen gradient -->
+                <linearGradient id="p8regenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#FFD700" />
+                    <stop offset="100%" stop-color="#FFC300" />
+                </linearGradient>
+
+                <!-- Arrowheads -->
+                <marker id="p8arrGold" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#FFD700" />
+                </marker>
+                <marker id="p8arrBlue" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#4169E1" />
+                </marker>
+                <marker id="p8arrCyan" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#00cfff" />
+                </marker>
+                <marker id="p8arrOrange" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#FF8C00" />
+                </marker>
+                <marker id="p8arrPurple" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#aa88ff" />
+                </marker>
+                <marker id="p8arrWhite" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#ffffff" />
+                </marker>
+
+                <!-- Glow filters -->
+                <filter id="p8glow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="3" result="b" />
+                    <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+                <filter id="p8glowGold" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="4" result="b" />
+                    <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+                <filter id="p8glowSm" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="1.5" result="b" />
+                    <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+            </defs>
+
+            <!-- Background -->
+            <rect width="1100" height="720" fill="#05080f" />
+            <line x1="0" y1="360" x2="1100" y2="360" stroke="#0d1428" stroke-width="1" />
+            <line x1="550" y1="0" x2="550" y2="720" stroke="#0d1428" stroke-width="1" />
+
+            <!-- Title -->
+            <text x="550" y="28" text-anchor="middle" font-size="13" fill="#FFD700" font-weight="800" letter-spacing="1" filter="url(#p8glowSm)">PHASE 8 · SOLAR-GRID HYBRID STEAM ELECTRIC · FLOW DIAGRAM</text>
+
+            <!-- ============================================================
+                 SOLAR PANELS (top center)
+                 ============================================================ -->
+            <g id="p8-solar-roof">
+                <rect x="340" y="42" width="420" height="55" rx="8" fill="#0a0c06" stroke="#FFD700" stroke-width="2" />
+                <!-- Solar cell grid pattern -->
+                <line x1="380" y1="42" x2="380" y2="97" stroke="#FFD70030" stroke-width="1" />
+                <line x1="420" y1="42" x2="420" y2="97" stroke="#FFD70030" stroke-width="1" />
+                <line x1="460" y1="42" x2="460" y2="97" stroke="#FFD70030" stroke-width="1" />
+                <line x1="500" y1="42" x2="500" y2="97" stroke="#FFD70030" stroke-width="1" />
+                <line x1="540" y1="42" x2="540" y2="97" stroke="#FFD70030" stroke-width="1" />
+                <line x1="580" y1="42" x2="580" y2="97" stroke="#FFD70030" stroke-width="1" />
+                <line x1="620" y1="42" x2="620" y2="97" stroke="#FFD70030" stroke-width="1" />
+                <line x1="660" y1="42" x2="660" y2="97" stroke="#FFD70030" stroke-width="1" />
+                <line x1="700" y1="42" x2="700" y2="97" stroke="#FFD70030" stroke-width="1" />
+                <line x1="340" y1="69" x2="760" y2="69" stroke="#FFD70030" stroke-width="1" />
+                <rect x="342" y="44" width="416" height="51" rx="6" fill="#FFD700" opacity="0.06" class="p8-solar-shimmer" />
+                <text x="550" y="65" text-anchor="middle" font-size="11" fill="#FFD700" font-weight="800">ROOF SOLAR ARRAY — PRIMARY</text>
+                <text x="550" y="81" text-anchor="middle" font-size="9" fill="#8a7a20">2,000W continuous · UV spectrum · color-matched panels</text>
+                <text x="550" y="93" text-anchor="middle" font-size="9" fill="#5a5010">+ 800W front hood mod · + 600W rear hood mod (optional)</text>
+            </g>
+
+            <!-- ============================================================
+                 GRID CHARGE PORT (top left)
+                 ============================================================ -->
+            <g id="p8-grid">
+                <rect x="40" y="42" width="130" height="75" rx="8" fill="#080a18" stroke="#4169E1" stroke-width="2" />
+                <text x="105" y="65" text-anchor="middle" font-size="10" fill="#4169E1" font-weight="700">GRID CHARGE</text>
+                <text x="105" y="79" text-anchor="middle" font-size="9" fill="#2a3a7a">J1772 Port</text>
+                <text x="105" y="91" text-anchor="middle" font-size="9" fill="#2a3a7a">Level 1: 1.4kW</text>
+                <text x="105" y="103" text-anchor="middle" font-size="9" fill="#2a3a7a">Level 2: 7.2kW</text>
+                <!-- plug icon hint -->
+                <rect x="95" y="107" width="20" height="8" rx="2" fill="#4169E1" opacity="0.4" />
+            </g>
+
+            <!-- ============================================================
+                 BATTERY A — 40kWh (top left area)
+                 ============================================================ -->
+            <g id="p8-batA">
+                <rect x="40" y="155" width="180" height="90" rx="8" fill="#08100a" stroke="#FFD700" stroke-width="2.5" filter="url(#p8glowGold)" />
+                <text x="130" y="178" text-anchor="middle" font-size="11" fill="#FFD700" font-weight="800">BATTERY A</text>
+                <text x="130" y="193" text-anchor="middle" font-size="10" fill="#8a7a20">40 kWh · LiNMC</text>
+                <text x="130" y="207" text-anchor="middle" font-size="9" fill="#5a5a10">Plug-in EV grade pack</text>
+                <text x="130" y="219" text-anchor="middle" font-size="9" fill="#5a5a10">Primary steam heater bus</text>
+                <!-- charge bar -->
+                <rect x="48" y="228" width="164" height="8" rx="3" fill="#0d1a08" />
+                <rect x="48" y="228" width="140" height="8" rx="3" fill="#FFD700" opacity="0.8" id="p8-batA-bar" />
+                <text x="130" y="246" text-anchor="middle" font-size="8" fill="#FFD700" id="p8-batA-pct">88%</text>
+            </g>
+
+            <!-- ============================================================
+                 BATTERY B — Backup (top right)
+                 ============================================================ -->
+            <g id="p8-batB">
+                <rect x="880" y="155" width="180" height="90" rx="8" fill="#0a0818" stroke="#aa88ff" stroke-width="2" />
+                <text x="970" y="178" text-anchor="middle" font-size="11" fill="#aa88ff" font-weight="700">BATTERY B</text>
+                <text x="970" y="193" text-anchor="middle" font-size="9" fill="#3a2a5a">LiFePO₄ · 200Ah</text>
+                <text x="970" y="207" text-anchor="middle" font-size="9" fill="#3a2a5a">Backup · EV motor</text>
+                <text x="970" y="219" text-anchor="middle" font-size="9" fill="#3a2a5a">Emergency systems</text>
+                <rect x="888" y="228" width="164" height="8" rx="3" fill="#1a1a3a" />
+                <rect x="888" y="228" width="126" height="8" rx="3" fill="#aa88ff" opacity="0.7" id="p8-batB-bar" />
+                <text x="970" y="246" text-anchor="middle" font-size="8" fill="#aa88ff" id="p8-batB-pct">77%</text>
+            </g>
+
+            <!-- ============================================================
+                 PCW CONTROL (top right area)
+                 ============================================================ -->
+            <g id="p8-pcw">
+                <rect x="720" y="155" width="130" height="90" rx="8" fill="#080818" stroke="#4169E1" stroke-width="2" />
+                <text x="785" y="176" text-anchor="middle" font-size="10" fill="#4169E1" font-weight="700">PCW CONTROL</text>
+                <text x="785" y="190" text-anchor="middle" font-size="8" fill="#2a3a7a">ARM Cortex M7</text>
+                <text x="785" y="202" text-anchor="middle" font-size="8" fill="#2a3a7a">100Hz sampling</text>
+                <text x="785" y="214" text-anchor="middle" font-size="8" fill="#2a3a7a">Solar MPPT ctrl</text>
+                <text x="785" y="226" text-anchor="middle" font-size="8" fill="#2a3a7a">Charge port mgmt</text>
+                <text x="785" y="238" text-anchor="middle" font-size="8" fill="#4169E1">BMS integration</text>
+            </g>
+
+            <!-- ============================================================
+                 WATER BOILER TANK (center top)
+                 ============================================================ -->
+            <g id="p8-boiler">
+                <rect x="370" y="155" width="320" height="70" rx="10" fill="#060e18" stroke="#00cfff" stroke-width="2" />
+                <rect x="372" y="157" width="316" height="66" rx="8" fill="#00cfff" opacity="0.06" class="p8-water-shimmer" />
+                <text x="530" y="181" text-anchor="middle" font-size="12" fill="#00cfff" font-weight="800">WATER BOILER TANK</text>
+                <text x="530" y="196" text-anchor="middle" font-size="9" fill="#2a6a8a">25 gal · 150 PSI · ASME certified · immersion heater 3–5kW</text>
+                <text x="530" y="210" text-anchor="middle" font-size="8" fill="#1a4a6a">PCW thermostat 230°C · condensate return loop</text>
+            </g>
+
+            <!-- ============================================================
+                 LEFT STEAM RAIL
+                 ============================================================ -->
+            <g id="p8-railA">
+                <rect x="80" y="285" width="200" height="28" rx="6" fill="#060e18" stroke="#00cfff" stroke-width="2" />
+                <rect x="82" y="287" width="196" height="24" rx="5" class="p8-steam-flow-l" fill="url(#p8steamGrad)" opacity="0.2" />
+                <text x="180" y="303" text-anchor="middle" font-size="10" fill="#00cfff" font-weight="700">RAIL A (LEFT)</text>
+                <text x="180" y="323" text-anchor="middle" font-size="8" fill="#2a5a6a">80mm bore · 120mm stroke · 150 PSI</text>
+            </g>
+
+            <!-- RIGHT STEAM RAIL -->
+            <g id="p8-railB">
+                <rect x="820" y="285" width="200" height="28" rx="6" fill="#060e18" stroke="#00cfff" stroke-width="2" />
+                <rect x="822" y="287" width="196" height="24" rx="5" class="p8-steam-flow-r" fill="url(#p8steamGrad)" opacity="0.2" />
+                <text x="920" y="303" text-anchor="middle" font-size="10" fill="#00cfff" font-weight="700">RAIL B (RIGHT)</text>
+                <text x="920" y="323" text-anchor="middle" font-size="8" fill="#2a5a6a">80mm bore · 120mm stroke · 150 PSI</text>
+            </g>
+
+            <!-- ============================================================
+                 WHEEL GROUP LABELS
+                 ============================================================ -->
+            <text x="190" y="348" text-anchor="middle" font-size="9" fill="#aa88ff" font-weight="600">RAIL A · W1 W2 W3</text>
+            <text x="910" y="348" text-anchor="middle" font-size="9" fill="#aa88ff" font-weight="600">RAIL B · W4 W5 W6</text>
+
+            <!-- WHEELS W1–W3 -->
+            <g class="p8-wheel-group">
+                <circle cx="110" cy="390" r="26" fill="none" stroke="#aa88ff" stroke-width="2" />
+                <circle cx="110" cy="364" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="136" cy="390" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="110" cy="416" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="84" cy="390" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <text x="110" y="394" text-anchor="middle" font-size="8" fill="#aa88ff">W1</text>
+                <rect x="62" y="426" width="96" height="34" rx="5" fill="#080e18" stroke="#FFD700" stroke-width="1.5" />
+                <text x="110" y="441" text-anchor="middle" font-size="8" fill="#FFD700" font-weight="700">ALT A1</text>
+                <text x="110" y="453" text-anchor="middle" font-size="7" fill="#5a5a10">150A · 28V</text>
+            </g>
+            <g class="p8-wheel-group">
+                <circle cx="200" cy="390" r="26" fill="none" stroke="#aa88ff" stroke-width="2" />
+                <circle cx="200" cy="364" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="226" cy="390" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="200" cy="416" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="174" cy="390" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <text x="200" y="394" text-anchor="middle" font-size="8" fill="#aa88ff">W2</text>
+                <rect x="152" y="426" width="96" height="34" rx="5" fill="#080e18" stroke="#FFD700" stroke-width="1.5" />
+                <text x="200" y="441" text-anchor="middle" font-size="8" fill="#FFD700" font-weight="700">ALT A2</text>
+                <text x="200" y="453" text-anchor="middle" font-size="7" fill="#5a5a10">150A · 28V</text>
+            </g>
+            <g class="p8-wheel-group">
+                <circle cx="290" cy="390" r="26" fill="none" stroke="#aa88ff" stroke-width="2" />
+                <circle cx="290" cy="364" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="316" cy="390" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="290" cy="416" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="264" cy="390" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <text x="290" y="394" text-anchor="middle" font-size="8" fill="#aa88ff">W3</text>
+                <rect x="242" y="426" width="96" height="34" rx="5" fill="#080e18" stroke="#FFD700" stroke-width="1.5" />
+                <text x="290" y="441" text-anchor="middle" font-size="8" fill="#FFD700" font-weight="700">ALT A3</text>
+                <text x="290" y="453" text-anchor="middle" font-size="7" fill="#5a5a10">150A · 28V</text>
+            </g>
+
+            <!-- WHEELS W4–W6 -->
+            <g class="p8-wheel-group">
+                <circle cx="810" cy="390" r="26" fill="none" stroke="#aa88ff" stroke-width="2" />
+                <circle cx="810" cy="364" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="836" cy="390" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="810" cy="416" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="784" cy="390" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <text x="810" y="394" text-anchor="middle" font-size="8" fill="#aa88ff">W4</text>
+                <rect x="762" y="426" width="96" height="34" rx="5" fill="#080e18" stroke="#FFD700" stroke-width="1.5" />
+                <text x="810" y="441" text-anchor="middle" font-size="8" fill="#FFD700" font-weight="700">ALT B1</text>
+                <text x="810" y="453" text-anchor="middle" font-size="7" fill="#5a5a10">150A · 28V</text>
+            </g>
+            <g class="p8-wheel-group">
+                <circle cx="910" cy="390" r="26" fill="none" stroke="#aa88ff" stroke-width="2" />
+                <circle cx="910" cy="364" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="936" cy="390" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="910" cy="416" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="884" cy="390" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <text x="910" y="394" text-anchor="middle" font-size="8" fill="#aa88ff">W5</text>
+                <rect x="862" y="426" width="96" height="34" rx="5" fill="#080e18" stroke="#FFD700" stroke-width="1.5" />
+                <text x="910" y="441" text-anchor="middle" font-size="8" fill="#FFD700" font-weight="700">ALT B2</text>
+                <text x="910" y="453" text-anchor="middle" font-size="7" fill="#5a5a10">150A · 28V</text>
+            </g>
+            <g class="p8-wheel-group">
+                <circle cx="1010" cy="390" r="26" fill="none" stroke="#aa88ff" stroke-width="2" />
+                <circle cx="1010" cy="364" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="1036" cy="390" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="1010" cy="416" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <circle cx="984" cy="390" r="7" fill="#FFD700" opacity="0.85" class="p8-lobe" />
+                <text x="1010" y="394" text-anchor="middle" font-size="8" fill="#aa88ff">W6</text>
+                <rect x="962" y="426" width="96" height="34" rx="5" fill="#080e18" stroke="#FFD700" stroke-width="1.5" />
+                <text x="1010" y="441" text-anchor="middle" font-size="8" fill="#FFD700" font-weight="700">ALT B3</text>
+                <text x="1010" y="453" text-anchor="middle" font-size="7" fill="#5a5a10">150A · 28V</text>
+            </g>
+
+            <!-- ============================================================
+                 CRANKLESS OIL ENGINE (center)
+                 ============================================================ -->
+            <g id="p8-engine">
+                <rect x="370" y="355" width="360" height="110" rx="12" fill="#04080f" stroke="#00ffe7" stroke-width="2" />
+                <rect x="372" y="357" width="356" height="106" rx="10" fill="#00ffe7" opacity="0.03" class="p8-oil-shimmer" />
+                <text x="550" y="382" text-anchor="middle" font-size="12" fill="#00ffe7" font-weight="800">CRANKLESS OIL ENGINE</text>
+                <text x="550" y="397" text-anchor="middle" font-size="9" fill="#2a7a6a">Eccentric shaft · roller followers · sealed oil bath</text>
+                <circle cx="470" cy="428" r="16" fill="none" stroke="#00ffe7" stroke-width="1.5" opacity="0.4" class="p8-shaft-spin" />
+                <circle cx="550" cy="428" r="16" fill="none" stroke="#00ffe7" stroke-width="1.5" opacity="0.4" class="p8-shaft-spin" />
+                <circle cx="630" cy="428" r="16" fill="none" stroke="#00ffe7" stroke-width="1.5" opacity="0.4" class="p8-shaft-spin" />
+                <text x="470" y="432" text-anchor="middle" font-size="7" fill="#00ffe7" opacity="0.6">ECC</text>
+                <text x="550" y="432" text-anchor="middle" font-size="7" fill="#00ffe7" opacity="0.6">ECC</text>
+                <text x="630" y="432" text-anchor="middle" font-size="7" fill="#00ffe7" opacity="0.6">ECC</text>
+                <text x="550" y="455" text-anchor="middle" font-size="9" fill="#00ffe7" opacity="0.8">→ Output shaft → Transmission → Drive wheels</text>
+            </g>
+
+            <!-- ============================================================
+                 CONDENSER (bottom center)
+                 ============================================================ -->
+            <g id="p8-condenser">
+                <rect x="390" y="495" width="320" height="50" rx="8" fill="#001828" stroke="#00cfff" stroke-width="1.5" />
+                <text x="550" y="517" text-anchor="middle" font-size="11" fill="#00cfff" font-weight="700">CONDENSER / RADIATOR</text>
+                <text x="550" y="532" text-anchor="middle" font-size="8" fill="#1a5a6a">Exhaust steam → condensate → returns to boiler · 85% water recovery</text>
+            </g>
+
+            <!-- BACKUP EV MOTOR -->
+            <g id="p8-evmotor">
+                <rect x="390" y="565" width="320" height="45" rx="8" fill="#080018" stroke="#aa88ff" stroke-width="1.5" stroke-dasharray="6,3" />
+                <text x="550" y="586" text-anchor="middle" font-size="11" fill="#aa88ff" font-weight="700">BACKUP EV MOTOR</text>
+                <text x="550" y="600" text-anchor="middle" font-size="8" fill="#3a1a6a">Battery B · cold start · hill assist · limp home mode</text>
+            </g>
+
+            <!-- ============================================================
+                 FLOW LINES
+                 ============================================================ -->
+            <!-- Grid → Battery A -->
+            <path class="p8-flow-grid" d="M 105 117 L 105 153" stroke="#4169E1" stroke-width="2.5" fill="none" stroke-dasharray="6,3" marker-end="url(#p8arrBlue)" />
+            <text x="120" y="138" font-size="8" fill="#4169E1">AC charge</text>
+
+            <!-- Solar → Battery A -->
+            <path class="p8-flow-solar" d="M 370 72 Q 280 72 220 72 Q 180 72 180 153" stroke="#FFD700" stroke-width="2.5" fill="none" stroke-dasharray="5,3" marker-end="url(#p8arrGold)" />
+            <text x="270" y="65" font-size="8" fill="#FFD700" text-anchor="middle">solar DC</text>
+
+            <!-- Battery A → Boiler -->
+            <path class="p8-flow-power" d="M 220 200 Q 300 200 370 190" stroke="#FFD700" stroke-width="2.5" fill="none" marker-end="url(#p8arrGold)" />
+            <text x="295" y="193" font-size="8" fill="#FFD700" text-anchor="middle">DC heat</text>
+
+            <!-- Boiler → Rail A -->
+            <path class="p8-flow-steam" d="M 370 190 Q 240 190 180 283" stroke="#00cfff" stroke-width="2" fill="none" stroke-dasharray="7,4" marker-end="url(#p8arrCyan)" />
+            <text x="255" y="225" font-size="8" fill="#00cfff" text-anchor="middle">steam</text>
+
+            <!-- Boiler → Rail B -->
+            <path class="p8-flow-steam" d="M 690 190 Q 820 190 920 283" stroke="#00cfff" stroke-width="2" fill="none" stroke-dasharray="7,4" marker-end="url(#p8arrCyan)" />
+            <text x="830" y="225" font-size="8" fill="#00cfff" text-anchor="middle">steam</text>
+
+            <!-- Rail A → Wheels -->
+            <line x1="110" y1="313" x2="110" y2="362" stroke="#aa88ff" stroke-width="1.8" marker-end="url(#p8arrPurple)" class="p8-flow-mech" />
+            <line x1="200" y1="313" x2="200" y2="362" stroke="#aa88ff" stroke-width="1.8" marker-end="url(#p8arrPurple)" class="p8-flow-mech" />
+            <line x1="290" y1="313" x2="290" y2="362" stroke="#aa88ff" stroke-width="1.8" marker-end="url(#p8arrPurple)" class="p8-flow-mech" />
+
+            <!-- Rail B → Wheels -->
+            <line x1="810" y1="313" x2="810" y2="362" stroke="#aa88ff" stroke-width="1.8" marker-end="url(#p8arrPurple)" class="p8-flow-mech" />
+            <line x1="910" y1="313" x2="910" y2="362" stroke="#aa88ff" stroke-width="1.8" marker-end="url(#p8arrPurple)" class="p8-flow-mech" />
+            <line x1="1010" y1="313" x2="1010" y2="362" stroke="#aa88ff" stroke-width="1.8" marker-end="url(#p8arrPurple)" class="p8-flow-mech" />
+
+            <!-- Wheels → Engine -->
+            <path d="M 316 390 Q 345 390 370 390" stroke="#00ffe7" stroke-width="2" fill="none" marker-end="url(#p8arrCyan)" class="p8-flow-mech" />
+            <path d="M 784 390 Q 755 390 730 390" stroke="#00ffe7" stroke-width="2" fill="none" marker-end="url(#p8arrCyan)" class="p8-flow-mech" />
+
+            <!-- Alternators AC bus → Regen → Battery A (GOLD regen path) -->
+            <path class="p8-flow-regen" d="M 200 460 L 200 490 Q 200 510 180 510 Q 60 510 60 400 Q 60 260 60 200 Q 60 180 130 180" stroke="#FFD700" stroke-width="2.5" fill="none" stroke-dasharray="7,3" marker-end="url(#p8arrGold)" />
+            <text x="42" y="340" font-size="8" fill="#FFD700" text-anchor="middle">REGEN</text>
+            <text x="42" y="352" font-size="8" fill="#FFD700" text-anchor="middle">→ Bat A</text>
+
+            <!-- Engine → Condenser -->
+            <line x1="550" y1="465" x2="550" y2="493" stroke="#00cfff" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#p8arrCyan)" class="p8-flow-steam" />
+            <text x="568" y="482" font-size="8" fill="#00cfff">exhaust</text>
+
+            <!-- Condenser → Boiler return -->
+            <path class="p8-flow-steam" d="M 390 510 Q 340 510 340 480 Q 340 200 370 190" stroke="#00cfff" stroke-width="1.2" fill="none" stroke-dasharray="4,4" marker-end="url(#p8arrCyan)" opacity="0.5" />
+
+            <!-- Battery B → EV Motor -->
+            <path d="M 970 245 Q 970 560 710 585" stroke="#aa88ff" stroke-width="1.5" stroke-dasharray="5,4" fill="none" marker-end="url(#p8arrPurple)" opacity="0.6" />
+
+            <!-- PCW control lines -->
+            <line x1="720" y1="200" x2="690" y2="200" stroke="#4169E1" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#p8arrBlue)" />
+            <line x1="785" y1="245" x2="785" y2="520 " stroke="#4169E1" stroke-width="1" stroke-dasharray="3,3" opacity="0.5" />
+
+            <!-- ============================================================
+                 LIVE ENERGY PANELS
+                 ============================================================ -->
+            <g transform="translate(370, 625)">
+                <rect x="0" y="0" width="360" height="80" rx="8" fill="#05080f" stroke="#0d1428" stroke-width="1" />
+                <text x="180" y="18" text-anchor="middle" font-size="10" fill="#dde4f0" font-weight="700">LIVE ENERGY BALANCE</text>
+                <text x="12" y="34" font-size="9" fill="#7a9ab0">Battery A draw (heater):</text>
+                <text x="348" y="34" text-anchor="end" font-size="9" fill="#FFD700" id="p8-heater-draw">4,200 W</text>
+                <text x="12" y="50" font-size="9" fill="#7a9ab0">Solar input:</text>
+                <text x="348" y="50" text-anchor="end" font-size="9" fill="#FFD700" id="p8-solar-in">2,000 W</text>
+                <text x="12" y="66" font-size="9" fill="#7a9ab0">Net battery draw:</text>
+                <text x="348" y="66" text-anchor="end" font-size="9" fill="#4169E1" id="p8-net-draw">2,200 W</text>
+                <rect x="12" y="72" width="336" height="4" rx="2" fill="#0d1428" />
+                <rect x="12" y="72" width="200" height="4" rx="2" fill="#4169E1" id="p8-eff-bar" />
+            </g>
+
+            <g transform="translate(40, 625)">
+                <rect x="0" y="0" width="300" height="80" rx="8" fill="#05080f" stroke="#0d1428" stroke-width="1" />
+                <text x="150" y="18" text-anchor="middle" font-size="10" fill="#dde4f0" font-weight="700">PACK STATUS</text>
+                <text x="12" y="34" font-size="9" fill="#7a9ab0">Battery A (40kWh):</text>
+                <text x="288" y="34" text-anchor="end" font-size="9" fill="#FFD700" id="p8-batA-status">35.2 kWh remaining</text>
+                <text x="12" y="50" font-size="9" fill="#7a9ab0">Est. range remaining:</text>
+                <text x="288" y="50" text-anchor="end" font-size="9" fill="#4169E1" id="p8-range-remain">176 miles</text>
+                <text x="12" y="66" font-size="9" fill="#7a9ab0">Solar charge rate:</text>
+                <text x="288" y="66" text-anchor="end" font-size="9" fill="#FFD700" id="p8-solar-rate">2.0 kW</text>
+                <rect x="12" y="72" width="276" height="4" rx="2" fill="#0d1428" />
+                <rect x="12" y="72" width="220" height="4" rx="2" fill="#FFD700" id="p8-pack-bar" />
+            </g>
+
+            <g transform="translate(760, 625)">
+                <rect x="0" y="0" width="300" height="80" rx="8" fill="#05080f" stroke="#0d1428" stroke-width="1" />
+                <text x="150" y="18" text-anchor="middle" font-size="10" fill="#dde4f0" font-weight="700">CHARGE SOURCES</text>
+                <text x="12" y="34" font-size="9" fill="#7a9ab0">Grid (Level 2):</text>
+                <text x="288" y="34" text-anchor="end" font-size="9" fill="#4169E1" id="p8-grid-rate">7,200 W</text>
+                <text x="12" y="50" font-size="9" fill="#7a9ab0">Alternator regen:</text>
+                <text x="288" y="50" text-anchor="end" font-size="9" fill="#FFD700" id="p8-alt-regen">~1,800 W</text>
+                <text x="12" y="66" font-size="9" fill="#7a9ab0">Full charge time (L2):</text>
+                <text x="288" y="66" text-anchor="end" font-size="9" fill="#4169E1" id="p8-charge-time">5.6 hrs</text>
+                <rect x="12" y="72" width="276" height="4" rx="2" fill="#0d1428" />
+                <rect x="12" y="72" width="150" height="4" rx="2" fill="#4169E1" id="p8-charge-bar" />
+            </g>
+
+            <!-- LEGEND -->
+            <g transform="translate(40, 540)">
+                <rect x="0" y="0" width="290" height="75" rx="8" fill="#05080f" stroke="#0d1428" stroke-width="1" />
+                <text x="145" y="16" text-anchor="middle" font-size="9" fill="#dde4f0" font-weight="700">FLOW LEGEND</text>
+                <line x1="10" y1="28" x2="45" y2="28" stroke="#FFD700" stroke-width="2" stroke-dasharray="5,3" />
+                <text x="52" y="32" font-size="8" fill="#FFD700">Solar / regen → Battery A</text>
+                <line x1="10" y1="44" x2="45" y2="44" stroke="#4169E1" stroke-width="2" stroke-dasharray="5,3" />
+                <text x="52" y="48" font-size="8" fill="#4169E1">Grid charge</text>
+                <line x1="10" y1="58" x2="45" y2="58" stroke="#00cfff" stroke-width="2" stroke-dasharray="6,3" />
+                <text x="52" y="62" font-size="8" fill="#00cfff">Steam / condensate</text>
+                <line x1="155" y1="28" x2="190" y2="28" stroke="#aa88ff" stroke-width="2" />
+                <text x="197" y="32" font-size="8" fill="#aa88ff">Mechanical</text>
+                <line x1="155" y1="44" x2="190" y2="44" stroke="#00ffe7" stroke-width="2" />
+                <text x="197" y="48" font-size="8" fill="#00ffe7">Engine shaft</text>
+            </g>
+        </svg>
+    </div>
+
+    <!-- ===================================================
+         INTERACTIVE CALCULATOR
+         =================================================== -->
+    <hr class="p8-sep" />
+    <div class="p8-section-label">Interactive Engineering Calculator</div>
+    <h2 class="p8-section-title">Phase 8 live power budget — solar · grid · steam · regen</h2>
+
+    <div class="p8-calc-grid">
+        <!-- Controls -->
+        <div class="p8-calc-panel">
+            <h3 class="p8-calc-title">System Parameters</h3>
+            <div class="p8-slider-group">
+
+                <div class="p8-slider-row">
+                    <label>Battery A pack size (kWh)</label>
+                    <input type="range" id="p8-pack" min="20" max="80" step="5" value="40">
+                    <span class="p8-val" id="p8-pack-out">40 kWh</span>
+                </div>
+                <div class="p8-slider-row">
+                    <label>Battery A charge level (%)</label>
+                    <input type="range" id="p8-soc" min="10" max="100" step="5" value="88">
+                    <span class="p8-val" id="p8-soc-out">88%</span>
+                </div>
+                <div class="p8-slider-row">
+                    <label>Steam heater draw (W)</label>
+                    <input type="range" id="p8-heater" min="1000" max="6000" step="100" value="4200">
+                    <span class="p8-val" id="p8-heater-out">4,200 W</span>
+                </div>
+                <div class="p8-slider-row">
+                    <label>Vehicle speed (mph)</label>
+                    <input type="range" id="p8-speed" min="10" max="80" step="5" value="55">
+                    <span class="p8-val" id="p8-speed-out">55 mph</span>
+                </div>
+                <div class="p8-slider-row">
+                    <label>Roof solar array (W)</label>
+                    <input type="range" id="p8-solar-roof" min="0" max="2000" step="100" value="2000">
+                    <span class="p8-val" id="p8-solar-roof-out">2,000 W</span>
+                </div>
+                <div class="p8-slider-row">
+                    <label>Front hood mod panel (W)</label>
+                    <input type="range" id="p8-solar-front" min="0" max="800" step="100" value="0">
+                    <span class="p8-val" id="p8-solar-front-out">0 W</span>
+                </div>
+                <div class="p8-slider-row">
+                    <label>Rear hood mod panel (W)</label>
+                    <input type="range" id="p8-solar-rear" min="0" max="600" step="100" value="0">
+                    <span class="p8-val" id="p8-solar-rear-out">0 W</span>
+                </div>
+                <div class="p8-slider-row">
+                    <label>Grid charge level (kW)</label>
+                    <input type="range" id="p8-grid-charge" min="0" max="22" step="1" value="7">
+                    <span class="p8-val" id="p8-grid-out">7 kW</span>
+                </div>
+                <div class="p8-slider-row">
+                    <label>Alternator regen return (W)</label>
+                    <input type="range" id="p8-alt-regen-slider" min="0" max="3000" step="100" value="1800">
+                    <span class="p8-val" id="p8-alt-regen-out">1,800 W</span>
+                </div>
+                <div class="p8-slider-row">
+                    <label>Vehicle weight (lb)</label>
+                    <input type="range" id="p8-weight" min="1200" max="3000" step="100" value="1800">
+                    <span class="p8-val" id="p8-weight-out">1,800 lb</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Live Metrics -->
+        <div class="p8-metrics-panel">
+            <h3 class="p8-calc-title">Live Calculations</h3>
+
+            <div class="p8-metric-cards">
+                <div class="p8-mc p8-mc-gold">
+                    <div class="p8-mc-val" id="p8-mc-pack">—</div>
+                    <div class="p8-mc-lbl">Pack energy (kWh)</div>
+                </div>
+                <div class="p8-mc p8-mc-blue">
+                    <div class="p8-mc-val" id="p8-mc-solar">—</div>
+                    <div class="p8-mc-lbl">Total solar (W)</div>
+                </div>
+                <div class="p8-mc p8-mc-gold">
+                    <div class="p8-mc-val" id="p8-mc-net">—</div>
+                    <div class="p8-mc-lbl">Net draw (W)</div>
+                </div>
+                <div class="p8-mc p8-mc-blue">
+                    <div class="p8-mc-val" id="p8-mc-range">—</div>
+                    <div class="p8-mc-lbl">Range (miles)</div>
+                </div>
+                <div class="p8-mc p8-mc-gold">
+                    <div class="p8-mc-val" id="p8-mc-charge-t">—</div>
+                    <div class="p8-mc-lbl">Grid charge time</div>
+                </div>
+                <div class="p8-mc p8-mc-blue">
+                    <div class="p8-mc-val" id="p8-mc-solar-day">—</div>
+                    <div class="p8-mc-lbl">Solar/day (kWh)</div>
+                </div>
+            </div>
+
+            <!-- Range bar -->
+            <div class="p8-bar-section">
+                <div class="p8-bar-label">
+                    <span>Range coverage vs 200 mile target</span>
+                    <span id="p8-range-pct-label">0%</span>
+                </div>
+                <div class="p8-bar-track">
+                    <div class="p8-bar-fill-gold" id="p8-range-bar" style="width:0%"></div>
+                    <div class="p8-bar-target">Target: 200 mi</div>
+                </div>
+            </div>
+
+            <!-- Power balance rows -->
+            <div class="p8-balance-rows">
+                <div class="p8-balance-row">
+                    <span class="p8-bl">Heater draw</span>
+                    <div class="p8-bt"><div class="p8-bf p8-bf-red" id="p8-b-heater" style="width:100%"></div></div>
+                    <span class="p8-bv" id="p8-bv-heater">—</span>
+                </div>
+                <div class="p8-balance-row">
+                    <span class="p8-bl">Solar input</span>
+                    <div class="p8-bt"><div class="p8-bf p8-bf-gold" id="p8-b-solar" style="width:0%"></div></div>
+                    <span class="p8-bv" id="p8-bv-solar">—</span>
+                </div>
+                <div class="p8-balance-row">
+                    <span class="p8-bl">Alt regen</span>
+                    <div class="p8-bt"><div class="p8-bf p8-bf-blue" id="p8-b-regen" style="width:0%"></div></div>
+                    <span class="p8-bv" id="p8-bv-regen">—</span>
+                </div>
+                <div class="p8-balance-row">
+                    <span class="p8-bl">Net from pack</span>
+                    <div class="p8-bt"><div class="p8-bf p8-bf-yellow" id="p8-b-net" style="width:100%"></div></div>
+                    <span class="p8-bv" id="p8-bv-net">—</span>
+                </div>
+            </div>
+
+            <!-- Solar config summary -->
+            <div class="p8-solar-summary" id="p8-solar-config-box">
+                <div class="p8-solar-title">☀ Active Solar Configuration</div>
+                <div class="p8-solar-row">
+                    <span>Roof array</span><span id="p8-sc-roof">2,000 W</span>
+                </div>
+                <div class="p8-solar-row">
+                    <span>Front hood mod</span><span id="p8-sc-front">0 W (inactive)</span>
+                </div>
+                <div class="p8-solar-row">
+                    <span>Rear hood mod</span><span id="p8-sc-rear">0 W (inactive)</span>
+                </div>
+                <div class="p8-solar-row p8-solar-total">
+                    <span>Total solar</span><span id="p8-sc-total">2,000 W</span>
+                </div>
+                <div class="p8-solar-note">Panels are UV spectrum — any body color works</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===================================================
+         SPEC CARDS
+         =================================================== -->
+    <hr class="p8-sep" />
+    <div class="p8-section-label">Component Engineering · Phase 8 New Systems</div>
+    <h2 class="p8-section-title">40kWh battery pack · solar MPPT · J1772 charge port</h2>
+
+    <div class="p8-spec-3col">
+
+        <div class="p8-spec-card p8-spec-batt">
+            <div class="p8-spec-badge">Battery A — 40kWh EV Pack</div>
+            <h3>Primary Energy Store</h3>
+            <ul class="p8-spec-list">
+                <li><strong>Chemistry:</strong> Lithium NMC (Nickel Manganese Cobalt)</li>
+                <li><strong>Capacity:</strong> 40 kWh usable (44 kWh gross)</li>
+                <li><strong>Nominal voltage:</strong> 400V pack (series cells)</li>
+                <li><strong>Max charge rate:</strong> 7.2 kW AC (Level 2) / 50 kW DC fast</li>
+                <li><strong>Cycle life:</strong> 1,500+ cycles to 80% capacity</li>
+                <li><strong>BMS:</strong> Integrated cell balancing, thermal management</li>
+                <li><strong>Thermal system:</strong> Liquid cooled, 15–35°C operating range</li>
+                <li><strong>Weight:</strong> ~280 lbs (front bay, low CG mounting)</li>
+                <li><strong>Range at 3kW net draw:</strong> ~200+ miles highway cruise</li>
+                <li><strong>Heater supply:</strong> Buck converter steps 400V → 12V for immersion heater</li>
+            </ul>
+        </div>
+
+        <div class="p8-spec-card p8-spec-solar">
+            <div class="p8-spec-badge p8-spec-badge-blue">Solar Array — Integrated Panels</div>
+            <h3>Roof & Hood Panel System</h3>
+            <ul class="p8-spec-list">
+                <li><strong>Roof array (standard):</strong> 2,000W continuous in full sun</li>
+                <li><strong>Cell type:</strong> Monocrystalline PERC — 22% efficiency</li>
+                <li><strong>UV spectrum:</strong> Works on non-visible spectrum — any color finish</li>
+                <li><strong>Panel colors:</strong> Matte black, body-color match, grey, navy — all viable</li>
+                <li><strong>Front hood mod:</strong> Optional +800W panel, bolt-on design</li>
+                <li><strong>Rear hood mod:</strong> Optional +600W panel, bolt-on design</li>
+                <li><strong>Max combined:</strong> 3,400W (roof + front + rear)</li>
+                <li><strong>MPPT controller:</strong> PCW-integrated maximum power point tracking</li>
+                <li><strong>Daily yield (8hr sun):</strong> 16 kWh roof / 27.2 kWh full array</li>
+                <li><strong>Parked top-up:</strong> Roof alone restores ~40% pack per sunny day</li>
+            </ul>
+        </div>
+
+        <div class="p8-spec-card p8-spec-charge">
+            <div class="p8-spec-badge p8-spec-badge-gold">Charge Port — J1772 + DC Fast</div>
+            <h3>Grid Charge Architecture</h3>
+            <ul class="p8-spec-list">
+                <li><strong>AC port:</strong> SAE J1772 (standard US EV connector)</li>
+                <li><strong>Level 1:</strong> 120V / 12A = 1.4 kW — full charge ~29 hrs</li>
+                <li><strong>Level 2:</strong> 240V / 30A = 7.2 kW — full charge ~5.6 hrs</li>
+                <li><strong>DC fast charge:</strong> CCS combo port — up to 50 kW</li>
+                <li><strong>DC fast charge time:</strong> 20–80% in ~45 minutes</li>
+                <li><strong>Onboard charger:</strong> 7.2 kW OBC with power factor correction</li>
+                <li><strong>Grid compatibility:</strong> 85–265V AC, 50/60 Hz worldwide</li>
+                <li><strong>Smart charging:</strong> PCW schedules off-peak charging automatically</li>
+                <li><strong>Solar priority:</strong> Grid charge only activates below 20% SOC if solar active</li>
+                <li><strong>Safety:</strong> Ground fault detection, pilot signal handshake, thermal cutoff</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- ===================================================
+         PHASE COMPARISON TABLE
+         =================================================== -->
+    <hr class="p8-sep" />
+    <div class="p8-section-label">Evolution Summary</div>
+    <h2 class="p8-section-title">Phase 7 → Phase 8 key changes</h2>
+
+    <div class="p8-table-wrap">
+        <table class="p8-evo-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Phase 7</th>
+                    <th class="p8-col-highlight">Phase 8 ★</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Battery A</td>
+                    <td>AGM 400Ah (4.8 kWh)</td>
+                    <td class="p8-col-highlight p8-good">LiNMC 40 kWh EV pack</td>
+                </tr>
+                <tr>
+                    <td>Primary energy source</td>
+                    <td>Battery (small reserve)</td>
+                    <td class="p8-col-highlight p8-good">Grid + solar (renewable)</td>
+                </tr>
+                <tr>
+                    <td>Solar input</td>
+                    <td>None</td>
+                    <td class="p8-col-highlight p8-good">2kW roof + 1.4kW optional mods</td>
+                </tr>
+                <tr>
+                    <td>Charge port</td>
+                    <td>None</td>
+                    <td class="p8-col-highlight p8-good">J1772 + CCS DC fast charge</td>
+                </tr>
+                <tr>
+                    <td>Alternators</td>
+                    <td>6 × 150A (kept)</td>
+                    <td class="p8-col-highlight">6 × 150A (kept — regen + cool)</td>
+                </tr>
+                <tr>
+                    <td>Target range</td>
+                    <td>~150 miles (limited by small pack)</td>
+                    <td class="p8-col-highlight p8-good">200+ miles</td>
+                </tr>
+                <tr>
+                    <td>Fossil fuels</td>
+                    <td>None</td>
+                    <td class="p8-col-highlight p8-good">None</td>
+                </tr>
+                <tr>
+                    <td>Net energy deficit</td>
+                    <td>~3,000W from small pack</td>
+                    <td class="p8-col-highlight p8-good">~1,200W net (solar offsets ~2kW)</td>
+                </tr>
+                <tr>
+                    <td>Grid charge time</td>
+                    <td>N/A</td>
+                    <td class="p8-col-highlight p8-good">~5.6 hrs Level 2 overnight</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- ===================================================
+     PHASE 8 JAVASCRIPT
+     =================================================== -->
+<script>
+    (function() {
+        'use strict';
+
+        const get = id => document.getElementById(id);
+
+        const sliders = [
+            { id: 'p8-pack', out: 'p8-pack-out', fmt: v => v + ' kWh' },
+            { id: 'p8-soc', out: 'p8-soc-out', fmt: v => v + '%' },
+            { id: 'p8-heater', out: 'p8-heater-out', fmt: v => (+v).toLocaleString() + ' W' },
+            { id: 'p8-speed', out: 'p8-speed-out', fmt: v => v + ' mph' },
+            { id: 'p8-solar-roof', out: 'p8-solar-roof-out', fmt: v => (+v).toLocaleString() + ' W' },
+            { id: 'p8-solar-front', out: 'p8-solar-front-out', fmt: v => (+v).toLocaleString() + ' W' },
+            { id: 'p8-solar-rear', out: 'p8-solar-rear-out', fmt: v => (+v).toLocaleString() + ' W' },
+            { id: 'p8-grid-charge', out: 'p8-grid-out', fmt: v => v + ' kW' },
+            { id: 'p8-alt-regen-slider', out: 'p8-alt-regen-out', fmt: v => (+v).toLocaleString() + ' W' },
+            { id: 'p8-weight', out: 'p8-weight-out', fmt: v => (+v).toLocaleString() + ' lb' },
+        ];
+
+        sliders.forEach(s => {
+            const el = get(s.id);
+            if (!el) return;
+            el.addEventListener('input', () => {
+                const out = get(s.out);
+                if (out) out.textContent = s.fmt(el.value);
+                recalc();
+            });
+        });
+
+        function fmtK(n) {
+            return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : Math.round(n).toString();
+        }
+        function setText(id, v) { const e = get(id); if (e) e.textContent = v; }
+        function setW(id, pct) {
+            const e = get(id);
+            if (e) e.style.width = Math.min(100, Math.max(0, pct)) + '%';
+        }
+
+        function recalc() {
+            const packKwh = +(get('p8-pack')?.value || 40);
+            const soc = +(get('p8-soc')?.value || 88) / 100;
+            const heaterW = +(get('p8-heater')?.value || 4200);
+            const speedMph = +(get('p8-speed')?.value || 55);
+            const solarRoof = +(get('p8-solar-roof')?.value || 2000);
+            const solarFront = +(get('p8-solar-front')?.value || 0);
+            const solarRear = +(get('p8-solar-rear')?.value || 0);
+            const gridKw = +(get('p8-grid-charge')?.value || 7);
+            const altRegen = +(get('p8-alt-regen-slider')?.value || 1800);
+            const weightLb = +(get('p8-weight')?.value || 1800);
+
+            const totalSolarW = solarRoof + solarFront + solarRear;
+            const availableKwh = packKwh * soc;
+
+            // Net draw from battery
+            const netDrawW = Math.max(0, heaterW - totalSolarW - altRegen);
+
+            // Range calculation
+            const netDrawKw = netDrawW / 1000;
+            const rangeHrs = netDrawKw > 0 ? availableKwh / netDrawKw : 999;
+            const rangeMiles = Math.min(999, Math.round(rangeHrs * speedMph));
+
+            // Grid charge time to full
+            const emptyKwh = packKwh * (1 - soc);
+            const chargeHrs = gridKw > 0 ? emptyKwh / gridKw : 999;
+            const chargeStr = chargeHrs >= 99 ? 'Full' : chargeHrs.toFixed(1) + ' hrs';
+
+            // Solar daily yield (8hr sun day)
+            const solarDayKwh = (totalSolarW * 8) / 1000;
+
+            // Range bar
+            const rangePct = Math.min(100, (rangeMiles / 200) * 100);
+
+            // Update metric cards
+            setText('p8-mc-pack', availableKwh.toFixed(1) + ' kWh');
+            setText('p8-mc-solar', totalSolarW.toLocaleString() + ' W');
+            setText('p8-mc-net', netDrawW > 0 ? fmtK(netDrawW) + ' W' : 'Surplus ↑');
+            setText('p8-mc-range', rangeMiles >= 999 ? '∞ mi' : rangeMiles + ' mi');
+            setText('p8-mc-charge-t', chargeStr);
+            setText('p8-mc-solar-day', solarDayKwh.toFixed(1) + ' kWh');
+
+            // Range bar
+            setW('p8-range-bar', rangePct);
+            setText('p8-range-pct-label', Math.round(rangePct) + '%');
+
+            // Balance bars (normalize to heaterW)
+            const norm = v => Math.min(100, Math.round((v / Math.max(1, heaterW)) * 100));
+            setW('p8-b-heater', 100);
+            setW('p8-b-solar', norm(totalSolarW));
+            setW('p8-b-regen', norm(altRegen));
+            setW('p8-b-net', norm(netDrawW));
+
+            setText('p8-bv-heater', fmtK(heaterW) + ' W');
+            setText('p8-bv-solar', fmtK(totalSolarW) + ' W');
+            setText('p8-bv-regen', fmtK(altRegen) + ' W');
+            setText('p8-bv-net', netDrawW > 0 ? fmtK(netDrawW) + ' W' : 'Net +');
+
+            // Solar config summary
+            setText('p8-sc-roof', solarRoof.toLocaleString() + ' W');
+            setText('p8-sc-front', solarFront > 0 ? solarFront.toLocaleString() + ' W' : '0 W (inactive)');
+            setText('p8-sc-rear', solarRear > 0 ? solarRear.toLocaleString() + ' W' : '0 W (inactive)');
+            setText('p8-sc-total', totalSolarW.toLocaleString() + ' W');
+
+            // SVG panels
+            setText('p8-heater-draw', heaterW.toLocaleString() + ' W');
+            setText('p8-solar-in', totalSolarW.toLocaleString() + ' W');
+            setText('p8-net-draw', netDrawW > 0 ? netDrawW.toLocaleString() + ' W' : 'Net surplus');
+            setText('p8-batA-status', availableKwh.toFixed(1) + ' kWh remaining');
+            setText('p8-range-remain', rangeMiles >= 999 ? '∞ miles' : rangeMiles + ' miles');
+            setText('p8-solar-rate', (totalSolarW / 1000).toFixed(1) + ' kW');
+            setText('p8-grid-rate', (gridKw * 1000).toLocaleString() + ' W');
+            setText('p8-alt-regen', '~' + fmtK(altRegen) + ' W');
+            setText('p8-charge-time', chargeStr);
+
+            const barPx = Math.round((availableKwh / packKwh) * 276);
+            const packBar = get('p8-pack-bar');
+            if (packBar) packBar.setAttribute('width', barPx);
+
+            const batABarEl = get('p8-batA-bar');
+            if (batABarEl) batABarEl.setAttribute('width', Math.round(soc * 164));
+            setText('p8-batA-pct', Math.round(soc * 100) + '%');
+        }
+
+        // Init labels
+        sliders.forEach(s => {
+            const el = get(s.id);
+            const out = get(s.out);
+            if (el && out) out.textContent = s.fmt(el.value);
+        });
+        recalc();
+
+    })();
+</script>
+
+<style>
+    /* ============================================================
+           PHASE 8 — GOLD + ULTRAMARINE BLUE
+           ============================================================ */
+
+    .p8-banner {
+        background: linear-gradient(110deg, #05080f 0%, #080c1a 40%, #0a0800 70%, #05080f 100%);
+        border-bottom: 1px solid #FFD70040;
+        padding: 3rem 2rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .p8-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 50% 80% at 30% -10%, #FFD70010, transparent), radial-gradient(ellipse 50% 80% at 70% -10%, #4169E110, transparent), repeating-linear-gradient(0deg, transparent, transparent 40px, #FFD70004 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, #4169E104 41px);
+        }
+
+    .p8-phase-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(90deg, #FFD70014, #4169E110);
+        border: 1px solid #FFD70050;
+        border-radius: 999px;
+        padding: 6px 22px;
+        font-size: 11px;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: #FFD700;
+        margin-bottom: 1.2rem;
+        position: relative;
+        font-weight: 700;
+    }
+
+        .p8-phase-pill::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #FFD700;
+            box-shadow: 0 0 12px #FFD700, 0 0 24px #FFD70060;
+            animation: p8blink 1.2s ease-in-out infinite;
+        }
+
+    @@keyframes p8blink {
+        0%, 100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.2;
+        }
+    }
+
+    .p8-banner h1 {
+        font-size: clamp(2rem, 5vw, 3.4rem);
+        font-weight: 800;
+        color: #fff;
+        margin: 0 0 1rem;
+        letter-spacing: -.025em;
+        position: relative;
+        line-height: 1.1;
+    }
+
+        .p8-banner h1 em {
+            font-style: normal;
+            color: #FFD700;
+            display: block;
+            font-size: 0.8em;
+            margin-top: .3rem;
+        }
+
+    .p8-banner p {
+        color: #8a9ab0;
+        font-size: 14px;
+        max-width: 860px;
+        line-height: 1.85;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    /* Section */
+    .p8-section {
+        max-width: 1380px;
+        margin: 0 auto;
+        padding: 4.5rem 2rem;
+    }
+
+    .p8-section-label {
+        font-size: 11px;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        color: #FFD700;
+        margin-bottom: .5rem;
+        font-weight: 700;
+    }
+
+    .p8-section-title {
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 1rem;
+        letter-spacing: -.015em;
+    }
+
+    .p8-section-lead {
+        color: #8a9ab0;
+        font-size: 13px;
+        line-height: 1.9;
+        max-width: 1100px;
+        margin: 0 0 2.5rem;
+    }
+
+    .p8-sep {
+        border: none;
+        border-top: 2px solid #1a1408;
+        margin: 4rem 0;
+    }
+
+    /* Metrics */
+    .p8-headline-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.2rem;
+        margin: 2.5rem 0;
+    }
+
+    .p8-metric-highlight {
+        background: linear-gradient(135deg, #0a0c06, #080a18);
+        border: 1px solid #2a2408;
+        border-radius: 10px;
+        padding: 1.4rem 1rem;
+        text-align: center;
+        transition: all .3s;
+    }
+
+        .p8-metric-highlight:hover {
+            border-color: #FFD70040;
+            transform: translateY(-2px);
+        }
+
+    .p8-metric-val {
+        font-size: 2.1rem;
+        font-weight: 800;
+        color: #FFD700;
+        margin-bottom: .3rem;
+    }
+
+    .p8-metric-lbl {
+        font-size: 10px;
+        color: #4a4010;
+        text-transform: uppercase;
+        letter-spacing: .14em;
+    }
+
+    /* Schematic */
+    .p8-schematic-container {
+        background: #05080f;
+        border: 1px solid #1a1408;
+        border-radius: 16px;
+        padding: 1rem;
+        overflow-x: auto;
+        box-shadow: inset 0 2px 12px rgba(0,0,0,.6);
+        margin: 2rem 0;
+    }
+
+    /* SVG animations */
+    @@keyframes p8steamFlow {
+        to {
+            stroke-dashoffset: -24;
+        }
+    }
+
+    @@keyframes p8mechPulse {
+        0%, 100% {
+            opacity: .5;
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes p8powerFlow {
+        to {
+            stroke-dashoffset: -18;
+        }
+    }
+
+    @@keyframes p8regenGlow {
+        0%, 100% {
+            opacity: .6;
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes p8shimmer {
+        0%, 100% {
+            opacity: .04;
+        }
+
+        50% {
+            opacity: .12;
+        }
+    }
+
+    @@keyframes p8solarShimmer {
+        0%, 100% {
+            opacity: .05;
+        }
+
+        50% {
+            opacity: .18;
+        }
+    }
+
+    @@keyframes p8spin {
+        from {
+            stroke-dashoffset: 0;
+        }
+
+        to {
+            stroke-dashoffset: 62.8;
+        }
+    }
+
+    @@keyframes p8lobePulse {
+        0%, 100% {
+            opacity: .8;
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes p8gridFlow {
+        to {
+            stroke-dashoffset: -20;
+        }
+    }
+
+    .p8-flow-steam {
+        stroke-dasharray: 8,4;
+        animation: p8steamFlow 1.6s linear infinite;
+    }
+
+    .p8-flow-mech {
+        animation: p8mechPulse 2s ease-in-out infinite;
+    }
+
+    .p8-flow-power {
+        stroke-dasharray: 6,3;
+        animation: p8powerFlow 1.2s linear infinite;
+    }
+
+    .p8-flow-regen {
+        stroke-dasharray: 7,3;
+        animation: p8regenGlow 1.8s ease-in-out infinite;
+    }
+
+    .p8-flow-solar {
+        stroke-dasharray: 5,3;
+        animation: p8powerFlow 1.4s linear infinite;
+    }
+
+    .p8-flow-grid {
+        stroke-dasharray: 5,3;
+        animation: p8gridFlow 1.2s linear infinite;
+    }
+
+    .p8-water-shimmer {
+        animation: p8shimmer 3s ease-in-out infinite;
+    }
+
+    .p8-oil-shimmer {
+        animation: p8shimmer 4s ease-in-out infinite;
+    }
+
+    .p8-solar-shimmer {
+        animation: p8solarShimmer 2s ease-in-out infinite;
+    }
+
+    .p8-shaft-spin {
+        stroke-dasharray: 20 42;
+        animation: p8spin 2s linear infinite;
+    }
+
+    .p8-steam-flow-l {
+        animation: p8steamFlow 1s linear infinite;
+    }
+
+    .p8-steam-flow-r {
+        animation: p8steamFlow 1s linear infinite reverse;
+    }
+
+    .p8-lobe {
+        animation: p8lobePulse 1.5s ease-in-out infinite;
+    }
+
+    /* Calculator */
+    .p8-calc-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+
+    @@media(max-width:900px) {
+        .p8-calc-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .p8-calc-panel, .p8-metrics-panel {
+        background: #080a06;
+        border: 1px solid #1a1408;
+        border-radius: 14px;
+        padding: 1.8rem;
+    }
+
+    .p8-calc-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #FFD700;
+        margin: 0 0 1.4rem;
+        border-bottom: 1px solid #1a1408;
+        padding-bottom: .8rem;
+    }
+
+    .p8-slider-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .p8-slider-row {
+        display: grid;
+        grid-template-columns: 200px 1fr 90px;
+        align-items: center;
+        gap: 12px;
+        font-size: 12px;
+        color: #8a9ab0;
+    }
+
+    .p8-val {
+        text-align: right;
+        color: #FFD700;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    .p8-slider-row input[type="range"] {
+        appearance: none;
+        width: 100%;
+        height: 5px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #FFD700, #4169E1);
+        outline: none;
+    }
+
+        .p8-slider-row input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 3px solid #080a06;
+            background: #fff;
+            box-shadow: 0 0 0 2px #FFD700, 0 0 18px #FFD70060;
+            cursor: pointer;
+        }
+
+    /* Metric cards */
+    .p8-metric-cards {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: .8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .p8-mc {
+        background: #0a0c06;
+        border: 1px solid #1a1408;
+        border-radius: 10px;
+        padding: 1rem;
+        text-align: center;
+        transition: all .3s;
+    }
+
+        .p8-mc:hover {
+            border-color: #FFD70040;
+        }
+
+    .p8-mc-val {
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-bottom: .3rem;
+    }
+
+    .p8-mc-lbl {
+        font-size: 10px;
+        color: #4a4010;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+    }
+
+    .p8-mc-gold .p8-mc-val {
+        color: #FFD700;
+    }
+
+    .p8-mc-blue .p8-mc-val {
+        color: #4169E1;
+    }
+
+    /* Bar section */
+    .p8-bar-section {
+        margin-bottom: 1.4rem;
+    }
+
+    .p8-bar-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: #8a9ab0;
+        margin-bottom: 5px;
+    }
+
+    .p8-bar-track {
+        position: relative;
+        height: 22px;
+        background: #0a0c06;
+        border-radius: 4px;
+        overflow: hidden;
+        border: 1px solid #1a1408;
+    }
+
+    .p8-bar-fill-gold {
+        height: 100%;
+        background: linear-gradient(90deg, #FFD700, #FFC300);
+        border-radius: 4px;
+        transition: width .4s ease;
+    }
+
+    .p8-bar-target {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 10px;
+        color: #4a4010;
+    }
+
+    /* Balance rows */
+    .p8-balance-rows {
+        display: flex;
+        flex-direction: column;
+        gap: .6rem;
+        margin-bottom: 1.4rem;
+    }
+
+    .p8-balance-row {
+        display: grid;
+        grid-template-columns: 100px 1fr 70px;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+    }
+
+    .p8-bl {
+        color: #5a5a10;
+    }
+
+    .p8-bt {
+        height: 10px;
+        background: #0a0c06;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .p8-bf {
+        height: 100%;
+        border-radius: 3px;
+        transition: width .4s ease;
+    }
+
+    .p8-bf-red {
+        background: linear-gradient(90deg, #ff4455, #ff6b30);
+    }
+
+    .p8-bf-gold {
+        background: linear-gradient(90deg, #FFD700, #FFC300);
+    }
+
+    .p8-bf-blue {
+        background: linear-gradient(90deg, #4169E1, #0047AB);
+    }
+
+    .p8-bf-yellow {
+        background: linear-gradient(90deg, #ffcc00, #ff9900);
+    }
+
+    .p8-bv {
+        text-align: right;
+        color: #8a9ab0;
+        font-variant-numeric: tabular-nums;
+        font-size: 10px;
+    }
+
+    /* Solar summary box */
+    .p8-solar-summary {
+        background: #0a0c04;
+        border: 1px solid #FFD70030;
+        border-radius: 10px;
+        padding: 1.2rem;
+    }
+
+    .p8-solar-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: #FFD700;
+        margin-bottom: .8rem;
+    }
+
+    .p8-solar-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: #6a6a20;
+        padding: .3rem 0;
+        border-bottom: 1px solid #1a1808;
+    }
+
+    .p8-solar-total {
+        color: #FFD700;
+        font-weight: 700;
+        border-bottom: none;
+        margin-top: .3rem;
+    }
+
+    .p8-solar-note {
+        font-size: 10px;
+        color: #3a3a10;
+        margin-top: .6rem;
+        font-style: italic;
+    }
+
+    /* Spec cards */
+    .p8-spec-3col {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(360px,1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .p8-spec-card {
+        background: #080a06;
+        border-radius: 14px;
+        padding: 1.8rem;
+        border: 1px solid #1a1408;
+    }
+
+    .p8-spec-batt {
+        border-top: 3px solid #FFD700;
+    }
+
+    .p8-spec-solar {
+        border-top: 3px solid #4169E1;
+    }
+
+    .p8-spec-charge {
+        border-top: 3px solid #FFC300;
+    }
+
+    .p8-spec-badge {
+        display: inline-block;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 1rem;
+        background: rgba(255,215,0,.12);
+        color: #FFD700;
+    }
+
+    .p8-spec-badge-blue {
+        background: rgba(65,105,225,.12);
+        color: #4169E1;
+    }
+
+    .p8-spec-badge-gold {
+        background: rgba(255,195,0,.12);
+        color: #FFC300;
+    }
+
+    .p8-spec-card h3 {
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 1rem;
+    }
+
+    .p8-spec-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .p8-spec-list li {
+            font-size: 12px;
+            color: #5a5a10;
+            line-height: 1.8;
+            margin-bottom: .5rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+            .p8-spec-list li::before {
+                content: '→';
+                position: absolute;
+                left: 0;
+                color: #FFD700;
+                font-weight: bold;
+            }
+
+        .p8-spec-list strong {
+            color: #dde4f0;
+        }
+
+    /* Evolution table */
+    .p8-table-wrap {
+        background: #05080f;
+        border: 1px solid #1a1408;
+        border-radius: 12px;
+        overflow-x: auto;
+        margin: 2rem 0;
+    }
+
+    .p8-evo-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+        min-width: 600px;
+    }
+
+        .p8-evo-table thead {
+            background: #080a06;
+            border-bottom: 2px solid #1a1408;
+        }
+
+        .p8-evo-table th {
+            color: #FFD700;
+            font-weight: 700;
+            text-align: left;
+            padding: .9rem 1rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            font-size: 11px;
+        }
+
+            .p8-evo-table th.p8-col-highlight {
+                color: #FFD700;
+                background: #0a0c04;
+            }
+
+        .p8-evo-table td {
+            padding: .75rem 1rem;
+            border-bottom: 1px solid #1a1408;
+            color: #4a4010;
+        }
+
+            .p8-evo-table td.p8-col-highlight {
+                background: rgba(255,215,0,.04);
+                color: #dde4f0;
+                font-weight: 600;
+            }
+
+            .p8-evo-table td.p8-good {
+                color: #FFD700;
+            }
+
+        .p8-evo-table tbody tr:hover {
+            background: #0a0c06;
+        }
+
+    @@media(max-width:1000px) {
+        .p8-section {
+            padding: 3rem 1.5rem;
+        }
+
+        .p8-banner {
+            padding: 2.5rem 1.5rem 1.5rem;
+        }
+
+        .p8-spec-3col {
+            grid-template-columns: 1fr;
+        }
+
+        .p8-metric-cards {
+            grid-template-columns: repeat(2,1fr);
+        }
+
+        .p8-slider-row {
+            grid-template-columns: 1fr 90px;
+        }
+
+            .p8-slider-row input[type="range"] {
+                grid-column: 1/-1;
+                grid-row: 2;
+            }
+    }
+
+    @@media(max-width:700px) {
+        .p8-banner h1 {
+            font-size: 1.9rem;
+        }
+
+        .p8-metric-cards {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .p8-headline-metrics {
+            grid-template-columns: repeat(2,1fr);
+        }
+    }
+</style>
+
+
+
+
