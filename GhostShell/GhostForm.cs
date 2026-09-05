@@ -20,11 +20,10 @@ namespace GhostShell
 
         // ---- Menu builder ----
         private GhostMenuBuilder _menuBuilder;
-<<<<<<< HEAD
-=======
+
         // ---- Add this field near the top with the other fields ----
         private GhostSteamPanel _steamPanel;
->>>>>>> f40f9f22791b04bf2cbdc0f0a534f91d28d5e180
+
         private Microsoft.Web.WebView2.WinForms.WebView2 _ghostUI;
         public GhostForm()
         {
@@ -85,21 +84,17 @@ namespace GhostShell
             // ---- Menu strip ----
             _menuBuilder = new GhostMenuBuilder(_menuBgColor, _menuTextColor);
             _menuBuilder.Build(this);
-<<<<<<< HEAD
-=======
+
             // ---- Back in GhostForm.cs, wire it up in BuildUI()
             //      after the other _menuBuilder.On... lines ----
-            _menuBuilder.OnToggleSteamPanel += (s, e) => _steamPanel.Visible = !_steamPanel.Visible;
->>>>>>> f40f9f22791b04bf2cbdc0f0a534f91d28d5e180
+
             _ghostUI = new Microsoft.Web.WebView2.WinForms.WebView2
             {
                 Bounds = _renderPanel.ClientRectangle,
                 Anchor = AnchorStyles.Top | AnchorStyles.Bottom |
-<<<<<<< HEAD
+
          AnchorStyles.Left | AnchorStyles.Right,
-=======
-             AnchorStyles.Left | AnchorStyles.Right,
->>>>>>> f40f9f22791b04bf2cbdc0f0a534f91d28d5e180
+
                 Visible = false,
             };
             _renderPanel.Controls.Add(_ghostUI);

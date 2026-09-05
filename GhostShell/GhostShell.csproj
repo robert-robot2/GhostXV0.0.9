@@ -1,6 +1,4 @@
-﻿
-
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
@@ -9,18 +7,11 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<UseWindowsForms>true</UseWindowsForms>	
-		
+		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 
 	<ItemGroup>
-<<<<<<< HEAD
 	  <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4191.47" />
 	</ItemGroup>
 
 </Project>
-=======
-		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4191.47" />
-	</ItemGroup>
-</Project>
->>>>>>> f40f9f22791b04bf2cbdc0f0a534f91d28d5e180
