@@ -1,0 +1,1629 @@
+﻿<!-- =====================================================
+     PHASE 7 BANNER
+     ===================================================== -->
+<div class="p7-banner">
+    <div class="p7-phase-pill">Phase 7 · Dual-Rail Regenerative Steam Loop</div>
+    <h1>Steam-Rail <em>Self-Sustaining</em> Crankless Engine</h1>
+    <p>
+        Two independent steam rails each power three rotary converter wheels. Each wheel spins a dedicated
+        high-output alternator, feeding a shared transformer/rectifier bus. A PCW-managed resistor
+        bank regulates re-injection current back to the immersion heater — targeting net-zero battery draw
+        at highway cruise. A backup EV motor engages on demand. No pistons. No combustion. Water in, torque out.
+    </p>
+</div>
+
+<!-- =====================================================
+     PHASE 7 HEADLINE METRICS
+     ===================================================== -->
+<div class="p7-section">
+
+    <div class="p7-section-label">Phase 7 · Complete System Specification</div>
+    <h2 class="p7-section-title">Dual-rail · 6-wheel alternator array · crankless enclosed oil drivetrain</h2>
+    <p class="p7-section-lead">
+        Phase 7 replaces the Phase 6 rotary converter wheel pair with two full independent steam rails,
+        each driving three cycloidal wheels. Six total wheels spin six dedicated 150A alternators.
+        Their combined AC output feeds a shared step-down transformer → bridge rectifier → PCW-managed
+        resistor-regulated feedback loop. The enclosed oil crankless engine converts wheel-lobe motion
+        to continuous rotational output through roller followers and an eccentric shaft — no piston seals,
+        no combustion gases, no oil contamination from steam.
+    </p>
+
+    <div class="p7-headline-metrics">
+        <div class="p7-metric-highlight">
+            <div class="p7-metric-val">2</div>
+            <div class="p7-metric-lbl">Steam Rails</div>
+        </div>
+        <div class="p7-metric-highlight">
+            <div class="p7-metric-val">6</div>
+            <div class="p7-metric-lbl">Converter Wheels</div>
+        </div>
+        <div class="p7-metric-highlight">
+            <div class="p7-metric-val">6</div>
+            <div class="p7-metric-lbl">Alternators (150A)</div>
+        </div>
+        <div class="p7-metric-highlight">
+            <div class="p7-metric-val">0</div>
+            <div class="p7-metric-lbl">Pistons</div>
+        </div>
+        <div class="p7-metric-highlight">
+            <div class="p7-metric-val">PCW</div>
+            <div class="p7-metric-lbl">Regen Controller</div>
+        </div>
+        <div class="p7-metric-highlight">
+            <div class="p7-metric-val">~82%</div>
+            <div class="p7-metric-lbl">Target Regen Return</div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         ANIMATED SCHEMATIC
+         =================================================== -->
+    <hr class="p7-sep" />
+    <div class="p7-section-label">System Architecture</div>
+    <h2 class="p7-section-title">Live flow diagram — water → steam → wheels → regen → heater</h2>
+
+    <div class="p7-schematic-container">
+        <svg id="p7-svg" width="100%" viewBox="0 0 1100 700" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Steam flow gradient -->
+                <linearGradient id="steamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#00cfff" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#aa88ff" stop-opacity="0.9" />
+                </linearGradient>
+                <!-- Power gradient -->
+                <linearGradient id="powerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ffcc00" />
+                    <stop offset="100%" stop-color="#ff6b30" />
+                </linearGradient>
+                <!-- Regen gradient -->
+                <linearGradient id="regenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#00ff88" />
+                    <stop offset="100%" stop-color="#00cfff" />
+                </linearGradient>
+
+                <!-- Arrowheads -->
+                <marker id="arrCyan" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#00cfff" />
+                </marker>
+                <marker id="arrGreen" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#00ff88" />
+                </marker>
+                <marker id="arrYellow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#ffcc00" />
+                </marker>
+                <marker id="arrOrange" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#ff6b30" />
+                </marker>
+                <marker id="arrPurple" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#aa88ff" />
+                </marker>
+
+                <!-- Glow filter -->
+                <filter id="glow7" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="3" result="b" />
+                    <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+                <filter id="glowSm7" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="1.5" result="b" />
+                    <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+
+                <!-- Animation patterns -->
+                <pattern id="steamDash" x="0" y="0" width="20" height="4" patternUnits="userSpaceOnUse">
+                    <rect x="0" y="1" width="12" height="2" fill="#00cfff" opacity="0.7" />
+                </pattern>
+            </defs>
+
+            <!-- ============ BACKGROUND GRID ============ -->
+            <rect width="1100" height="700" fill="#070b12" />
+            <!-- subtle grid lines -->
+            <line x1="0" y1="350" x2="1100" y2="350" stroke="#0d1a28" stroke-width="1" />
+            <line x1="550" y1="0" x2="550" y2="700" stroke="#0d1a28" stroke-width="1" />
+
+            <!-- ============ TITLE ============ -->
+            <text x="550" y="28" text-anchor="middle" font-size="14" fill="#00cfff" font-weight="800" letter-spacing="1" filter="url(#glowSm7)">PHASE 7 · DUAL-RAIL REGENERATIVE STEAM ENGINE FLOW</text>
+
+            <!-- ============================================================
+                 ROW 1: BOILER / WATER TANK (top center)
+                 ============================================================ -->
+            <g id="boiler">
+                <rect x="390" y="45" width="320" height="70" rx="10" fill="#081828" stroke="#00cfff" stroke-width="2" />
+                <!-- water fill animation -->
+                <rect x="392" y="47" width="316" height="66" rx="8" fill="#00cfff" opacity="0.08" class="p7-water-shimmer" />
+                <text x="550" y="73" text-anchor="middle" font-size="13" fill="#00cfff" font-weight="800">WATER BOILER TANK</text>
+                <text x="550" y="89" text-anchor="middle" font-size="10" fill="#4a9ab0">25 gal · 150 PSI max · ASME certified</text>
+                <text x="550" y="103" text-anchor="middle" font-size="9" fill="#2a5a6a">Immersion heater 3–5 kW · PCW thermostat 230°C</text>
+            </g>
+
+            <!-- ============================================================
+                 BATTERY A (top left)
+                 ============================================================ -->
+            <g id="batA">
+                <rect x="40" y="45" width="110" height="70" rx="8" fill="#0a1a08" stroke="#00ff88" stroke-width="2" />
+                <text x="95" y="70" text-anchor="middle" font-size="11" fill="#00ff88" font-weight="700">BATTERY A</text>
+                <text x="95" y="84" text-anchor="middle" font-size="9" fill="#2a5a3a">AGM · 400 Ah</text>
+                <text x="95" y="97" text-anchor="middle" font-size="9" fill="#2a5a3a">Primary heater bus</text>
+                <!-- charge indicator bar -->
+                <rect x="48" y="105" width="94" height="6" rx="3" fill="#0d2a1a" />
+                <rect x="48" y="105" width="80" height="6" rx="3" fill="#00ff88" opacity="0.7" id="p7-batA-bar" />
+                <text x="95" y="120" text-anchor="middle" font-size="8" fill="#00ff88" id="p7-batA-pct">85%</text>
+            </g>
+
+            <!-- BATTERY B (top right) -->
+            <g id="batB">
+                <rect x="950" y="45" width="110" height="70" rx="8" fill="#0a0a28" stroke="#aa88ff" stroke-width="2" />
+                <text x="1005" y="70" text-anchor="middle" font-size="11" fill="#aa88ff" font-weight="700">BATTERY B</text>
+                <text x="1005" y="84" text-anchor="middle" font-size="9" fill="#3a2a5a">LiFePO₄ · 200 Ah</text>
+                <text x="1005" y="97" text-anchor="middle" font-size="9" fill="#3a2a5a">Backup / EV motor</text>
+                <rect x="958" y="105" width="94" height="6" rx="3" fill="#1a1a3a" />
+                <rect x="958" y="105" width="72" height="6" rx="3" fill="#aa88ff" opacity="0.7" id="p7-batB-bar" />
+                <text x="1005" y="120" text-anchor="middle" font-size="8" fill="#aa88ff" id="p7-batB-pct">77%</text>
+            </g>
+
+            <!-- ============================================================
+                 PCW CONTROL UNIT (top center-right)
+                 ============================================================ -->
+            <g id="pcw7">
+                <rect x="760" y="45" width="150" height="70" rx="8" fill="#0d0d28" stroke="#ff6b30" stroke-width="2" />
+                <text x="835" y="67" text-anchor="middle" font-size="11" fill="#ff6b30" font-weight="700">PCW CONTROL</text>
+                <text x="835" y="81" text-anchor="middle" font-size="9" fill="#7a3a20">100 Hz · ARM Cortex M7</text>
+                <text x="835" y="93" text-anchor="middle" font-size="9" fill="#7a3a20">Pressure + Temp + RPM</text>
+                <text x="835" y="105" text-anchor="middle" font-size="9" fill="#7a3a20">Regen feedback loop</text>
+            </g>
+
+            <!-- ============================================================
+                 TRANSFORMER + RECTIFIER (right column)
+                 ============================================================ -->
+            <g id="transformer7">
+                <rect x="880" y="240" width="180" height="90" rx="8" fill="#0d1520" stroke="#ffcc00" stroke-width="2" />
+                <text x="970" y="263" text-anchor="middle" font-size="11" fill="#ffcc00" font-weight="700">TRANSFORMER</text>
+                <text x="970" y="278" text-anchor="middle" font-size="9" fill="#7a6a30">Step-down toroid · 14:1 turns</text>
+                <text x="970" y="292" text-anchor="middle" font-size="9" fill="#7a6a30">Input: 168V AC (6×28V alt)</text>
+                <text x="970" y="307" text-anchor="middle" font-size="9" fill="#7a6a30">Output: 12V regulated</text>
+                <text x="970" y="320" text-anchor="middle" font-size="9" fill="#ffcc00">▼ BRIDGE RECTIFIER</text>
+            </g>
+
+            <!-- RESISTOR BANK -->
+            <g id="resistorBank">
+                <rect x="880" y="360" width="180" height="80" rx="8" fill="#1a0a08" stroke="#ff6b30" stroke-width="2" />
+                <text x="970" y="383" text-anchor="middle" font-size="11" fill="#ff6b30" font-weight="700">RESISTOR BANK</text>
+                <text x="970" y="397" text-anchor="middle" font-size="9" fill="#7a4a20">PWM-switched · 0.1–2.2 Ω</text>
+                <text x="970" y="411" text-anchor="middle" font-size="9" fill="#7a4a20">Limits regen inrush current</text>
+                <text x="970" y="425" text-anchor="middle" font-size="9" fill="#7a4a20">Protects heater element</text>
+                <!-- resistor symbol decorations -->
+                <rect x="900" y="430" width="10" height="4" rx="1" fill="#ff6b30" opacity="0.5" />
+                <rect x="916" y="430" width="10" height="4" rx="1" fill="#ff6b30" opacity="0.5" />
+                <rect x="932" y="430" width="10" height="4" rx="1" fill="#ff6b30" opacity="0.5" />
+                <rect x="948" y="430" width="10" height="4" rx="1" fill="#ff6b30" opacity="0.5" />
+            </g>
+
+            <!-- ============================================================
+                 LEFT STEAM RAIL (RAIL A)
+                 ============================================================ -->
+            <g id="railA">
+                <rect x="100" y="175" width="200" height="30" rx="6" fill="#081828" stroke="#00cfff" stroke-width="2" />
+                <rect x="102" y="177" width="196" height="26" rx="5" class="p7-steam-flow-l" fill="url(#steamGrad)" opacity="0.25" />
+                <text x="200" y="195" text-anchor="middle" font-size="11" fill="#00cfff" font-weight="700">RAIL A (LEFT)</text>
+                <!-- piston cylinder indicators -->
+                <rect x="104" y="180" width="28" height="22" rx="3" fill="#00cfff" opacity="0.3" />
+                <rect x="138" y="180" width="28" height="22" rx="3" fill="#00cfff" opacity="0.25" />
+                <rect x="172" y="180" width="28" height="22" rx="3" fill="#00cfff" opacity="0.2" />
+                <text x="200" y="217" text-anchor="middle" font-size="9" fill="#2a5a6a">80mm bore · 120mm stroke · 150 PSI</text>
+            </g>
+
+            <!-- RIGHT STEAM RAIL (RAIL B) -->
+            <g id="railB">
+                <rect x="800" y="175" width="200" height="30" rx="6" fill="#081828" stroke="#00cfff" stroke-width="2" />
+                <rect x="802" y="177" width="196" height="26" rx="5" class="p7-steam-flow-r" fill="url(#steamGrad)" opacity="0.25" />
+                <text x="900" y="195" text-anchor="middle" font-size="11" fill="#00cfff" font-weight="700">RAIL B (RIGHT)</text>
+                <rect x="804" y="180" width="28" height="22" rx="3" fill="#00cfff" opacity="0.3" />
+                <rect x="838" y="180" width="28" height="22" rx="3" fill="#00cfff" opacity="0.25" />
+                <rect x="872" y="180" width="28" height="22" rx="3" fill="#00cfff" opacity="0.2" />
+                <text x="900" y="217" text-anchor="middle" font-size="9" fill="#2a5a6a">80mm bore · 120mm stroke · 150 PSI</text>
+            </g>
+
+            <!-- ============================================================
+                 6 CONVERTER WHEELS + ALTERNATORS
+                 Left side: wheels W1, W2, W3 (for Rail A)
+                 Right side: wheels W4, W5, W6 (for Rail B)
+                 ============================================================ -->
+            <!-- WHEEL GROUP LABELS -->
+            <text x="200" y="255" text-anchor="middle" font-size="9" fill="#aa88ff" font-weight="600">RAIL A WHEELS + ALTERNATORS</text>
+            <text x="900" y="255" text-anchor="middle" font-size="9" fill="#aa88ff" font-weight="600">RAIL B WHEELS + ALTERNATORS</text>
+
+            <!-- Wheel W1 + Alternator A1 -->
+            <g id="w1" class="p7-wheel-group">
+                <circle cx="120" cy="305" r="30" fill="none" stroke="#aa88ff" stroke-width="2.5" />
+                <!-- 4 lobes -->
+                <circle cx="120" cy="275" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="150" cy="305" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="120" cy="335" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="90" cy="305" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <text x="120" y="309" text-anchor="middle" font-size="9" fill="#aa88ff" font-weight="700">W1</text>
+                <!-- Alternator A1 -->
+                <rect x="70" y="350" width="100" height="40" rx="6" fill="#0a1520" stroke="#ffcc00" stroke-width="1.5" />
+                <text x="120" y="367" text-anchor="middle" font-size="9" fill="#ffcc00" font-weight="700">ALT A1</text>
+                <text x="120" y="381" text-anchor="middle" font-size="8" fill="#6a5a20">150A · 28V AC</text>
+            </g>
+
+            <!-- Wheel W2 + Alternator A2 -->
+            <g id="w2" class="p7-wheel-group">
+                <circle cx="200" cy="305" r="30" fill="none" stroke="#aa88ff" stroke-width="2.5" />
+                <circle cx="200" cy="275" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="230" cy="305" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="200" cy="335" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="170" cy="305" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <text x="200" y="309" text-anchor="middle" font-size="9" fill="#aa88ff" font-weight="700">W2</text>
+                <rect x="150" y="350" width="100" height="40" rx="6" fill="#0a1520" stroke="#ffcc00" stroke-width="1.5" />
+                <text x="200" y="367" text-anchor="middle" font-size="9" fill="#ffcc00" font-weight="700">ALT A2</text>
+                <text x="200" y="381" text-anchor="middle" font-size="8" fill="#6a5a20">150A · 28V AC</text>
+            </g>
+
+            <!-- Wheel W3 + Alternator A3 -->
+            <g id="w3" class="p7-wheel-group">
+                <circle cx="280" cy="305" r="30" fill="none" stroke="#aa88ff" stroke-width="2.5" />
+                <circle cx="280" cy="275" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="310" cy="305" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="280" cy="335" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="250" cy="305" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <text x="280" y="309" text-anchor="middle" font-size="9" fill="#aa88ff" font-weight="700">W3</text>
+                <rect x="230" y="350" width="100" height="40" rx="6" fill="#0a1520" stroke="#ffcc00" stroke-width="1.5" />
+                <text x="280" y="367" text-anchor="middle" font-size="9" fill="#ffcc00" font-weight="700">ALT A3</text>
+                <text x="280" y="381" text-anchor="middle" font-size="8" fill="#6a5a20">150A · 28V AC</text>
+            </g>
+
+            <!-- Right side wheels W4–W6 -->
+            <g id="w4" class="p7-wheel-group">
+                <circle cx="820" cy="305" r="30" fill="none" stroke="#aa88ff" stroke-width="2.5" />
+                <circle cx="820" cy="275" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="850" cy="305" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="820" cy="335" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="790" cy="305" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <text x="820" y="309" text-anchor="middle" font-size="9" fill="#aa88ff" font-weight="700">W4</text>
+                <rect x="770" y="350" width="100" height="40" rx="6" fill="#0a1520" stroke="#ffcc00" stroke-width="1.5" />
+                <text x="820" y="367" text-anchor="middle" font-size="9" fill="#ffcc00" font-weight="700">ALT B1</text>
+                <text x="820" y="381" text-anchor="middle" font-size="8" fill="#6a5a20">150A · 28V AC</text>
+            </g>
+
+            <g id="w5" class="p7-wheel-group">
+                <circle cx="900" cy="305" r="30" fill="none" stroke="#aa88ff" stroke-width="2.5" />
+                <circle cx="900" cy="275" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="930" cy="305" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="900" cy="335" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="870" cy="305" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <text x="900" y="309" text-anchor="middle" font-size="9" fill="#aa88ff" font-weight="700">W5</text>
+                <rect x="850" y="350" width="100" height="40" rx="6" fill="#0a1520" stroke="#ffcc00" stroke-width="1.5" />
+                <text x="900" y="367" text-anchor="middle" font-size="9" fill="#ffcc00" font-weight="700">ALT B2</text>
+                <text x="900" y="381" text-anchor="middle" font-size="8" fill="#6a5a20">150A · 28V AC</text>
+            </g>
+
+            <g id="w6" class="p7-wheel-group">
+                <circle cx="980" cy="305" r="30" fill="none" stroke="#aa88ff" stroke-width="2.5" />
+                <circle cx="980" cy="275" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="1010" cy="305" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="980" cy="335" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <circle cx="950" cy="305" r="8" fill="#ff6b30" opacity="0.8" class="p7-lobe" />
+                <text x="980" y="309" text-anchor="middle" font-size="9" fill="#aa88ff" font-weight="700">W6</text>
+                <rect x="930" y="350" width="100" height="40" rx="6" fill="#0a1520" stroke="#ffcc00" stroke-width="1.5" />
+                <text x="980" y="367" text-anchor="middle" font-size="9" fill="#ffcc00" font-weight="700">ALT B3</text>
+                <text x="980" y="381" text-anchor="middle" font-size="8" fill="#6a5a20">150A · 28V AC</text>
+            </g>
+
+            <!-- ============================================================
+                 CRANKLESS OIL ENGINE (center)
+                 ============================================================ -->
+            <g id="cranklessEngine">
+                <rect x="380" y="260" width="340" height="130" rx="12" fill="#06090f" stroke="#00ffe7" stroke-width="2.5" />
+                <!-- Oil fill shimmer -->
+                <rect x="382" y="262" width="336" height="126" rx="10" fill="#00ffe7" opacity="0.04" class="p7-oil-shimmer" />
+                <text x="550" y="290" text-anchor="middle" font-size="13" fill="#00ffe7" font-weight="800">CRANKLESS OIL ENGINE</text>
+                <text x="550" y="306" text-anchor="middle" font-size="10" fill="#3a7a6a">Enclosed oil bath · eccentric shaft · roller followers</text>
+                <text x="550" y="320" text-anchor="middle" font-size="10" fill="#3a7a6a">No piston seals · no combustion gases · no steam contamination</text>
+                <!-- internal shaft animation hint -->
+                <circle cx="470" cy="348" r="18" fill="none" stroke="#00ffe7" stroke-width="1.5" opacity="0.4" class="p7-shaft-spin" />
+                <circle cx="550" cy="348" r="18" fill="none" stroke="#00ffe7" stroke-width="1.5" opacity="0.4" class="p7-shaft-spin" />
+                <circle cx="630" cy="348" r="18" fill="none" stroke="#00ffe7" stroke-width="1.5" opacity="0.4" class="p7-shaft-spin" />
+                <text x="470" y="352" text-anchor="middle" font-size="8" fill="#00ffe7" opacity="0.6">ECC</text>
+                <text x="550" y="352" text-anchor="middle" font-size="8" fill="#00ffe7" opacity="0.6">ECC</text>
+                <text x="630" y="352" text-anchor="middle" font-size="8" fill="#00ffe7" opacity="0.6">ECC</text>
+                <!-- shaft output arrow -->
+                <text x="550" y="381" text-anchor="middle" font-size="10" fill="#00ffe7" opacity="0.8">→ Output shaft → Transmission → Drive wheels</text>
+            </g>
+
+            <!-- ============================================================
+                 CONDENSER + RADIATOR (bottom center)
+                 ============================================================ -->
+            <g id="condenser7">
+                <rect x="380" y="440" width="340" height="60" rx="8" fill="#001828" stroke="#00cfff" stroke-width="1.5" />
+                <text x="550" y="465" text-anchor="middle" font-size="12" fill="#00cfff" font-weight="700">CONDENSER / RADIATOR</text>
+                <text x="550" y="481" text-anchor="middle" font-size="9" fill="#2a6a7a">Exhaust steam → condensate → returns to boiler · 85% water recovery</text>
+                <!-- radiator fins hint -->
+                <line x1="390" y1="490" x2="390" y2="498" stroke="#00cfff" stroke-width="1" opacity="0.4" />
+                <line x1="400" y1="490" x2="400" y2="498" stroke="#00cfff" stroke-width="1" opacity="0.4" />
+                <line x1="410" y1="490" x2="410" y2="498" stroke="#00cfff" stroke-width="1" opacity="0.4" />
+                <line x1="420" y1="490" x2="420" y2="498" stroke="#00cfff" stroke-width="1" opacity="0.4" />
+            </g>
+
+            <!-- BACKUP EV MOTOR -->
+            <g id="evMotor">
+                <rect x="380" y="530" width="340" height="55" rx="8" fill="#0a0028" stroke="#aa88ff" stroke-width="1.5" stroke-dasharray="6,3" />
+                <text x="550" y="554" text-anchor="middle" font-size="12" fill="#aa88ff" font-weight="700">BACKUP EV MOTOR</text>
+                <text x="550" y="570" text-anchor="middle" font-size="9" fill="#4a2a7a">Battery B powered · engages on demand · hill-assist / cold-start</text>
+            </g>
+
+            <!-- ============================================================
+                 FLOW LINES
+                 ============================================================ -->
+            <!-- Boiler → Rail A (steam supply, left) -->
+            <path class="p7-flow-steam" d="M 390 80 Q 200 80 200 173" stroke="#00cfff" stroke-width="2.5" fill="none" stroke-dasharray="8,4" marker-end="url(#arrCyan)" />
+            <text x="270" y="108" font-size="9" fill="#00cfff" text-anchor="middle">steam</text>
+
+            <!-- Boiler → Rail B (steam supply, right) -->
+            <path class="p7-flow-steam" d="M 710 80 Q 900 80 900 173" stroke="#00cfff" stroke-width="2.5" fill="none" stroke-dasharray="8,4" marker-end="url(#arrCyan)" />
+            <text x="830" y="108" font-size="9" fill="#00cfff" text-anchor="middle">steam</text>
+
+            <!-- Rail A → Wheels W1-W3 -->
+            <line x1="120" y1="205" x2="120" y2="273" stroke="#aa88ff" stroke-width="2" marker-end="url(#arrPurple)" class="p7-flow-mech" />
+            <line x1="200" y1="205" x2="200" y2="273" stroke="#aa88ff" stroke-width="2" marker-end="url(#arrPurple)" class="p7-flow-mech" />
+            <line x1="280" y1="205" x2="280" y2="273" stroke="#aa88ff" stroke-width="2" marker-end="url(#arrPurple)" class="p7-flow-mech" />
+
+            <!-- Rail B → Wheels W4-W6 -->
+            <line x1="820" y1="205" x2="820" y2="273" stroke="#aa88ff" stroke-width="2" marker-end="url(#arrPurple)" class="p7-flow-mech" />
+            <line x1="900" y1="205" x2="900" y2="273" stroke="#aa88ff" stroke-width="2" marker-end="url(#arrPurple)" class="p7-flow-mech" />
+            <line x1="980" y1="205" x2="980" y2="273" stroke="#aa88ff" stroke-width="2" marker-end="url(#arrPurple)" class="p7-flow-mech" />
+
+            <!-- Wheels → Crankless Engine (mechanical coupling) -->
+            <path d="M 310 305 Q 350 305 380 305" stroke="#00ffe7" stroke-width="2.5" fill="none" marker-end="url(#arrGreen)" class="p7-flow-mech" />
+            <path d="M 790 305 Q 760 305 720 305" stroke="#00ffe7" stroke-width="2.5" fill="none" marker-end="url(#arrGreen)" class="p7-flow-mech" />
+            <text x="360" y="298" font-size="8" fill="#00ffe7" text-anchor="middle">mech</text>
+            <text x="750" y="298" font-size="8" fill="#00ffe7" text-anchor="middle">mech</text>
+
+            <!-- Alternators → AC bus line (left group: down then right to transformer) -->
+            <path class="p7-flow-power" d="M 200 390 L 200 420 Q 200 435 220 435 L 770 435 Q 880 435 880 390" stroke="#ffcc00" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#arrYellow)" />
+            <text x="540" y="428" font-size="9" fill="#ffcc00" text-anchor="middle">AC BUS — 168V total (6×28V)</text>
+
+            <!-- Right alternators → same AC bus -->
+            <path class="p7-flow-power" d="M 900 390 L 900 430" stroke="#ffcc00" stroke-width="1.5" fill="none" stroke-dasharray="4,3" />
+            <path class="p7-flow-power" d="M 980 390 L 980 430" stroke="#ffcc00" stroke-width="1.5" fill="none" stroke-dasharray="4,3" />
+            <path class="p7-flow-power" d="M 120 390 L 120 430" stroke="#ffcc00" stroke-width="1.5" fill="none" stroke-dasharray="4,3" />
+            <path class="p7-flow-power" d="M 280 390 L 280 430" stroke="#ffcc00" stroke-width="1.5" fill="none" stroke-dasharray="4,3" />
+
+            <!-- Transformer → Rectifier → Resistor Bank -->
+            <line x1="970" y1="330" x2="970" y2="358" stroke="#ffcc00" stroke-width="2" marker-end="url(#arrYellow)" class="p7-flow-power" />
+            <text x="990" y="348" font-size="8" fill="#ffcc00">12V DC</text>
+
+            <!-- Resistor Bank → Heater feedback (REGEN PATH) -->
+            <path class="p7-flow-regen" d="M 880 400 Q 800 400 800 115 Q 800 80 710 80" stroke="#00ff88" stroke-width="2.5" fill="none" stroke-dasharray="7,3" marker-end="url(#arrGreen)" />
+            <text x="820" y="240" font-size="9" fill="#00ff88" text-anchor="middle">REGEN →</text>
+            <text x="820" y="253" font-size="9" fill="#00ff88" text-anchor="middle">heater</text>
+
+            <!-- PCW → Resistor Bank (control signal) -->
+            <line x1="835" y1="115" x2="835" y2="395 " stroke="#ff6b30" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrOrange)" />
+            <text x="852" y="260" font-size="8" fill="#ff6b30">PCW ctrl</text>
+
+            <!-- PCW → Transformer (control) -->
+            <line x1="880" y1="80" x2="880" y2="240" stroke="#ff6b30" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrOrange)" />
+
+            <!-- Battery A → Boiler (initial heat / top-up) -->
+            <line x1="150" y1="80" x2="388" y2="80" stroke="#00ff88" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrGreen)" class="p7-flow-power" />
+            <text x="270" y="73" font-size="8" fill="#00ff88" text-anchor="middle">DC heat supply</text>
+
+            <!-- Condenser → Boiler return -->
+            <path class="p7-flow-steam" d="M 380 465 Q 200 465 200 510 Q 200 540 150 540 Q 90 540 90 80 Q 90 55 150 55" stroke="#30ddff" stroke-width="1.5" fill="none" stroke-dasharray="5,4" marker-end="url(#arrCyan)" opacity="0.6" />
+            <text x="85" y="310" font-size="8" fill="#30ddff" text-anchor="middle">condensate</text>
+            <text x="85" y="322" font-size="8" fill="#30ddff" text-anchor="middle">return</text>
+
+            <!-- Engine → Condenser (exhaust steam) -->
+            <line x1="550" y1="390" x2="550" y2="438" stroke="#30ddff" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrCyan)" class="p7-flow-steam" />
+            <text x="570" y="420" font-size="8" fill="#30ddff">exhaust</text>
+
+            <!-- EV Motor ← Battery B (dashed) -->
+            <line x1="950" y1="115" x2="720" y2="555" stroke="#aa88ff" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrPurple)" opacity="0.6" />
+            <text x="855" y="400" font-size="8" fill="#aa88ff" transform="rotate(-35,855,400)">Bat B → EV motor</text>
+
+            <!-- ============================================================
+                 LEGEND
+                 ============================================================ -->
+            <g id="legend7" transform="translate(40, 560)">
+                <rect x="0" y="0" width="300" height="125" rx="8" fill="#06090f" stroke="#0d1a28" stroke-width="1" />
+                <text x="150" y="18" text-anchor="middle" font-size="10" fill="#dde4f0" font-weight="700">FLOW LEGEND</text>
+                <line x1="12" y1="32" x2="48" y2="32" stroke="#00cfff" stroke-width="2" stroke-dasharray="6,3" />
+                <text x="54" y="36" font-size="9" fill="#00cfff">Steam / condensate</text>
+                <line x1="12" y1="50" x2="48" y2="50" stroke="#aa88ff" stroke-width="2" />
+                <text x="54" y="54" font-size="9" fill="#aa88ff">Mechanical coupling</text>
+                <line x1="12" y1="68" x2="48" y2="68" stroke="#ffcc00" stroke-width="2" stroke-dasharray="5,3" />
+                <text x="54" y="72" font-size="9" fill="#ffcc00">AC power bus (168V)</text>
+                <line x1="12" y1="86" x2="48" y2="86" stroke="#00ff88" stroke-width="2.5" stroke-dasharray="6,3" />
+                <text x="54" y="90" font-size="9" fill="#00ff88">Regen feedback → heater</text>
+                <line x1="12" y1="104" x2="48" y2="104" stroke="#ff6b30" stroke-width="1.5" stroke-dasharray="4,3" />
+                <text x="54" y="108" font-size="9" fill="#ff6b30">PCW control signals</text>
+            </g>
+
+            <!-- Energy balance indicator (live, updated by JS) -->
+            <g id="energyBalance" transform="translate(400, 590)">
+                <rect x="0" y="0" width="300" height="85" rx="8" fill="#06090f" stroke="#0d1a28" stroke-width="1" />
+                <text x="150" y="18" text-anchor="middle" font-size="10" fill="#dde4f0" font-weight="700">LIVE ENERGY BALANCE</text>
+                <text x="12" y="36" font-size="9" fill="#7a9ab0">Heater draw:</text>
+                <text x="288" y="36" text-anchor="end" font-size="9" fill="#ff6b30" id="p7-heater-draw">4,200 W</text>
+                <text x="12" y="52" font-size="9" fill="#7a9ab0">Regen return (6 alts):</text>
+                <text x="288" y="52" text-anchor="end" font-size="9" fill="#00ff88" id="p7-regen-return">3,456 W</text>
+                <text x="12" y="68" font-size="9" fill="#7a9ab0">Net bat draw:</text>
+                <text x="288" y="68" text-anchor="end" font-size="9" fill="#ffcc00" id="p7-net-draw">744 W</text>
+                <!-- efficiency bar -->
+                <rect x="12" y="75" width="276" height="5" rx="2" fill="#0d1a28" />
+                <rect x="12" y="75" width="220" height="5" rx="2" fill="#00ff88" id="p7-eff-bar" />
+            </g>
+
+            <!-- Right energy panel -->
+            <g transform="translate(730, 590)">
+                <rect x="0" y="0" width="320" height="85" rx="8" fill="#06090f" stroke="#0d1a28" stroke-width="1" />
+                <text x="160" y="18" text-anchor="middle" font-size="10" fill="#dde4f0" font-weight="700">COMPONENT VALUES</text>
+                <text x="12" y="36" font-size="9" fill="#7a9ab0">Transformer turns ratio:</text>
+                <text x="308" y="36" text-anchor="end" font-size="9" fill="#ffcc00" id="p7-turns">14:1</text>
+                <text x="12" y="52" font-size="9" fill="#7a9ab0">Resistor bank range:</text>
+                <text x="308" y="52" text-anchor="end" font-size="9" fill="#ff6b30" id="p7-resist">0.12 Ω active</text>
+                <text x="12" y="68" font-size="9" fill="#7a9ab0">PCW PWM freq:</text>
+                <text x="308" y="68" text-anchor="end" font-size="9" fill="#aa88ff" id="p7-pwm-freq">22 kHz</text>
+                <rect x="12" y="75" width="296" height="5" rx="2" fill="#0d1a28" />
+                <rect x="12" y="75" width="180" height="5" rx="2" fill="#aa88ff" id="p7-pcw-bar" />
+            </g>
+        </svg>
+    </div>
+
+    <!-- ===================================================
+         INTERACTIVE CALCULATORS / SLIDERS
+         =================================================== -->
+    <hr class="p7-sep" />
+    <div class="p7-section-label">Interactive Engineering Calculator</div>
+    <h2 class="p7-section-title">Phase 7 live power budget — adjust parameters to see regen coverage</h2>
+
+    <div class="p7-calc-grid">
+        <!-- LEFT: Controls -->
+        <div class="p7-calc-panel">
+            <h3 class="p7-calc-title">System Parameters</h3>
+
+            <div class="p7-slider-group">
+                <div class="p7-slider-row">
+                    <label>Steam pressure (PSI)</label>
+                    <input type="range" id="p7-psi" min="50" max="150" step="5" value="120">
+                    <span class="p7-val" id="p7-psi-out">120 PSI</span>
+                </div>
+                <div class="p7-slider-row">
+                    <label>Throttle position (%)</label>
+                    <input type="range" id="p7-throttle" min="10" max="100" step="5" value="60">
+                    <span class="p7-val" id="p7-throttle-out">60%</span>
+                </div>
+                <div class="p7-slider-row">
+                    <label>Alternator RPM</label>
+                    <input type="range" id="p7-alt-rpm" min="500" max="4000" step="100" value="2500">
+                    <span class="p7-val" id="p7-alt-rpm-out">2500 RPM</span>
+                </div>
+                <div class="p7-slider-row">
+                    <label>Heater duty cycle (%)</label>
+                    <input type="range" id="p7-heater-duty" min="20" max="100" step="5" value="70">
+                    <span class="p7-val" id="p7-heater-duty-out">70%</span>
+                </div>
+                <div class="p7-slider-row">
+                    <label>Resistor bank (Ω)</label>
+                    <input type="range" id="p7-resist-val" min="10" max="220" step="5" value="120">
+                    <span class="p7-val" id="p7-resist-out">0.12 Ω</span>
+                </div>
+                <div class="p7-slider-row">
+                    <label>Transformer ratio</label>
+                    <input type="range" id="p7-tx-ratio" min="8" max="20" step="1" value="14">
+                    <span class="p7-val" id="p7-tx-out">14:1</span>
+                </div>
+                <div class="p7-slider-row">
+                    <label>Vehicle speed (mph)</label>
+                    <input type="range" id="p7-speed" min="10" max="80" step="5" value="55">
+                    <span class="p7-val" id="p7-speed-out">55 mph</span>
+                </div>
+                <div class="p7-slider-row">
+                    <label>Vehicle weight (lb)</label>
+                    <input type="range" id="p7-weight" min="1200" max="3000" step="100" value="1800">
+                    <span class="p7-val" id="p7-weight-out">1800 lb</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Live metrics -->
+        <div class="p7-metrics-panel">
+            <h3 class="p7-calc-title">Live Calculations</h3>
+
+            <div class="p7-metric-cards">
+                <div class="p7-mc p7-mc-steam">
+                    <div class="p7-mc-val" id="p7-mc-torque">—</div>
+                    <div class="p7-mc-lbl">Total torque (ft-lb)</div>
+                </div>
+                <div class="p7-mc p7-mc-power">
+                    <div class="p7-mc-val" id="p7-mc-hp">—</div>
+                    <div class="p7-mc-lbl">Net power (hp)</div>
+                </div>
+                <div class="p7-mc p7-mc-regen">
+                    <div class="p7-mc-val" id="p7-mc-regen">—</div>
+                    <div class="p7-mc-lbl">Regen return (W)</div>
+                </div>
+                <div class="p7-mc p7-mc-net">
+                    <div class="p7-mc-val" id="p7-mc-net">—</div>
+                    <div class="p7-mc-lbl">Net battery draw (W)</div>
+                </div>
+                <div class="p7-mc p7-mc-eff">
+                    <div class="p7-mc-val" id="p7-mc-eff">—</div>
+                    <div class="p7-mc-lbl">Regen coverage (%)</div>
+                </div>
+                <div class="p7-mc p7-mc-range">
+                    <div class="p7-mc-val" id="p7-mc-range">—</div>
+                    <div class="p7-mc-lbl">Est. range (miles)</div>
+                </div>
+            </div>
+
+            <!-- Regen coverage bar -->
+            <div class="p7-bar-section">
+                <div class="p7-bar-label">
+                    <span>Regen coverage of heater draw</span>
+                    <span id="p7-bar-pct-label">0%</span>
+                </div>
+                <div class="p7-bar-track">
+                    <div class="p7-bar-fill-regen" id="p7-regen-bar" style="width:0%"></div>
+                    <div class="p7-bar-target">Target: 82%</div>
+                </div>
+            </div>
+
+            <!-- Power balance chart -->
+            <div class="p7-balance-rows">
+                <div class="p7-balance-row">
+                    <span class="p7-bl">Heater input</span>
+                    <div class="p7-bt"><div class="p7-bf p7-bf-red" id="p7-b-heater" style="width:100%"></div></div>
+                    <span class="p7-bv" id="p7-bv-heater">—</span>
+                </div>
+                <div class="p7-balance-row">
+                    <span class="p7-bl">Regen return</span>
+                    <div class="p7-bt"><div class="p7-bf p7-bf-green" id="p7-b-regen" style="width:0%"></div></div>
+                    <span class="p7-bv" id="p7-bv-regen">—</span>
+                </div>
+                <div class="p7-balance-row">
+                    <span class="p7-bl">Net battery cost</span>
+                    <div class="p7-bt"><div class="p7-bf p7-bf-yellow" id="p7-b-net" style="width:100%"></div></div>
+                    <span class="p7-bv" id="p7-bv-net">—</span>
+                </div>
+                <div class="p7-balance-row">
+                    <span class="p7-bl">Mechanical output</span>
+                    <div class="p7-bt"><div class="p7-bf p7-bf-cyan" id="p7-b-mech" style="width:0%"></div></div>
+                    <span class="p7-bv" id="p7-bv-mech">—</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         PCW + TRANSFORMER + RESISTOR SPECS
+         =================================================== -->
+    <hr class="p7-sep" />
+    <div class="p7-section-label">Component Engineering · Exact Values</div>
+    <h2 class="p7-section-title">PCW, transformer & resistor bank — calculated specifications</h2>
+
+    <div class="p7-spec-3col">
+        <div class="p7-spec-card p7-spec-pcw">
+            <div class="p7-spec-badge">PCW — Pressure Control Unit</div>
+            <h3>Control Logic & Firmware</h3>
+            <ul class="p7-spec-list">
+                <li><strong>CPU:</strong> ARM Cortex-M7  216 MHz (STM32H743)</li>
+                <li><strong>Sampling rate:</strong> 100 Hz all sensors simultaneously</li>
+                <li><strong>Inputs:</strong> 6× alternator RPM (hall sensors), tank pressure transducer (4–20 mA), boiler temp RTD, throttle pot</li>
+                <li><strong>Outputs:</strong> Proportional relief valve (PWM 0–100%), resistor bank gate array (6 discrete MOSFETs), heater relay, EV motor enable</li>
+                <li><strong>Regen control law:</strong> I_regen = (V_alt_bus − V_heater) / R_bank × η_rect</li>
+                <li><strong>PWM carrier freq:</strong> 22 kHz (above audible, below MOSFET thermal limit)</li>
+                <li><strong>Safety interlocks:</strong> Over-pressure kill (165 PSI), over-temp kill (230°C), bus undervoltage lockout (9.5V), alternator overspeed (4500 RPM)</li>
+                <li><strong>Power draw:</strong> 18 W nominal</li>
+                <li><strong>Enclosure:</strong> IP67 die-cast aluminum, firewall-mounted</li>
+            </ul>
+        </div>
+
+        <div class="p7-spec-card p7-spec-tx">
+            <div class="p7-spec-badge p7-spec-badge-yellow">Transformer — Step-Down Toroid</div>
+            <h3>Turns Ratio & Core Specification</h3>
+            <ul class="p7-spec-list">
+                <li><strong>Topology:</strong> Single-phase toroidal (6 alt AC summed, phase-averaged)</li>
+                <li><strong>Primary voltage:</strong> 168V AC peak (6 alternators × 28V)</li>
+                <li><strong>Secondary voltage:</strong> 12V AC (14:1 ratio)</li>
+                <li><strong>Turns ratio:</strong> 14:1 (primary 280 turns : secondary 20 turns)</li>
+                <li><strong>Core material:</strong> Grain-oriented silicon steel (M6), 0.27mm laminations</li>
+                <li><strong>Core cross-section:</strong> 12 cm² (handles 1.4T flux density)</li>
+                <li><strong>Max power:</strong> 3,600 VA continuous (6 × 150A × 28V × 0.85 PF)</li>
+                <li><strong>Frequency range:</strong> 40–400 Hz (matches alt RPM 500–4000 RPM)</li>
+                <li><strong>Cooling:</strong> Passive air-cooled; 85°C max winding temp</li>
+                <li><strong>Efficiency:</strong> ~97% at full load (toroid loss ~108 W)</li>
+            </ul>
+        </div>
+
+        <div class="p7-spec-card p7-spec-resist">
+            <div class="p7-spec-badge p7-spec-badge-orange">Resistor Bank — Inrush Protection</div>
+            <h3>Current Limiting & PWM Regulation</h3>
+            <ul class="p7-spec-list">
+                <li><strong>Purpose:</strong> Limits regen current inrush to heater element — prevents thermal shock</li>
+                <li><strong>Topology:</strong> 6× MOSFET-switched resistor stages (parallel/series combinations)</li>
+                <li><strong>Resistance range:</strong> 0.10 Ω (full regen) to 2.20 Ω (minimal regen)</li>
+                <li><strong>MOSFET gates:</strong> IRFP4668PbF (200V, 130A, R_ds = 3.3 mΩ)</li>
+                <li><strong>Stage values:</strong> 0.1 Ω, 0.22 Ω, 0.47 Ω, 1.0 Ω, 2.2 Ω (binary weighted)</li>
+                <li><strong>Max continuous current:</strong> 50A  12V = 600W per stage</li>
+                <li><strong>Heat sink:</strong> Extruded aluminum, 0.4°C/W; force-cooled by boiler fan</li>
+                <li><strong>PCW control:</strong> PWM duty 0–100% per MOSFET gate (22 kHz)</li>
+                <li><strong>Heater protection:</strong> Current limiter 45A max inrush (element rated 50A)</li>
+                <li><strong>Fail-safe:</strong> All MOSFETs open on PCW fault (zero regen — safe)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         THE BIG FLAW ANALYSIS
+         =================================================== -->
+    <hr class="p7-sep" />
+    <div class="p7-section-label">Critical Engineering Challenge</div>
+    <h2 class="p7-section-title">The fundamental flaw — and why Phase 7 comes closer than any prior phase</h2>
+
+    <div class="p7-flaw-hero">
+        <div class="p7-flaw-left">
+            <div class="p7-flaw-tag-big">⚡ THERMODYNAMIC CONSTRAINT</div>
+            <h3>You cannot heat more steam than your alternators can replace — but you can minimize the gap</h3>
+            <p>
+                Every prior phase used battery power to heat water into steam. The steam did work.
+                But the work output through an alternator never returned enough electricity to fully power the heater —
+                because Rankine cycle efficiency caps at ~18–22% for small systems, meaning 78–82% of heat input
+                is lost to the condenser. You can't beat thermodynamics.
+            </p>
+            <p style="margin-top:1rem;">
+                Phase 7 doesn't try to. Instead, it maximises the percentage returned.
+                With 6 alternators at 150A × 12V = 1,800W each (10,800W total raw), and a transformer/rectifier
+                efficiency of ~92%, regen return is ~9,936W. The heater at 70% duty draws ~3,500W.
+                <strong style="color:#00ff88;">Phase 7 can return 2.8× the heater draw</strong> — the excess goes
+                back to Battery A, extending range dramatically.
+            </p>
+            <p style="margin-top:1rem;">
+                The PCW balances this dynamically: at low throttle the heater runs at 30% duty (~1,500W draw),
+                regen still returns ~4,000W, net charging Battery A. At high throttle the heater runs at 100%
+                (~5,000W), regen covers ~8,000W, still net positive. The gap only opens at maximum load
+                when mechanical output is at peak.
+            </p>
+        </div>
+        <div class="p7-flaw-right">
+            <div class="p7-flaw-math">
+                <div class="p7-math-row">
+                    <span class="p7-math-label">6 alternators × 150A × 12V</span>
+                    <span class="p7-math-eq">= 10,800 W raw</span>
+                </div>
+                <div class="p7-math-row">
+                    <span class="p7-math-label">× transformer η (97%)</span>
+                    <span class="p7-math-eq">= 10,476 W</span>
+                </div>
+                <div class="p7-math-row">
+                    <span class="p7-math-label">× rectifier η (95%)</span>
+                    <span class="p7-math-eq">= 9,952 W</span>
+                </div>
+                <div class="p7-math-row">
+                    <span class="p7-math-label">× resistor losses (94%)</span>
+                    <span class="p7-math-eq">= 9,355 W regen</span>
+                </div>
+                <div class="p7-math-div"></div>
+                <div class="p7-math-row p7-math-heater">
+                    <span class="p7-math-label">Heater  70% duty</span>
+                    <span class="p7-math-eq">= 3,500 W draw</span>
+                </div>
+                <div class="p7-math-row p7-math-surplus">
+                    <span class="p7-math-label">Net surplus to Battery A</span>
+                    <span class="p7-math-eq p7-math-green">+5,855 W ↑</span>
+                </div>
+                <div class="p7-math-note">
+                    * At 2,500 RPM cruise · 60% throttle · 120 PSI
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         PHASE COMPARISON TABLE
+         =================================================== -->
+    <hr class="p7-sep" />
+    <div class="p7-section-label">Evolution Summary</div>
+    <h2 class="p7-section-title">Phase 2 → Phase 7 progression</h2>
+
+    <div class="p7-table-wrap">
+        <table class="p7-evo-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Ph 2</th>
+                    <th>Ph 3</th>
+                    <th>Ph 4</th>
+                    <th>Ph 5</th>
+                    <th>Ph 6</th>
+                    <th class="p7-col-highlight">Ph 7 ★</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Rails</td>
+                    <td>—</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>—</td>
+                    <td class="p7-col-highlight">2 independent</td>
+                </tr>
+                <tr>
+                    <td>Converter wheels</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td class="p7-col-highlight">6 (3 per rail)</td>
+                </tr>
+                <tr>
+                    <td>Alternators</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td class="p7-col-highlight">6 (one per wheel)</td>
+                </tr>
+                <tr>
+                    <td>Pistons</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>4+</td>
+                    <td>2 followers</td>
+                    <td>2 followers</td>
+                    <td class="p7-col-highlight">0 (crankless)</td>
+                </tr>
+                <tr>
+                    <td>Regen path</td>
+                    <td>Alternator→BatB</td>
+                    <td>None</td>
+                    <td>None</td>
+                    <td>Alternator→BatA</td>
+                    <td>Alternator→BatA</td>
+                    <td class="p7-col-highlight">6 alts → TX → rect → resistor → heater</td>
+                </tr>
+                <tr>
+                    <td>Est. regen coverage</td>
+                    <td>~18%</td>
+                    <td>~12%</td>
+                    <td>~10%</td>
+                    <td>~35%</td>
+                    <td>~45%</td>
+                    <td class="p7-col-highlight p7-good">~82–167%*</td>
+                </tr>
+                <tr>
+                    <td>Net bat draw cruise</td>
+                    <td>High</td>
+                    <td>Very high</td>
+                    <td>Very high</td>
+                    <td>Medium</td>
+                    <td>Medium</td>
+                    <td class="p7-col-highlight p7-good">Net positive charging</td>
+                </tr>
+                <tr>
+                    <td>Oil contamination risk</td>
+                    <td>High</td>
+                    <td>Medium</td>
+                    <td>Low</td>
+                    <td>Low</td>
+                    <td>Low</td>
+                    <td class="p7-col-highlight p7-good">None (crankless sealed)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-size:11px;color:#3a5a6a;margin-top:0.5rem;">* &gt;100% means excess regen charges Battery A. Actual values depend on RPM, throttle, and alternator efficiency.</p>
+    </div>
+
+</div>
+
+
+
+                    <style>
+                        
+
+    /* ============================================================
+       PHASE 7 — BASE
+       ============================================================ */
+    .p7-banner {
+        background: linear-gradient(110deg, #06090f 0%, #0a0d1a 35%, #0a1a0a 70%, #06090f 100%);
+        border-bottom: 1px solid #00ff8840;
+        padding: 3rem 2rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .p7-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 50% 80% at 30% -10%, #00ff8810, transparent), radial-gradient(ellipse 50% 80% at 70% -10%, #00cfff10, transparent), repeating-linear-gradient(0deg, transparent, transparent 40px, #00ff8804 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, #00cfff04 41px);
+        }
+
+    .p7-phase-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(90deg, #00ff8814, #00cfff10);
+        border: 1px solid #00ff8850;
+        border-radius: 999px;
+        padding: 6px 22px;
+        font-size: 11px;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: #00ff88;
+        margin-bottom: 1.2rem;
+        position: relative;
+        font-weight: 700;
+    }
+
+        .p7-phase-pill::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00ff88;
+            box-shadow: 0 0 12px #00ff88, 0 0 24px #00ff8860;
+            animation: p7blink 1.2s ease-in-out infinite;
+        }
+
+    @@keyframes p7blink {
+        0%, 100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.25;
+        }
+    }
+
+    .p7-banner h1 {
+        font-size: clamp(2rem, 5vw, 3.4rem);
+        font-weight: 800;
+        color: #fff;
+        margin: 0 0 1rem;
+        letter-spacing: -.025em;
+        position: relative;
+        line-height: 1.1;
+    }
+
+        .p7-banner h1 em {
+            font-style: normal;
+            color: #00ff88;
+            display: block;
+            font-size: 0.8em;
+            margin-top: .3rem;
+        }
+
+    .p7-banner p {
+        color: #7a9ab0;
+        font-size: 14px;
+        max-width: 860px;
+        line-height: 1.85;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    /* ============================================================
+       SECTION
+       ============================================================ */
+    .p7-section {
+        max-width: 1380px;
+        margin: 0 auto;
+        padding: 4.5rem 2rem;
+    }
+
+    .p7-section-label {
+        font-size: 11px;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        color: #00ff88;
+        margin-bottom: .5rem;
+        font-weight: 700;
+    }
+
+    .p7-section-title {
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 1rem;
+        letter-spacing: -.015em;
+    }
+
+    .p7-section-lead {
+        color: #7a9ab0;
+        font-size: 13px;
+        line-height: 1.9;
+        max-width: 1100px;
+        margin: 0 0 2.5rem;
+    }
+
+    .p7-sep {
+        border: none;
+        border-top: 2px solid #0d2a1a;
+        margin: 4rem 0;
+    }
+
+    /* ============================================================
+       METRICS
+       ============================================================ */
+    .p7-headline-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.2rem;
+        margin: 2.5rem 0;
+    }
+
+    .p7-metric-highlight {
+        background: linear-gradient(135deg, #07100a, #0a1a0a);
+        border: 1px solid #1a3a1a;
+        border-radius: 10px;
+        padding: 1.4rem 1rem;
+        text-align: center;
+        transition: all .3s;
+    }
+
+        .p7-metric-highlight:hover {
+            border-color: #00ff8840;
+            transform: translateY(-2px);
+        }
+
+    .p7-metric-val {
+        font-size: 2.1rem;
+        font-weight: 800;
+        color: #00ff88;
+        margin-bottom: .3rem;
+    }
+
+    .p7-metric-lbl {
+        font-size: 10px;
+        color: #2a5a2a;
+        text-transform: uppercase;
+        letter-spacing: .14em;
+    }
+
+    /* ============================================================
+       SCHEMATIC CONTAINER
+       ============================================================ */
+    .p7-schematic-container {
+        background: #070b12;
+        border: 1px solid #0d2a1a;
+        border-radius: 16px;
+        padding: 1rem;
+        overflow-x: auto;
+        box-shadow: inset 0 2px 12px rgba(0,0,0,.6);
+        margin: 2rem 0;
+    }
+
+    /* SVG Animations */
+    @@keyframes p7steamFlow {
+        to {
+            stroke-dashoffset: -24;
+        }
+    }
+
+    @@keyframes p7mechPulse {
+        0%, 100% {
+            opacity: .5;
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes p7powerFlow {
+        to {
+            stroke-dashoffset: -18;
+        }
+    }
+
+    @@keyframes p7regenGlow {
+        0%, 100% {
+            opacity: .6;
+        }
+
+        50% {
+            opacity: 1;
+            stroke-width: 3;
+        }
+    }
+
+    @@keyframes p7shimmer {
+        0%, 100% {
+            opacity: .06;
+        }
+
+        50% {
+            opacity: .14;
+        }
+    }
+
+    @@keyframes p7spin {
+        from {
+            stroke-dashoffset: 0;
+        }
+
+        to {
+            stroke-dashoffset: 62.8;
+        }
+    }
+
+    @@keyframes p7lobePulse {
+        0%, 100% {
+            opacity: .7;
+        }
+
+        50% {
+            opacity: 1;
+            r: 9;
+        }
+    }
+
+    .p7-flow-steam {
+        stroke-dasharray: 8,4;
+        animation: p7steamFlow 1.6s linear infinite;
+    }
+
+    .p7-flow-mech {
+        animation: p7mechPulse 2s ease-in-out infinite;
+    }
+
+    .p7-flow-power {
+        stroke-dasharray: 6,3;
+        animation: p7powerFlow 1.2s linear infinite;
+    }
+
+    .p7-flow-regen {
+        stroke-dasharray: 7,3;
+        animation: p7regenGlow 1.8s ease-in-out infinite;
+    }
+
+    .p7-water-shimmer {
+        animation: p7shimmer 3s ease-in-out infinite;
+    }
+
+    .p7-oil-shimmer {
+        animation: p7shimmer 4s ease-in-out infinite;
+    }
+
+    .p7-shaft-spin {
+        stroke-dasharray: 20 42;
+        animation: p7spin 2s linear infinite;
+    }
+
+    .p7-steam-flow-l {
+        animation: p7steamFlow 1s linear infinite;
+    }
+
+    .p7-steam-flow-r {
+        animation: p7steamFlow 1s linear infinite reverse;
+    }
+
+    .p7-lobe {
+        animation: p7lobePulse 1.5s ease-in-out infinite;
+    }
+
+    /* ============================================================
+       CALCULATOR
+       ============================================================ */
+    .p7-calc-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+
+    @@media(max - width:900px) {
+        .p7-calc-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .p7-calc-panel, .p7-metrics-panel {
+        background: #07100a;
+        border: 1px solid #0d2a1a;
+        border-radius: 14px;
+        padding: 1.8rem;
+    }
+
+    .p7-calc-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #00ff88;
+        margin: 0 0 1.4rem;
+        border-bottom: 1px solid #0d2a1a;
+        padding-bottom: .8rem;
+    }
+
+    .p7-slider-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .p7-slider-row {
+        display: grid;
+        grid-template-columns: 180px 1fr 90px;
+        align-items: center;
+        gap: 12px;
+        font-size: 12px;
+        color: #7a9ab0;
+    }
+
+        .p7-slider-row label {
+            font-size: 12px;
+        }
+
+    .p7-val {
+        text-align: right;
+        color: #00ff88;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    input[type="range"].p7-slider-row input,
+    .p7-slider-row input[type="range"] {
+        appearance: none;
+        width: 100%;
+        height: 5px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #00ff88, #00cfff);
+        outline: none;
+    }
+
+        .p7-slider-row input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 3px solid #07100a;
+            background: #fff;
+            box-shadow: 0 0 0 2px #00ff88, 0 0 18px #00ff8860;
+            cursor: pointer;
+        }
+
+    /* Metric cards */
+    .p7-metric-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: .8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .p7-mc {
+        background: #0a1a0a;
+        border: 1px solid #0d2a1a;
+        border-radius: 10px;
+        padding: 1rem;
+        text-align: center;
+        transition: all .3s;
+    }
+
+        .p7-mc:hover {
+            border-color: #00ff8840;
+        }
+
+    .p7-mc-val {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: .3rem;
+    }
+
+    .p7-mc-lbl {
+        font-size: 10px;
+        color: #2a5a2a;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+    }
+
+    .p7-mc-steam .p7-mc-val {
+        color: #00cfff;
+    }
+
+    .p7-mc-power .p7-mc-val {
+        color: #aa88ff;
+    }
+
+    .p7-mc-regen .p7-mc-val {
+        color: #00ff88;
+    }
+
+    .p7-mc-net .p7-mc-val {
+        color: #ffcc00;
+    }
+
+    .p7-mc-eff .p7-mc-val {
+        color: #ff6b30;
+    }
+
+    .p7-mc-range .p7-mc-val {
+        color: #ff88aa;
+    }
+
+    /* Regen bar */
+    .p7-bar-section {
+        margin-bottom: 1.4rem;
+    }
+
+    .p7-bar-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: #7a9ab0;
+        margin-bottom: 5px;
+    }
+
+    .p7-bar-track {
+        position: relative;
+        height: 22px;
+        background: #0a1a0a;
+        border-radius: 4px;
+        overflow: hidden;
+        border: 1px solid #0d2a1a;
+    }
+
+    .p7-bar-fill-regen {
+        height: 100%;
+        background: linear-gradient(90deg, #00ff88, #00cfff);
+        border-radius: 4px;
+        transition: width .4s ease;
+    }
+
+    .p7-bar-target {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 10px;
+        color: #3a5a3a;
+    }
+
+    /* Balance bars */
+    .p7-balance-rows {
+        display: flex;
+        flex-direction: column;
+        gap: .6rem;
+    }
+
+    .p7-balance-row {
+        display: grid;
+        grid-template-columns: 130px 1fr 70px;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+    }
+
+    .p7-bl {
+        color: #5a7a5a;
+    }
+
+    .p7-bt {
+        height: 10px;
+        background: #0a1a0a;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .p7-bf {
+        height: 100%;
+        border-radius: 3px;
+        transition: width .4s ease;
+    }
+
+    .p7-bf-red {
+        background: linear-gradient(90deg, #ff4455, #ff6b30);
+    }
+
+    .p7-bf-green {
+        background: linear-gradient(90deg, #00ff88, #00cfff);
+    }
+
+    .p7-bf-yellow {
+        background: linear-gradient(90deg, #ffcc00, #ff9900);
+    }
+
+    .p7-bf-cyan {
+        background: linear-gradient(90deg, #00cfff, #aa88ff);
+    }
+
+    .p7-bv {
+        text-align: right;
+        color: #7a9ab0;
+        font-variant-numeric: tabular-nums;
+        font-size: 10px;
+    }
+
+    /* ============================================================
+       SPEC CARDS
+       ============================================================ */
+    .p7-spec-3col {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .p7-spec-card {
+        background: #07100a;
+        border-radius: 14px;
+        padding: 1.8rem;
+        border: 1px solid #0d2a1a;
+    }
+
+    .p7-spec-pcw {
+        border-top: 3px solid #ff6b30;
+    }
+
+    .p7-spec-tx {
+        border-top: 3px solid #ffcc00;
+    }
+
+    .p7-spec-resist {
+        border-top: 3px solid #aa88ff;
+    }
+
+    .p7-spec-badge {
+        display: inline-block;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 1rem;
+        background: rgba(255,107,48,.12);
+        color: #ff6b30;
+    }
+
+    .p7-spec-badge-yellow {
+        background: rgba(255,204,0,.12);
+        color: #ffcc00;
+    }
+
+    .p7-spec-badge-orange {
+        background: rgba(170,136,255,.12);
+        color: #aa88ff;
+    }
+
+    .p7-spec-card h3 {
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 1rem;
+    }
+
+    .p7-spec-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .p7-spec-list li {
+            font-size: 12px;
+            color: #5a7a5a;
+            line-height: 1.8;
+            margin-bottom: .5rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+            .p7-spec-list li::before {
+                content: '→';
+                position: absolute;
+                left: 0;
+                color: #00ff88;
+                font-weight: bold;
+            }
+
+        .p7-spec-list strong {
+            color: #dde4f0;
+        }
+
+    /* ============================================================
+       FLAW HERO
+       ============================================================ */
+    .p7-flaw-hero {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 2.5rem;
+        background: linear-gradient(135deg, #07100a, #0a0d14);
+        border: 1px solid #0d2a1a;
+        border-left: 4px solid #00ff88;
+        border-radius: 14px;
+        padding: 2.5rem;
+        margin: 2rem 0;
+    }
+
+    @@media(max - width:900px) {
+        .p7-flaw-hero {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .p7-flaw-tag-big {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: #00ff88;
+        margin-bottom: .8rem;
+    }
+
+    .p7-flaw-left h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 1rem;
+        line-height: 1.4;
+    }
+
+    .p7-flaw-left p {
+        font-size: 12px;
+        color: #5a7a5a;
+        line-height: 1.8;
+        margin: 0;
+    }
+
+    .p7-flaw-math {
+        background: #070b12;
+        border: 1px solid #0d2a1a;
+        border-radius: 10px;
+        padding: 1.5rem;
+    }
+
+    .p7-math-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .6rem 0;
+        border-bottom: 1px solid #0d1a0a;
+        font-size: 12px;
+    }
+
+        .p7-math-row:last-of-type {
+            border-bottom: none;
+        }
+
+    .p7-math-label {
+        color: #5a7a5a;
+    }
+
+    .p7-math-eq {
+        color: #dde4f0;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .p7-math-div {
+        border-top: 2px solid #00ff8840;
+        margin: .8rem 0;
+    }
+
+    .p7-math-heater .p7-math-eq {
+        color: #ff6b30;
+    }
+
+    .p7-math-surplus .p7-math-eq {
+        color: #00ff88;
+        font-size: 14px;
+        font-weight: 800;
+    }
+
+    .p7-math-green {
+        color: #00ff88 !important;
+    }
+
+    .p7-math-note {
+        font-size: 10px;
+        color: #2a5a2a;
+        margin-top: .8rem;
+        text-align: center;
+    }
+
+    /* ============================================================
+       EVOLUTION TABLE
+       ============================================================ */
+    .p7-table-wrap {
+        background: #070b12;
+        border: 1px solid #0d2a1a;
+        border-radius: 12px;
+        overflow-x: auto;
+        margin: 2rem 0;
+    }
+
+    .p7-evo-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+        min-width: 700px;
+    }
+
+        .p7-evo-table thead {
+            background: #07100a;
+            border-bottom: 2px solid #0d2a1a;
+        }
+
+        .p7-evo-table th {
+            color: #5a7a5a;
+            font-weight: 700;
+            text-align: left;
+            padding: .9rem 1rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            font-size: 11px;
+        }
+
+            .p7-evo-table th.p7-col-highlight {
+                color: #00ff88;
+                background: #071a07;
+            }
+
+        .p7-evo-table td {
+            padding: .75rem 1rem;
+            border-bottom: 1px solid #0d1a0a;
+            color: #4a6a4a;
+        }
+
+            .p7-evo-table td.p7-col-highlight {
+                background: rgba(0,255,136,.04);
+                color: #dde4f0;
+                font-weight: 600;
+            }
+
+            .p7-evo-table td.p7-good {
+                color: #00ff88;
+            }
+
+        .p7-evo-table tbody tr:hover {
+            background: #0a1a0a;
+        }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @@media(max - width:1000px) {
+        .p7-section {
+            padding: 3rem 1.5rem;
+        }
+
+        .p7-banner {
+            padding: 2.5rem 1.5rem 1.5rem;
+        }
+
+        .p7-spec-3col {
+            grid-template-columns: 1fr;
+        }
+
+        .p7-metric-cards {
+            grid-template-columns: repeat(2,1fr);
+        }
+
+        .p7-slider-row {
+            grid-template-columns: 1fr 90px;
+        }
+
+            .p7-slider-row input[type="range"] {
+                grid-column: 1/-1;
+                grid-row: 2;
+            }
+    }
+
+    @@media(max - width:700px) {
+        .p7-banner h1 {
+            font-size: 1.9rem;
+        }
+
+        .p7-metric-cards {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .p7-headline-metrics {
+            grid-template-columns: repeat(2,1fr);
+        }
+    }
+
+</style>

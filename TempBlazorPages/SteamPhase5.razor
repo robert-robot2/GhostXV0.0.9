@@ -1,0 +1,910 @@
+﻿<!-- =====================================================
+         PHASE 5 BANNER
+         ===================================================== -->
+<div class="p5-banner">
+    <div class="p5-phase-pill">Phase 5 · Dual-Rail Rotary Converter Engine</div>
+    <h1>Steam-Cycloidal <em>Pressure-RPM</em> Drive System</h1>
+    <p>
+        A comprehensive retrofit replacing combustion with a dual steam-rail system
+        coupled to rotary converter wheels (train-side-mounted style). Dual batteries
+        front-mounted for backup electrical redundancy. Pressure tank replaces fuel.
+        New PCW (Pressure Control Unit) electrical system regulates pressure proportional
+        to engine RPM demand—never exceeding tank rated pressure, matching throttle input
+        in real-time using thermodynamic load-following architecture.
+    </p>
+</div>
+
+<!-- =====================================================
+         PHASE 5 CORE ARCHITECTURE
+         ===================================================== -->
+<div class="p5-section">
+
+    <div class="p5-section-label">Phase 5 · Complete System Retrofit</div>
+    <h2 class="p5-section-title">Dual-rail steam → rotary wheels → transmission → vehicle drive</h2>
+    <p class="p5-section-lead">
+        Phase 5 is a complete departure from traditional piston architecture. Two parallel
+        rails (left and right) are driven simultaneously by steam pressure from a central
+        reservoir. These rails power dual rotary converter wheels mounted on the engine
+        block (like external steam-engine wheels). As the converter wheels rotate, their
+        lobes engage follower pistons within an integrated transmission chamber. Piston
+        motion drives the main crankshaft. A pressure-regulating system keeps tank
+        pressure proportional to throttle input and instantaneous engine RPM demand.
+        Dual batteries provide primary and backup electrical power to the PCW (Pressure
+        Control Unit) and heating systems. This creates a self-regulating, efficiency-driven
+        power plant with zero combustion contamination.
+    </p>
+
+    <div class="p5-metrics">
+        <div class="p5-metric">
+            <div class="val">2</div>
+            <div class="lbl">Parallel steam rails</div>
+        </div>
+        <div class="p5-metric">
+            <div class="val">2</div>
+            <div class="lbl">Rotary converter wheels</div>
+        </div>
+        <div class="p5-metric">
+            <div class="val">2</div>
+            <div class="lbl">Backup batteries</div>
+        </div>
+        <div class="p5-metric">
+            <div class="val">1</div>
+            <div class="lbl">Pressure tank</div>
+        </div>
+        <div class="p5-metric">
+            <div class="val">P = ƒ(RPM)</div>
+            <div class="lbl">Dynamic pressure curve</div>
+        </div>
+        <div class="p5-metric">
+            <div class="val">PCW</div>
+            <div class="lbl">Smart control unit</div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+             SECTION: THERMODYNAMIC PRINCIPLES
+             =================================================== -->
+    <hr class="p5-sep" />
+    <div class="p5-section-label">Thermodynamic Foundation</div>
+    <h2 class="p5-section-title">Real science: pressure-RPM coupling and load-following</h2>
+    <p class="p5-section-lead">
+        Phase 5 operates on the principle of dynamic pressure regulation. Unlike traditional
+        engines where fuel flow is throttled, this system regulates steam pressure output
+        proportionally to engine RPM demand. As throttle increases, the PCW opens the pressure
+        relief valve partially, allowing more steam to enter the rails. This creates a
+        thermodynamic equilibrium: <strong>Pressure (PSI) = k × Engine RPM (scaled)</strong>,
+        where k is a calibration constant determined by tank capacity and desired acceleration curve.
+    </p>
+
+    <div class="p5-thermo-grid">
+        <div class="p5-thermo-card">
+            <div class="p5-card-label">Rankine Cycle Efficiency</div>
+            <h4>Two-Phase Steam Expansion</h4>
+            <p>
+                Steam at pressure P₁ enters the dual rails. As it expands through the rail
+                cylinders, it performs work on the piston rods (W = ∫P dV). For saturated steam
+                at 100–150 PSI: η_carnot ≈ 12–18% (Rankine efficiency). Real-world Phase 5
+                targets 22–28% through optimized expansion timing and heat recovery.
+            </p>
+            <p style="margin-top: 0.8rem; font-size: 11px; color: #3a5a6a; font-style: italic;">
+                Reference: Clausius–Clapeyron equation; steam tables (NIST database)
+            </p>
+        </div>
+
+        <div class="p5-thermo-card">
+            <div class="p5-card-label">Pressure Regulation Curve</div>
+            <h4>Load-Following Control Law</h4>
+            <p>
+                <strong>P(t) = P_min + (P_max − P_min) × [Throttle% / 100] × [RPM_current / RPM_max]</strong>
+            </p>
+            <p style="margin-top: 0.6rem;">
+                Example: At 50% throttle and 2000 RPM (40% of max 5000 RPM):
+                P = 20 + (150 − 20) × 0.50 × 0.40 = 20 + 26 = <strong>46 PSI</strong>
+            </p>
+            <p style="margin-top: 0.8rem; font-size: 11px; color: #3a5a6a;">
+                Tank pressure never exceeds rated P_max, preventing over-pressure rupture.
+                PCW samples throttle input at 100 Hz, adjusts valve orifice in real-time.
+            </p>
+        </div>
+
+        <div class="p5-thermo-card">
+            <div class="p5-card-label">Piston Displacement & Flow Rate</div>
+            <h4>Rail Volume & Steam Consumption</h4>
+            <p>
+                Each rail (double-acting cylinder): bore ∅80 mm, stroke 120 mm.
+                Displacement per stroke: V = (π/4) × D² × L = (π/4) × (80)² × 120 ≈ 604 cm³
+            </p>
+            <p style="margin-top: 0.6rem;">
+                At 3000 RPM (50 cycles/sec), total flow demand:
+                Q = 2 rails × 604 cm³ × 50 Hz = <strong>60,400 cm³/s ≈ 60.4 L/s</strong>
+            </p>
+            <p style="margin-top: 0.8rem; font-size: 11px; color: #3a5a6a;">
+                Tank rated for 25-gallon (94.6L) at 150 PSI max; supply valve sized for
+                full-load demand with 15% margin.
+            </p>
+        </div>
+
+        <div class="p5-thermo-card">
+            <div class="p5-card-label">Heat Recovery & Exhaust</div>
+            <h4>Condensation & Re-Pressurization</h4>
+            <p>
+                Exhaust steam exits the rail cylinders at ≈80 PSI, 212°F (saturated).
+                A condenser/heat exchanger cools exhaust back to liquid water (L_vap = 970 BTU/lb).
+                Recovered water returns to boiler reservoir; heating load supplied by Battery A.
+            </p>
+            <p style="margin-top: 0.6rem;">
+                Heat duty: Q = ṁ × L_vap = (2 kg/s) × (2257 kJ/kg) ≈ <strong>4.5 kW</strong>
+                (requires ≈360 A  12V from heating pack).
+            </p>
+        </div>
+    </div>
+
+    <!-- ===================================================
+             SECTION: MECHANICAL ARCHITECTURE
+             ===================================================== -->
+    <hr class="p5-sep" />
+    <div class="p5-section-label">Mechanical System Overview</div>
+    <h2 class="p5-section-title">Dual-rail + rotary converter wheel architecture</h2>
+
+    <div class="p5-car-wrap">
+        <svg width="100%" height="500" viewBox="0 0 900 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker id="arrowhead-p5" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                    <polygon points="0 0, 10 3, 0 6" fill="#00ffe7" />
+                </marker>
+            </defs>
+
+            <!-- ===== ENGINE BLOCK FRAME ===== -->
+            <rect x="60" y="120" width="780" height="280" fill="#080d15" stroke="#0e2236" stroke-width="2" rx="8" />
+
+            <!-- ===== PRESSURE TANK (left side) ===== -->
+            <g id="tank">
+                <ellipse cx="120" cy="200" rx="35" ry="50" fill="#ff4455" opacity="0.8" stroke="#ff4455" stroke-width="2" />
+                <text x="120" y="190" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">PRESSURE</text>
+                <text x="120" y="205" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">TANK</text>
+                <text x="120" y="220" text-anchor="middle" font-size="9" fill="#ffaaaa">(25 gal)</text>
+                <text x="120" y="235" text-anchor="middle" font-size="8" fill="#ffaaaa">150 PSI max</text>
+            </g>
+
+            <!-- ===== BATTERY A (front-left, behind tank) ===== -->
+            <g id="battery-a">
+                <rect x="180" y="160" width="50" height="70" fill="#00aa44" opacity="0.8" stroke="#00aa44" stroke-width="2" rx="3" />
+                <text x="205" y="190" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">BAT A</text>
+                <text x="205" y="205" text-anchor="middle" font-size="8" fill="#fff">(Primary)</text>
+                <text x="205" y="215" text-anchor="middle" font-size="8" fill="#dde4f0">12V / 400A</text>
+            </g>
+
+            <!-- ===== BATTERY B (front-right, behind tank) ===== -->
+            <g id="battery-b">
+                <rect x="710" y="160" width="50" height="70" fill="#0099ff" opacity="0.8" stroke="#0099ff" stroke-width="2" rx="3" />
+                <text x="735" y="190" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">BAT B</text>
+                <text x="735" y="205" text-anchor="middle" font-size="8" fill="#fff">(Backup)</text>
+                <text x="735" y="215" text-anchor="middle" font-size="8" fill="#dde4f0">12V / 200A</text>
+            </g>
+
+            <!-- ===== PCW CONTROL UNIT (top center) ===== -->
+            <g id="pcw">
+                <rect x="370" y="95" width="160" height="50" fill="#aa88ff" opacity="0.8" stroke="#aa88ff" stroke-width="2" rx="3" />
+                <text x="450" y="115" text-anchor="middle" font-size="11" fill="#06090f" font-weight="bold">PCW CONTROL UNIT</text>
+                <text x="450" y="130" text-anchor="middle" font-size="9" fill="#06090f">Pressure Regulation</text>
+                <text x="450" y="140" text-anchor="middle" font-size="8" fill="#06090f">100 Hz sampling</text>
+            </g>
+
+            <!-- ===== LEFT RAIL ===== -->
+            <g id="left-rail" class="p5-rail-animated">
+                <rect x="280" y="210" width="250" height="18" fill="#aa88ff" opacity="0.5" stroke="#aa88ff" stroke-width="2" class="p5-flow" />
+                <circle cx="300" cy="219" r="8" fill="#ffaa00" class="p5-pulse" opacity="0.9" />
+                <text x="405" y="235" text-anchor="middle" font-size="10" fill="#aa88ff" font-weight="bold">LEFT RAIL (P₁)</text>
+            </g>
+
+            <!-- ===== RIGHT RAIL ===== -->
+            <g id="right-rail" class="p5-rail-animated">
+                <rect x="280" y="272" width="250" height="18" fill="#aa88ff" opacity="0.5" stroke="#aa88ff" stroke-width="2" class="p5-flow" />
+                <circle cx="300" cy="281" r="8" fill="#ffaa00" class="p5-pulse" opacity="0.9" />
+                <text x="405" y="297" text-anchor="middle" font-size="10" fill="#aa88ff" font-weight="bold">RIGHT RAIL (P₁)</text>
+            </g>
+
+            <!-- ===== LEFT CONVERTER WHEEL ===== -->
+            <g id="converter-wheel-left">
+                <circle cx="570" cy="219" r="40" fill="none" stroke="#00ffe7" stroke-width="3" />
+                <!-- 4 lobes (rotary engine cam) -->
+                <circle cx="570" cy="179" r="8" fill="#ff6b30" opacity="0.8" />
+                <circle cx="610" cy="219" r="8" fill="#ff6b30" opacity="0.8" />
+                <circle cx="570" cy="259" r="8" fill="#ff6b30" opacity="0.8" />
+                <circle cx="530" cy="219" r="8" fill="#ff6b30" opacity="0.8" />
+                <text x="570" y="222" text-anchor="middle" font-size="9" fill="#00ffe7" font-weight="bold">WHEEL</text>
+                <text x="570" y="232" text-anchor="middle" font-size="8" fill="#00ffe7">LEFT</text>
+            </g>
+
+            <!-- ===== RIGHT CONVERTER WHEEL ===== -->
+            <g id="converter-wheel-right">
+                <circle cx="570" cy="281" r="40" fill="none" stroke="#00ffe7" stroke-width="3" />
+                <!-- 4 lobes (rotary engine cam) -->
+                <circle cx="570" cy="241" r="8" fill="#ff6b30" opacity="0.8" />
+                <circle cx="610" cy="281" r="8" fill="#ff6b30" opacity="0.8" />
+                <circle cx="570" cy="321" r="8" fill="#ff6b30" opacity="0.8" />
+                <circle cx="530" cy="281" r="8" fill="#ff6b30" opacity="0.8" />
+                <text x="570" y="284" text-anchor="middle" font-size="9" fill="#00ffe7" font-weight="bold">WHEEL</text>
+                <text x="570" y="294" text-anchor="middle" font-size="8" fill="#00ffe7">RIGHT</text>
+            </g>
+
+            <!-- ===== CONNECTION: RAILS → WHEELS ===== -->
+            <line x1="530" y1="219" x2="530" y2="219" stroke="#ff6b30" stroke-width="2" marker-end="url(#arrowhead-p5)" />
+            <line x1="530" y1="281" x2="530" y2="281" stroke="#ff6b30" stroke-width="2" marker-end="url(#arrowhead-p5)" />
+
+            <!-- ===== TRANSMISSION CHAMBER (center) ===== -->
+            <g id="transmission">
+                <rect x="640" y="190" width="90" height="170" fill="#0099ff" opacity="0.7" stroke="#0099ff" stroke-width="2" rx="4" />
+                <text x="685" y="215" text-anchor="middle" font-size="11" fill="#06090f" font-weight="bold">TRANSMISSION</text>
+                <text x="685" y="230" text-anchor="middle" font-size="9" fill="#06090f">CHAMBER</text>
+                <text x="685" y="245" text-anchor="middle" font-size="8" fill="#06090f">(Follower pistons)</text>
+                <text x="685" y="325" text-anchor="middle" font-size="8" fill="#06090f">→ Crankshaft</text>
+            </g>
+
+            <!-- ===== CONNECTION: WHEELS → TRANSMISSION ===== -->
+            <path d="M 610 219 Q 625 200 640 210" stroke="#00ffe7" stroke-width="2" fill="none" marker-end="url(#arrowhead-p5)" />
+            <path d="M 610 281 Q 625 300 640 290" stroke="#00ffe7" stroke-width="2" fill="none" marker-end="url(#arrowhead-p5)" />
+
+            <!-- ===== OUTPUT TO DRIVESHAFT ===== -->
+            <g id="output">
+                <line x1="730" y1="275" x2="800" y2="275" stroke="#00ff88" stroke-width="3" marker-end="url(#arrowhead-p5)" />
+                <text x="765" y="295" text-anchor="middle" font-size="10" fill="#00ff88" font-weight="bold">→ Transmission / Wheels</text>
+            </g>
+
+            <!-- ===== PRESSURE LINES ===== -->
+            <line x1="155" y1="200" x2="280" y2="219" stroke="#ff4455" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrowhead-p5)" />
+            <line x1="155" y1="200" x2="280" y2="281" stroke="#ff4455" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrowhead-p5)" />
+            <text x="200" y="190" font-size="8" fill="#ff4455">Pressure supply</text>
+
+            <!-- ===== CONTROL SIGNALS ===== -->
+            <line x1="450" y1="145" x2="450" y2="170" stroke="#aa88ff" stroke-width="1.5" stroke-dasharray="2,2" />
+            <text x="460" y="160" font-size="8" fill="#aa88ff">RPM feedback</text>
+        </svg>
+    </div>
+
+    <p style="margin-top: 1.5rem; font-size: 12px; color: #7a9ab0; line-height: 1.8;">
+        <strong>System Flow:</strong> Pressure tank supplies dual rails at dynamically-regulated
+        pressure (P = f(RPM)). Rails drive dual converter wheels mounted on engine block (train-wheel style).
+        Wheel lobes engage follower pistons inside transmission chamber. Piston motion drives main crankshaft.
+        PCW monitors throttle input, engine RPM, tank pressure, and adjusts relief valve opening 100 times per second
+        to maintain load-following control. Both batteries remain charged by alternator; Battery B serves as backup
+        if Battery A fails. Entire system regulated at new PCW control unit.
+    </p>
+
+    <!-- ===================================================
+             SECTION: DUAL RAIL MECHANICS
+             ===================================================== -->
+    <hr class="p5-sep" />
+    <div class="p5-section-label">Dual Rail Mechanics</div>
+    <h2 class="p5-section-title">Double-acting cylinders with synchronized motion</h2>
+
+    <div class="p5-subsystem-grid">
+        <div class="p5-subsystem-card">
+            <h3>Left Rail Cylinder</h3>
+            <div class="p5-spec-table">
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Bore diameter:</span>
+                    <span class="p5-spec-value">80 mm (3.15")</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Stroke length:</span>
+                    <span class="p5-spec-value">120 mm (4.72")</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Rod diameter:</span>
+                    <span class="p5-spec-value">40 mm (1.57")</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Displacement (two-way):</span>
+                    <span class="p5-spec-value">1,208 cm³ per cycle</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Max working pressure:</span>
+                    <span class="p5-spec-value">150 PSI</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Force output  100 PSI:</span>
+                    <span class="p5-spec-value">F = P × A = 100 × (π/4 × 80²) ≈ 503 lbf</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p5-subsystem-card">
+            <h3>Right Rail Cylinder</h3>
+            <div class="p5-spec-table">
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Configuration:</span>
+                    <span class="p5-spec-value">Identical to left rail</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Phase offset:</span>
+                    <span class="p5-spec-value">0° (synchronized)</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Coupling to wheels:</span>
+                    <span class="p5-spec-value">Rigid connecting rods</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Lubrication:</span>
+                    <span class="p5-spec-value">Oil mist system (ISO 32)</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Seal type:</span>
+                    <span class="p5-spec-value">Nitrile + Teflon compound</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Simultaneous force  100 PSI:</span>
+                    <span class="p5-spec-value">2 × 503 = 1,006 lbf total</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p5-subsystem-card">
+            <h3>Pressure Relief Valve (PCW-Controlled)</h3>
+            <div class="p5-spec-table">
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Type:</span>
+                    <span class="p5-spec-value">Proportional pilot-operated poppet</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Pilot solenoid:</span>
+                    <span class="p5-spec-value">Pulse-width modulation (PWM)</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Response time:</span>
+                    <span class="p5-spec-value">&lt; 10 ms</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Control authority:</span>
+                    <span class="p5-spec-value">0–150 PSI setpoint variation</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Flow capacity  full open:</span>
+                    <span class="p5-spec-value">≥ 65 L/min (17.2 GPM)</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Feedback signal:</span>
+                    <span class="p5-spec-value">Tank pressure transducer (4–20 mA)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p5-subsystem-card">
+            <h3>Rotary Converter Wheel Geometry</h3>
+            <div class="p5-spec-table">
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Wheel diameter:</span>
+                    <span class="p5-spec-value">100 mm (3.94")</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Lobe count:</span>
+                    <span class="p5-spec-value">4 lobes per wheel</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Lobe profile:</span>
+                    <span class="p5-spec-value">Cycloidal (optimized for smooth motion)</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Follower type:</span>
+                    <span class="p5-spec-value">Rolling contact (needle bearings)</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Wheel RPM  3000 engine RPM:</span>
+                    <span class="p5-spec-value">750 RPM (gear reduction 4:1 internal)</span>
+                </div>
+                <div class="p5-spec-row">
+                    <span class="p5-spec-label">Mechanical advantage:</span>
+                    <span class="p5-spec-value">Low-speed, high-torque output</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+             SECTION: ELECTRICAL SYSTEM & PCW
+             ===================================================== -->
+    <hr class="p5-sep" />
+    <div class="p5-section-label">Electrical Architecture</div>
+    <h2 class="p5-section-title">Dual-battery + PCW control system with redundancy</h2>
+
+    <div class="p5-electrical-grid">
+        <div class="p5-electrical-card">
+            <h3>Battery A (Primary Power)</h3>
+            <ul class="p5-spec-list">
+                <li><strong>Voltage:</strong> 12 VDC nominal</li>
+                <li><strong>Capacity:</strong> 400 Ah (4.8 kWh)</li>
+                <li><strong>Type:</strong> AGM (Absorbed Glass Mat) sealed</li>
+                <li><strong>Mounting:</strong> Front-left engine bay, behind pressure tank</li>
+                <li><strong>Primary load:</strong> Steam boiler heater pack (3–5 kW)</li>
+                <li><strong>Secondary loads:</strong> PCW control unit, sensors, pressure valve solenoid</li>
+                <li><strong>Charge circuit:</strong> Alternator (100 A  3000 RPM)</li>
+                <li><strong>Low-voltage cutoff:</strong> 10.5 V (prevents over-discharge)</li>
+            </ul>
+        </div>
+
+        <div class="p5-electrical-card">
+            <h3>Battery B (Backup System)</h3>
+            <ul class="p5-spec-list">
+                <li><strong>Voltage:</strong> 12 VDC nominal</li>
+                <li><strong>Capacity:</strong> 200 Ah (2.4 kWh)</li>
+                <li><strong>Type:</strong> LiFePO₄ (lithium, faster response)</li>
+                <li><strong>Mounting:</strong> Front-right engine bay, mirror of Battery A</li>
+                <li><strong>Primary function:</strong> Backup power for PCW + heater</li>
+                <li><strong>Activation trigger:</strong> Battery A voltage drops below 11.5 V</li>
+                <li><strong>Automatic switchover:</strong> Diode-OR isolation circuit (no user action)</li>
+                <li><strong>Range extension:</strong> Allows 30–45 min continued operation if primary fails</li>
+            </ul>
+        </div>
+
+        <div class="p5-electrical-card">
+            <h3>PCW (Pressure Control Unit)</h3>
+            <ul class="p5-spec-list">
+                <li><strong>Microcontroller:</strong> 32-bit ARM-Cortex M7  200 MHz</li>
+                <li><strong>Sampling rate:</strong> 100 Hz (10 ms cycle time)</li>
+                <li><strong>Input sensors:</strong> Throttle potentiometer, engine RPM (crank-mounted), tank pressure transducer</li>
+                <li><strong>Output actuators:</strong> Proportional relief valve (PWM), boiler heating relay</li>
+                <li><strong>Control law:</strong> P(t) = P_min + (P_max − P_min) × [θ_throttle / 100] × [RPM / RPM_max]</li>
+                <li><strong>Safety interlocks:</strong> Over-pressure shutdown, loss-of-signal failsafe (de-energizes valve)</li>
+                <li><strong>Diagnostics:</strong> Self-test on startup, continuous sensor validation</li>
+                <li><strong>Power consumption:</strong> 15–25 W (negligible battery drain)</li>
+            </ul>
+        </div>
+
+        <div class="p5-electrical-card">
+            <h3>Steam Boiler Heater Pack</h3>
+            <ul class="p5-spec-list">
+                <li><strong>Power rating:</strong> 3–5 kW  12 VDC (250–400 A draw)</li>
+                <li><strong>Heating element:</strong> Nichrome wire immersion heater</li>
+                <li><strong>Thermostat setpoint:</strong> 220°C (428°F, full saturation)</li>
+                <li><strong>Water feed:</strong> Condensed exhaust from transmission chamber</li>
+                <li><strong>Duty cycle:</strong> Pulse-width modulated by PCW to maintain constant steam quality</li>
+                <li><strong>Protection:</strong> Thermostatic relief, low-water shutoff (float sensor)</li>
+                <li><strong>Warm-up time:</strong> ~45–60 seconds to operating pressure</li>
+                <li><strong>Continuous energy input:</strong> Alternator must supply ≥ 5 kW; Battery A supplies gap during idle</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===================================================
+             SECTION: PRESSURE-RPM LOAD-FOLLOWING CURVE
+             ===================================================== -->
+    <hr class="p5-sep" />
+    <div class="p5-section-label">Control Strategy</div>
+    <h2 class="p5-section-title">Pressure-RPM load-following dynamics</h2>
+    <p class="p5-section-lead">
+        The core innovation of Phase 5 is its dynamic pressure regulation. Unlike conventional
+        throttle systems that modulate fuel flow, the PCW adjusts pressure relief valve opening
+        proportionally to both throttle position and instantaneous engine RPM. This creates a
+        smooth, predictable power delivery that never exceeds tank safety limits.
+    </p>
+
+    <div class="p5-curve-container">
+        <div class="p5-curve-box">
+            <svg width="100%" height="300" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="background: #070b12; border: 1px solid #1a0a2a; border-radius: 8px;">
+                <!-- Grid -->
+                <line x1="60" y1="250" x2="550" y2="250" stroke="#0e2236" stroke-width="1" />
+                <line x1="60" y1="50" x2="60" y2="250" stroke="#0e2236" stroke-width="1" />
+
+                <!-- Grid lines (minor) -->
+                <line x1="130" y1="50" x2="130" y2="250" stroke="#0e2236" stroke-width="0.5" opacity="0.5" />
+                <line x1="200" y1="50" x2="200" y2="250" stroke="#0e2236" stroke-width="0.5" opacity="0.5" />
+                <line x1="270" y1="50" x2="270" y2="250" stroke="#0e2236" stroke-width="0.5" opacity="0.5" />
+                <line x1="340" y1="50" x2="340" y2="250" stroke="#0e2236" stroke-width="0.5" opacity="0.5" />
+                <line x1="410" y1="50" x2="410" y2="250" stroke="#0e2236" stroke-width="0.5" opacity="0.5" />
+                <line x1="480" y1="50" x2="480" y2="250" stroke="#0e2236" stroke-width="0.5" opacity="0.5" />
+                <line x1="550" y1="50" x2="550" y2="250" stroke="#0e2236" stroke-width="0.5" opacity="0.5" />
+
+                <line x1="60" y1="180" x2="550" y2="180" stroke="#0e2236" stroke-width="0.5" opacity="0.5" />
+                <line x1="60" y1="110" x2="550" y2="110" stroke="#0e2236" stroke-width="0.5" opacity="0.5" />
+
+                <!-- Axes labels -->
+                <text x="25" y="260" font-size="11" fill="#aa88ff" font-weight="bold">0</text>
+                <text x="120" y="260" font-size="10" fill="#aa88ff">1K</text>
+                <text x="190" y="260" font-size="10" fill="#aa88ff">2K</text>
+                <text x="260" y="260" font-size="10" fill="#aa88ff">3K</text>
+                <text x="330" y="260" font-size="10" fill="#aa88ff">4K</text>
+                <text x="400" y="260" font-size="10" fill="#aa88ff">5K</text>
+                <text x="470" y="260" font-size="10" fill="#aa88ff">6K</text>
+                <text x="550" y="260" font-size="10" fill="#aa88ff">RPM</text>
+
+                <text x="15" y="255" font-size="11" fill="#aa88ff" font-weight="bold">0</text>
+                <text x="15" y="185" font-size="10" fill="#aa88ff">75</text>
+                <text x="10" y="115" font-size="10" fill="#aa88ff">150</text>
+                <text x="35" y="35" font-size="10" fill="#aa88ff">PSI</text>
+
+                <!-- Curve: 25% Throttle -->
+                <path d="M 60 240 Q 150 235 200 220 T 340 170 T 480 120"
+                      stroke="#ff6b30" stroke-width="2.5" fill="none" />
+                <circle cx="60" cy="240" r="3" fill="#ff6b30" />
+                <circle cx="200" cy="220" r="3" fill="#ff6b30" />
+                <circle cx="340" cy="170" r="3" fill="#ff6b30" />
+                <circle cx="480" cy="120" r="3" fill="#ff6b30" />
+                <text x="495" y="115" font-size="11" fill="#ff6b30" font-weight="bold">25% Throttle</text>
+
+                <!-- Curve: 50% Throttle -->
+                <path d="M 60 220 Q 150 195 200 160 T 340 80 T 480 60"
+                      stroke="#ffaa00" stroke-width="2.5" fill="none" />
+                <circle cx="60" cy="220" r="3" fill="#ffaa00" />
+                <circle cx="200" cy="160" r="3" fill="#ffaa00" />
+                <circle cx="340" cy="80" r="3" fill="#ffaa00" />
+                <text x="495" y="65" font-size="11" fill="#ffaa00" font-weight="bold">50% Throttle</text>
+
+                <!-- Curve: 100% Throttle (MAX) -->
+                <path d="M 60 200 Q 150 120 200 95 T 340 65 T 480 60"
+                      stroke="#00ffe7" stroke-width="3" fill="none" />
+                <circle cx="60" cy="200" r="3" fill="#00ffe7" />
+                <circle cx="200" cy="95" r="3" fill="#00ffe7" />
+                <circle cx="340" cy="65" r="3" fill="#00ffe7" />
+                <text x="485" y="45" font-size="11" fill="#00ffe7" font-weight="bold">100% Throttle</text>
+
+                <!-- Safety ceiling line (150 PSI max) -->
+                <line x1="60" y1="55" x2="550" y2="55" stroke="#ff4455" stroke-width="2" stroke-dasharray="5,5" />
+                <text x="560" y="60" font-size="10" fill="#ff4455" font-weight="bold">Max 150 PSI</text>
+            </svg>
+        </div>
+        <p style="font-size: 12px; color: #7a9ab0; margin-top: 1rem;">
+            <strong>Graph explanation:</strong> Each curve represents a fixed throttle position.
+            As engine RPM increases (left to right), pressure rises proportionally. The PCW continuously
+            adjusts relief valve to keep the system operating on the active throttle curve. At 100% throttle,
+            pressure reaches maximum (150 PSI) and levels off—preventing tank over-pressure. Lower throttle
+            settings produce lower pressure curves, reducing power output and fuel (steam) consumption.
+            This load-following characteristic provides smooth, predictable acceleration without throttle lag.
+        </p>
+    </div>
+
+    <!-- ===================================================
+             SECTION: TRANSMISSION CHAMBER & FOLLOWERS
+             ===================================================== -->
+    <hr class="p5-sep" />
+    <div class="p5-section-label">Transmission Chamber Architecture</div>
+    <h2 class="p5-section-title">Follower piston integration and crankshaft coupling</h2>
+
+    <div class="p5-subsystem-grid">
+        <div class="p5-subsystem-card">
+            <h3>Follower Piston Assembly (×2)</h3>
+            <ul class="p5-spec-list">
+                <li><strong>Piston type:</strong> Rolling follower (needle bearing contact)</li>
+                <li><strong>Motion input:</strong> Rotary lobe from converter wheel</li>
+                <li><strong>Output motion:</strong> Reciprocating linear (pushes main crankshaft)</li>
+                <li><strong>Stroke length:</strong> 40 mm (matched to wheel lobe throw)</li>
+                <li><strong>Engagement force:</strong> Spring-loaded return (rate 15 N/mm)</li>
+                <li><strong>Bearing preload:</strong> Maintained at ~50 N to eliminate lost motion</li>
+                <li><strong>Friction loss:</strong> ~3–5% of transmitted power (rolling contact)</li>
+                <li><strong>Lubrication:</strong> Grease-packed sealed bearings (NLGI #2)</li>
+            </ul>
+        </div>
+
+        <div class="p5-subsystem-card">
+            <h3>Crankshaft Coupling</h3>
+            <ul class="p5-spec-list">
+                <li><strong>Coupling type:</strong> Scotch yoke or slider-crank mechanism</li>
+                <li><strong>Input sources:</strong> Both follower pistons (synchronized)</li>
+                <li><strong>Output:</strong> Continuous rotational motion (0–5000 RPM)</li>
+                <li><strong>Phase relationship:</strong> Followers operate 180° out of phase (smooth torque)</li>
+                <li><strong>Torque at rated pressure (100 PSI):</strong> τ = F × r = (503 lbf) × (2 in) ≈ 1,006 ft-lbf per cycle</li>
+                <li><strong>Continuous power output:</strong> At 3000 RPM: P = (1,006 ft-lbf × 3000 RPM) / 5252 ≈ 575 hp (peak)</li>
+                <li><strong>Rated power (sustainable):</strong> ~350 hp  3000 RPM, 100 PSI</li>
+                <li><strong>Damping:</strong> Torsional vibration isolator (elastomer ring)</li>
+            </ul>
+        </div>
+
+        <div class="p5-subsystem-card">
+            <h3>Transmission Output Shaft</h3>
+            <ul class="p5-spec-list">
+                <li><strong>Drive type:</strong> Standard automatic transmission input</li>
+                <li><strong>Torque rating:</strong> 1,000+ ft-lbf (compatible with heavy-duty slushbox)</li>
+                <li><strong>Speed range:</strong> 0–5000 RPM continuous (limited by pressure availability)</li>
+                <li><strong>Connection:</strong> Flexible coupling to transmission bell housing</li>
+                <li><strong>Fluid cooler:</strong> Integral to condensate recovery loop (heat rejection)</li>
+                <li><strong>Filter:</strong> 10 micron spin-on (maintains fluid cleanliness for longevity)</li>
+                <li><strong>Service interval:</strong> 100,000 miles (fluid + filter change)</li>
+            </ul>
+        </div>
+
+        <div class="p5-subsystem-card">
+            <h3>Pressure Tank & Condensate Recovery</h3>
+            <ul class="p5-spec-list">
+                <li><strong>Tank capacity:</strong> 25 gallons (94.6 L)</li>
+                <li><strong>Material:</strong> Seamless steel, ASME pressure vessel certified</li>
+                <li><strong>Max working pressure:</strong> 150 PSI (safety factor 4.0)</li>
+                <li><strong>Relief valve setting:</strong> 165 PSI (pop-off safety)</li>
+                <li><strong>Condensate inlet:</strong> Gravity return from transmission chamber condenser</li>
+                <li><strong>Water treatment:</strong> Inline demineralizer cartridge (prevents scale buildup)</li>
+                <li><strong>Level sensor:</strong> Capacitive float + backup mechanical gauge</li>
+                <li><strong>Low-level alarm:</strong> PCW triggers warning at 30% full; shutdown at 10%</li>
+                <li><strong>Filler cap:</strong> Twist-locking with silica-gel desiccant breather</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===================================================
+             SECTION: PERFORMANCE & EFFICIENCY METRICS
+             ===================================================== -->
+    <hr class="p5-sep" />
+    <div class="p5-section-label">Performance Envelope</div>
+    <h2 class="p5-section-title">Phase 5 output specifications and efficiency calculations</h2>
+
+    <div class="p5-performance-grid">
+        <div class="p5-performance-card">
+            <h3>Maximum Power Output</h3>
+            <div class="p5-calc-block">
+                <p><strong>At rated conditions (100 PSI, 3000 RPM):</strong></p>
+                <p style="margin: 0.5rem 0;">Force per rail: F = P × A = 100 PSI × 50.27 in² ≈ 5,027 lbf</p>
+                <p style="margin: 0.5rem 0;">Torque per cycle: τ = 5,027 × 2 in ≈ 10,054 in-lbf ≈ 837 ft-lbf</p>
+                <p style="margin: 0.5rem 0;">Cycles per minute: 3,000 RPM / 2 = 1,500 power strokes/min</p>
+                <p style="margin: 0.5rem 0;">Power = (837 ft-lbf × 1,500) / 5,252 ≈ <strong>238 hp</strong></p>
+                <p style="margin-top: 0.8rem; font-size: 11px; color: #7a9ab0; font-style: italic;">
+                    (Both rails firing; transmission efficiency ~92%; net output ≈ 219 hp to wheels)
+                </p>
+            </div>
+        </div>
+
+        <div class="p5-performance-card">
+            <h3>Thermal Efficiency</h3>
+            <div class="p5-calc-block">
+                <p><strong>Rankine cycle theoretical efficiency:</strong></p>
+                <p style="margin: 0.5rem 0;">η_th = 1 − (T_c / T_h) = 1 − (373 K / 473 K) ≈ 21.1%</p>
+                <p style="margin: 0.5rem 0;">(T_h = 200°C boiler; T_c = 100°C condenser)</p>
+                <p style="margin: 0.5rem 0;"><strong>Real-world Phase 5 (estimated):</strong> 18–20% (includes valve, bearing, seal losses)</p>
+                <p style="margin: 0.5rem 0;">Steam energy input  100 PSI: ~250 BTU/lbm per cycle</p>
+                <p style="margin-top: 0.8rem; font-size: 11px; color: #7a9ab0; font-style: italic;">
+                    (Significantly better than Otto cycle petrol engines at 25–35% peak, comparable to diesel at 30–40%)
+                </p>
+            </div>
+        </div>
+
+        <div class="p5-performance-card">
+            <h3>Fuel Consumption (Water/Steam)</h3>
+            <div class="p5-calc-block">
+                <p><strong>At 50% throttle, 3000 RPM (highway cruising):</strong></p>
+                <p style="margin: 0.5rem 0;">Operating pressure: 75 PSI</p>
+                <p style="margin: 0.5rem 0;">Power output: ~110 hp</p>
+                <p style="margin: 0.5rem 0;">Steam flow rate: Q = 2 cylinders × 604 cm³ × 50 Hz = 60.4 L/s</p>
+                <p style="margin: 0.5rem 0;">Water consumption: 60.4 L/s ≈ 950 gal/hr (at full power)</p>
+                <p style="margin: 0.5rem 0;">At 50% throttle: ~475 gal/hr or ~1.32 gal/mile (for reference vehicle)</p>
+                <p style="margin-top: 0.8rem; font-size: 11px; color: #7a9ab0; font-style: italic;">
+                    (Condensate recovery loop recycles ~85% water; net top-up ~0.2 gal/mile during normal highway driving)
+                </p>
+            </div>
+        </div>
+
+        <div class="p5-performance-card">
+            <h3>Electrical Energy Balance</h3>
+            <div class="p5-calc-block">
+                <p><strong>Energy flow at cruising (50% throttle, 3000 RPM):</strong></p>
+                <p style="margin: 0.5rem 0;">Mechanical power input: 110 hp ≈ 82 kW</p>
+                <p style="margin: 0.5rem 0;">Heating duty (steam generation): 4.5 kW (from Battery A)</p>
+                <p style="margin: 0.5rem 0;">Alternator output (net): ~3 kW  3000 RPM</p>
+                <p style="margin: 0.5rem 0;">Battery A draw: 4.5 − 3.0 = 1.5 kW deficit during cruise</p>
+                <p style="margin: 0.5rem 0;">Battery autonomy  1.5 kW drain: 4.8 kWh / 1.5 kW ≈ 3.2 hours (or ~150 miles highway range)</p>
+                <p style="margin-top: 0.8rem; font-size: 11px; color: #7a9ab0; font-style: italic;">
+                    (Actual range depends on driving cycle; urban stop-and-go drains faster; highway stretches benefit from high alternator output)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+             SECTION: SAFETY SYSTEMS
+             ===================================================== -->
+    <hr class="p5-sep" />
+    <div class="p5-section-label">Safety & Redundancy</div>
+    <h2 class="p5-section-title">Multi-layer protection and failure isolation</h2>
+
+    <div class="p5-safety-grid">
+        <div class="p5-safety-card critical">
+            <div class="p5-safety-tag">CRITICAL</div>
+            <h4>Primary Pressure Relief (Hard Line)</h4>
+            <p>
+                Mechanical spring-loaded relief valve set to 165 PSI. <strong>Not computer-controlled.</strong>
+                Pops open if tank pressure exceeds setpoint, regardless of PCW state. Protects against ASME
+                vessel code violations. Flow capacity: 80 L/min. Prevents catastrophic rupture.
+            </p>
+        </div>
+
+        <div class="p5-safety-card critical">
+            <div class="p5-safety-tag">CRITICAL</div>
+            <h4>Low-Water Shutoff (Float Sensor)</h4>
+            <p>
+                Mechanical float in condenser tank. If water level drops below 15% (insufficient steam
+                generation), relay cuts power to boiler heater and pressurizes tank vent line (safe depressurization).
+                Engine coasts to stop. Prevents dry-run damage and superheater scaling.
+            </p>
+        </div>
+
+        <div class="p5-safety-card major">
+            <div class="p5-safety-tag">MAJOR</div>
+            <h4>Battery Voltage Monitoring</h4>
+            <p>
+                PCW monitors Battery A voltage every 10 ms. If voltage drops below 10.5 V for &gt;100 ms,
+                automatic switchover to Battery B via diode-OR isolation circuit. LED indicator on dash alerts driver.
+                Battery B provides 30–45 minutes continued operation at reduced heating power.
+            </p>
+        </div>
+
+        <div class="p5-safety-card major">
+            <div class="p5-safety-tag">MAJOR</div>
+            <h4>Over-Temperature Shutdown</h4>
+            <p>
+                Boiler thermostat set to 230°C. If temperature exceeds setpoint, heating element relay opens.
+                PCW simultaneously cuts pressure relief solenoid power, allowing tank to depressurize through vent.
+                Driver receives audible alarm. Prevents boiler steam quality degradation and scaling.
+            </p>
+        </div>
+
+        <div class="p5-safety-card design">
+            <div class="p5-safety-tag">DESIGN</div>
+            <h4>PCW Failsafe (Lose-Pressure Architecture)</h4>
+            <p>
+                If PCW power is lost or microcontroller crashes, the proportional relief valve spring-biases
+                to a safe de-energized state (partially open, ~50 PSI regulation). Engine idles safely; no
+                runaway condition. Driver can limp home on Battery B + manual engine kill switch.
+            </p>
+        </div>
+
+        <div class="p5-safety-card design">
+            <div class="p5-safety-tag">DESIGN</div>
+            <h4>Condensate Filtration & Demineralization</h4>
+            <p>
+                Inline cartridge filter (10 micron) removes corrosion debris. Demineralizer cartridge prevents
+                mineral scale buildup in boiler tubes (hard water ions exchanged for H⁺). Annual cartridge replacement
+                (~$30). Extends boiler life 3–5× compared to untreated water.
+            </p>
+        </div>
+    </div>
+
+    <!-- ===================================================
+             SECTION: COMPARISON TABLE
+             ===================================================== -->
+    <hr class="p5-sep" />
+    <div class="p5-section-label">Architecture Comparison</div>
+    <h2 class="p5-section-title">Phase 2 vs. Phase 4 vs. Phase 5 evolution</h2>
+
+    <div class="p5-comparison-table">
+        <table class="p5-table">
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Phase 2</th>
+                    <th>Phase 4</th>
+                    <th>Phase 5</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Primary mechanism</strong></td>
+                    <td>Steam pistons → crankshaft</td>
+                    <td>Rail pushes stationary pistons → transmission</td>
+                    <td>Dual rails → rotary wheels → followers → crankshaft</td>
+                </tr>
+                <tr>
+                    <td><strong>Piston count</strong></td>
+                    <td>4 (moving)</td>
+                    <td>4+ (stationary)</td>
+                    <td>2 (followers, in transmission chamber)</td>
+                </tr>
+                <tr>
+                    <td><strong>Rotating wheels (engine)</strong></td>
+                    <td>None</td>
+                    <td>None</td>
+                    <td>2 (train-style, drive lobes)</td>
+                </tr>
+                <tr>
+                    <td><strong>Batteries</strong></td>
+                    <td>2 (A+B dual-bus)</td>
+                    <td>1 (unified)</td>
+                    <td>2 (A primary + B backup, front-mounted)</td>
+                </tr>
+                <tr>
+                    <td><strong>Electrical control</strong></td>
+                    <td>Basic relay logic</td>
+                    <td>Basic relay logic</td>
+                    <td>PCW smart unit (100 Hz sampling, load-following)</td>
+                </tr>
+                <tr>
+                    <td><strong>Pressure regulation</strong></td>
+                    <td>Fixed relief setpoint</td>
+                    <td>Fixed relief setpoint</td>
+                    <td>Dynamic (P = f(RPM, throttle))</td>
+                </tr>
+                <tr>
+                    <td><strong>Max pressure (PSI)</strong></td>
+                    <td>150</td>
+                    <td>150</td>
+                    <td>150 (never exceeded due to load-following)</td>
+                </tr>
+                <tr>
+                    <td><strong>Est. max power (hp)</strong></td>
+                    <td>~180 hp</td>
+                    <td>~160 hp</td>
+                    <td>~238 hp (219 hp net to wheels)</td>
+                </tr>
+                <tr>
+                    <td><strong>Thermal efficiency (%)</strong></td>
+                    <td>~18–20%</td>
+                    <td>~16–18%</td>
+                    <td>~18–20% (optimized cycle)</td>
+                </tr>
+                <tr>
+                    <td><strong>Sealed chambers (oil/water risk)</strong></td>
+                    <td>Yes (medium risk)</td>
+                    <td>No (stationary pistons)</td>
+                    <td>No (followers in open transmission)</td>
+                </tr>
+                <tr>
+                    <td><strong>Redundancy</strong></td>
+                    <td>Dual-bus electrical only</td>
+                    <td>None</td>
+                    <td>Dual battery + PCW failsafe + hard relief valve</td>
+                </tr>
+                <tr>
+                    <td><strong>Complexity</strong></td>
+                    <td>Medium</td>
+                    <td>Medium</td>
+                    <td>High (but highly automated)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ===================================================
+             SECTION: INSTALLATION & MAINTENANCE
+             ===================================================== -->
+    <hr class="p5-sep" />
+    <div class="p5-section-label">Service & Maintenance</div>
+    <h2 class="p5-section-title">Routine care, troubleshooting, and upgrade paths</h2>
+
+    <div class="p5-service-grid">
+        <div class="p5-service-card">
+            <h3>Initial Commissioning (Pre-Delivery Checklist)</h3>
+            <ul class="p5-service-list">
+                <li>✓ Tank hydrostatic test 225 PSI (1.5× working pressure)</li>
+                <li>✓ All pressure seals inspected; replace if damaged</li>
+                <li>✓ Rail cylinders bench-tested for full stroke, no binding</li>
+                <li>✓ Rotary wheels balanced to ≤ 2 grams unbalance</li>
+                <li>✓ PCW uploaded with latest firmware; diagnostic self-test passed</li>
+                <li>✓ Batteries charged to 100%; voltage equilibrium verified</li>
+                <li>✓ Boiler filled with deionized water; demineralizer cartridge installed</li>
+                <li>✓ 30-minute hot-run test under no-load conditions</li>
+            </ul>
+        </div>
+
+        <div class="p5-service-card">
+            <h3>Maintenance Schedule (Every 10,000 miles or 1 year)</h3>
+            <ul class="p5-service-list">
+                <li>→ Visual inspection for pressure line leaks</li>
+                <li>→ Water level check; top-up if needed with distilled water</li>
+                <li>→ Filter cartridge pressure drop gauge reading</li>
+                <li>→ Battery voltage load test (should ≥ 12.4 V under 100 A load)</li>
+                <li>→ PCW diagnostic data download (check for error codes or sensor drift)</li>
+                <li>→ Boiler thermostat recalibration (verify 230°C ±5°C setpoint)</li>
+            </ul>
+        </div>
+
+        <div class="p5-service-card">
+            <h3>Major Maintenance (Every 50,000 miles or 5 years)</h3>
+            <ul class="p5-service-list">
+                <li>→ Demineralizer cartridge replacement (~$30)</li>
+                <li>→ Filter cartridge replacement (~$25)</li>
+                <li>→ Rail cylinder seals inspection; replace if leaking (&lt;5% volume loss acceptable)</li>
+                <li>→ Proportional relief valve solenoid coil inspection (test response time &lt; 10 ms)</li>
+                <li>→ Rotary wheel bearing preload check (should spin freely with slight drag)</li>
+                <li>→ Battery deep-discharge cycle test (discharge to 50%, recharge, verify capacity)</li>
+            </ul>
+        </div>
+
+        <div class="p5-service-card">
+            <h3>Warranty & Support</h3>
+            <ul class="p5-service-list">
+                <li>→ Pressure tank: 10-year hydrostatic warranty (full replacement if fails)</li>
+                <li>→ Rail cylinders: 5-year seal warranty; rebuild kit available (~$200)</li>
+                <li>→ PCW control unit: 3-year electronics warranty; firmware updates free forever</li>
+                <li>→ Batteries: Battery A (AGM) 3-year; Battery B (LiFePO₄) 5-year warranty</li>
+                <li>→ Rotary wheels: Lifetime warranty against defects (bearing replacement ~$150 per wheel)</li>
+                <li>→ 24/7 technical support hotline; remote diagnostics via OBD-II PCW interface</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+

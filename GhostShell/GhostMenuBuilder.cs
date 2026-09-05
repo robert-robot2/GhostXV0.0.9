@@ -22,7 +22,9 @@ namespace GhostShell
         public event EventHandler? OnMenuTextColor;
         public event EventHandler? OnAbout;
         public event EventHandler? OnVersion;
-
+        // ---- New event in GhostMenuBuilder ----
+        public event EventHandler? OnToggleSteamPanel;
+        public event EventHandler? OnToggleGhostUI;
         public GhostMenuBuilder(Color menuBgColor, Color menuTextColor)
         {
             _menuBgColor = menuBgColor;
@@ -52,7 +54,10 @@ namespace GhostShell
             settingsMenu.DropDownItems.Add(MakeItem("Window Text Color...", (s, e) => OnWindowTextColor?.Invoke(s, e)));
             settingsMenu.DropDownItems.Add(MakeItem("Menu Background Color...", (s, e) => OnMenuBgColor?.Invoke(s, e)));
             settingsMenu.DropDownItems.Add(MakeItem("Menu Text Color...", (s, e) => OnMenuTextColor?.Invoke(s, e)));
-
+            // ---- In Build(), inside settingsMenu.DropDownItems ----
+            settingsMenu.DropDownItems.Add(new ToolStripSeparator());
+            settingsMenu.DropDownItems.Add(MakeItem("Toggle EWI Panel", (s, e) => OnToggleSteamPanel?.Invoke(s, e)));
+            settingsMenu.DropDownItems.Add(MakeItem("Toggle Ghost UI", (s, e) => OnToggleGhostUI?.Invoke(s, e)));
             // ---- Help ----
             var helpMenu = new ToolStripMenuItem("Help");
             helpMenu.DropDownItems.Add(MakeItem("About", (s, e) => OnAbout?.Invoke(s, e)));

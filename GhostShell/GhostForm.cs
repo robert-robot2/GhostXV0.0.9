@@ -20,7 +20,9 @@ namespace GhostShell
 
         // ---- Menu builder ----
         private GhostMenuBuilder _menuBuilder;
-
+        // ---- Add this field near the top with the other fields ----
+        private GhostSteamPanel _steamPanel;
+        private Microsoft.Web.WebView2.WinForms.WebView2 _ghostUI;
         public GhostForm()
         {
             InitializeForm();
@@ -68,11 +70,30 @@ namespace GhostShell
                 null, _renderPanel, new object[] { false });
 
             Controls.Add(_renderPanel);
-
+            // ---- In BuildUI(), after Controls.Add(_renderPanel) ----
+            _steamPanel = new GhostSteamPanel
+            {
+                Bounds = _renderPanel.Bounds,
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom |
+                         AnchorStyles.Left | AnchorStyles.Right,
+            };
+            _renderPanel.Controls.Add(_steamPanel);
+            _steamPanel.BringToFront();
             // ---- Menu strip ----
             _menuBuilder = new GhostMenuBuilder(_menuBgColor, _menuTextColor);
             _menuBuilder.Build(this);
-
+            // ---- Back in GhostForm.cs, wire it up in BuildUI()
+            //      after the other _menuBuilder.On... lines ----
+            _menuBuilder.OnToggleSteamPanel += (s, e) => _steamPanel.Visible = !_steamPanel.Visible;
+            _ghostUI = new Microsoft.Web.WebView2.WinForms.WebView2
+            {
+                Bounds = _renderPanel.ClientRectangle,
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom |
+             AnchorStyles.Left | AnchorStyles.Right,
+                Visible = false,
+            };
+            _renderPanel.Controls.Add(_ghostUI);
+            _ghostUI.BringToFront();
             // Wire menu callbacks
             _menuBuilder.OnExit += (s, e) => Close();
             _menuBuilder.OnBackgroundColor += OnPickBackgroundColor;
@@ -80,6 +101,31 @@ namespace GhostShell
             _menuBuilder.OnWindowTextColor += OnPickWindowTextColor;
             _menuBuilder.OnMenuBgColor += OnPickMenuBgColor;
             _menuBuilder.OnMenuTextColor += OnPickMenuTextColor;
+            _menuBuilder.OnToggleGhostUI += async (s, e) =>
+            {
+                if (!_ghostUI.Visible)
+                {
+                    await _ghostUI.EnsureCoreWebView2Async(null);
+                    _ghostUI.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
+                    await _ghostUI.CoreWebView2.CallDevToolsProtocolMethodAsync(
+                        "Security.setIgnoreCertificateErrors",
+                        "{\"ignore\":true}"
+                    );
+                    await _ghostUI.CoreWebView2.CallDevToolsProtocolMethodAsync(
+    "Page.setBypassCSP", "{\"enabled\":true}"
+);
+                    await _ghostUI.CoreWebView2.CallDevToolsProtocolMethodAsync(
+    "Network.setExtraHTTPHeaders",
+    "{\"headers\":{\"Cross-Origin-Embedder-Policy\":\"unsafe-none\"}}"
+);
+                    _ghostUI.CoreWebView2.Navigate("http://localhost:5050");
+                    _ghostUI.Visible = true;
+                }
+                else
+                {
+                    _ghostUI.Visible = false;
+                }
+            };
             _menuBuilder.OnAbout += OnAbout;
             _menuBuilder.OnVersion += OnVersion;
         }
@@ -118,6 +164,10 @@ namespace GhostShell
                     GhostEngine.GhostEngine_Resize(
                         (uint)_renderPanel.ClientSize.Width,
                         (uint)_renderPanel.ClientSize.Height);
+                    // ---- In HookEngineEvents(), inside the _renderPanel.Resize handler,
+                    //      after the GhostEngine_Resize call ----
+                    _ghostUI.Bounds = _renderPanel.ClientRectangle;
+                    _steamPanel.Bounds = _renderPanel.ClientRectangle;
                 }
             };
 

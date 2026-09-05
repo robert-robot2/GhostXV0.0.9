@@ -1,0 +1,210 @@
+﻿<!-- =====================================================
+         PHASE 4 BANNER
+         ===================================================== -->
+<div class="p4-banner">
+    <div class="p4-phase-pill">Phase 4 · Rail-Driven Piston Transmission</div>
+    <h1>Steam-Rail <em>Reverse-Drive</em> Transmission System</h1>
+    <p>
+        A clean-architecture retrofit where high-pressure steam drives a reciprocating
+        rail system that pushes stationary pistons directly into a transmission block.
+        The rail does the motion; the pistons receive force. No sealed piston chambers,
+        no oil/water contamination, pure linear-to-transmission power transfer.
+    </p>
+</div>
+
+<!-- =====================================================
+         PHASE 4 METRICS
+         ===================================================== -->
+<div class="p4-section">
+
+    <div class="p4-section-label">Phase 4 Architecture</div>
+    <h2 class="p4-section-title">Rail-driven pistons → transmission → wheels</h2>
+    <p class="p4-section-lead">
+        Phase 4 inverts the piston-rail relationship. A central pressure-driven rail
+        reciprocates linearly (forward/backward). Stationary pistons sit along this
+        rail's path. As the rail moves, it pushes the pistons into a transmission coupling.
+        The transmission converts this linear push into rotational wheel drive. Pistons
+        never move—the rail does all the work. Result: open, clean, contamination-free
+        power transfer.
+    </p>
+
+    <div class="p4-metrics">
+        <div class="p4-metric">
+            <div class="val">1</div>
+            <div class="lbl">Moving rail</div>
+        </div>
+        <div class="p4-metric">
+            <div class="val">4+</div>
+            <div class="lbl">Stationary pistons</div>
+        </div>
+        <div class="p4-metric">
+            <div class="val">H₂O</div>
+            <div class="lbl">Rail propellant</div>
+        </div>
+        <div class="p4-metric">
+            <div class="val">0</div>
+            <div class="lbl">Sealed chambers</div>
+        </div>
+        <div class="p4-metric">
+            <div class="val">1:1</div>
+            <div class="lbl">Rail-to-trans</div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+             PHASE 4 CAR DIAGRAM SVG
+             =================================================== -->
+    <div class="p4-section-label">Vehicle Layout</div>
+    <h2 class="p4-section-title">Phase 4 — Rail-pushed piston transmission system</h2>
+    <p class="p4-section-lead">
+        The steam pressure reservoir accelerates a central rail that slides forward
+        and backward. Stationary pistons sit along the rail's reciprocation path.
+        Each piston press connects to a transmission block. The transmission block
+        couples all pistons and converts linear impulses into continuous wheel rotation.
+    </p>
+
+    <div class="p4-car-wrap">
+        <svg width="100%" height="380" viewBox="0 0 800 380" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <!-- CHASSIS -->
+            <rect x="50" y="170" width="700" height="40" fill="#0e2236" stroke="#aa88ff" stroke-width="2" rx="4" />
+
+            <!-- PRESSURE RESERVOIR (left side) -->
+            <rect x="60" y="220" width="60" height="50" fill="#ff4455" stroke="#ff4455" stroke-width="2" rx="3" opacity="0.85" />
+            <text x="90" y="250" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">Pressure</text>
+
+            <!-- MOVING RAIL (animated) -->
+            <g class="p4-rail-group">
+                <rect x="150" y="180" width="600" height="20" fill="#aa88ff" opacity="0.3" stroke="#aa88ff" stroke-width="2" class="p4-flow" />
+                <text x="450" y="197" text-anchor="middle" font-size="11" fill="#aa88ff" font-weight="bold">MOVING RAIL (reciprocates ←→)</text>
+            </g>
+
+            <!-- STATIONARY PISTON 1 (contacts rail from above) -->
+            <circle cx="220" cy="160" r="7" fill="#ffaa00" class="p4-pulse" />
+            <line x1="220" y1="167" x2="220" y2="210" stroke="#ff6b30" stroke-width="2" />
+            <rect x="210" y="210" width="20" height="20" fill="#ff6b30" stroke="#ff6b30" stroke-width="1" opacity="0.7" />
+            <text x="220" y="222" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">P1</text>
+
+            <!-- STATIONARY PISTON 2 -->
+            <circle cx="320" cy="160" r="7" fill="#ffaa00" class="p4-pulse" />
+            <line x1="320" y1="167" x2="320" y2="210" stroke="#ff6b30" stroke-width="2" />
+            <rect x="310" y="210" width="20" height="20" fill="#ff6b30" stroke="#ff6b30" stroke-width="1" opacity="0.7" />
+            <text x="320" y="222" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">P2</text>
+
+            <!-- STATIONARY PISTON 3 -->
+            <circle cx="420" cy="160" r="7" fill="#ffaa00" class="p4-pulse" />
+            <line x1="420" y1="167" x2="420" y2="210" stroke="#ff6b30" stroke-width="2" />
+            <rect x="410" y="210" width="20" height="20" fill="#ff6b30" stroke="#ff6b30" stroke-width="1" opacity="0.7" />
+            <text x="420" y="222" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">P3</text>
+
+            <!-- STATIONARY PISTON 4 -->
+            <circle cx="520" cy="160" r="7" fill="#ffaa00" class="p4-pulse" />
+            <line x1="520" y1="167" x2="520" y2="210" stroke="#ff6b30" stroke-width="2" />
+            <rect x="510" y="210" width="20" height="20" fill="#ff6b30" stroke="#ff6b30" stroke-width="1" opacity="0.7" />
+            <text x="520" y="222" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">P4</text>
+
+            <!-- TRANSMISSION BLOCK (center bottom) -->
+            <rect x="340" y="250" width="120" height="50" fill="#00ffe7" stroke="#00ffe7" stroke-width="2" rx="4" opacity="0.8" />
+            <text x="400" y="275" text-anchor="middle" font-size="12" fill="#06090f" font-weight="bold">TRANSMISSION</text>
+            <text x="400" y="290" text-anchor="middle" font-size="9" fill="#06090f" font-weight="bold">Linear → Rotational</text>
+
+            <!-- OUTPUT TO WHEELS -->
+            <!-- Front Left Wheel -->
+            <line x1="360" y1="300" x2="280" y2="320" stroke="#00ffe7" stroke-width="2" />
+            <circle cx="280" cy="340" r="25" fill="none" stroke="#00ffe7" stroke-width="2" />
+            <text x="280" y="355" text-anchor="middle" font-size="11" fill="#00ffe7" font-weight="bold">Front L</text>
+
+            <!-- Front Right Wheel -->
+            <line x1="440" y1="300" x2="520" y2="320" stroke="#00ffe7" stroke-width="2" />
+            <circle cx="520" cy="340" r="25" fill="none" stroke="#00ffe7" stroke-width="2" />
+            <text x="520" y="355" text-anchor="middle" font-size="11" fill="#00ffe7" font-weight="bold">Front R</text>
+
+            <!-- LEGEND -->
+            <text x="60" y="25" font-size="12" fill="#aa88ff" font-weight="bold">P1-P4 = Stationary Pistons</text>
+            <text x="60" y="45" font-size="12" fill="#aa88ff" font-weight="bold">Rail = Reciprocates (pressure-driven)</text>
+            <text x="60" y="65" font-size="11" fill="#7a9ab0">Motion: Rail pushes pistons → Transmission couples force → Wheels rotate</text>
+        </svg>
+    </div>
+
+    <!-- ===================================================
+             PHASE 4 ADVANTAGES
+             ===================================================== -->
+    <hr class="p4-sep" />
+
+    <div class="p4-section-label">Design Advantages</div>
+    <h2 class="p4-section-title">Rail-driven inversion · Clean power transfer</h2>
+
+    <div class="p4-phase-grid">
+        <div class="p4-phase-card" data-num="1">
+            <h3>Stationary Pistons</h3>
+            <p>Pistons don't move—they sit fixed in position. No piston-ring wear, no friction losses from piston travel. Rail does all the work.</p>
+        </div>
+        <div class="p4-phase-card" data-num="2">
+            <h3>No Sealed Chambers</h3>
+            <p>Pistons exposed to atmosphere along the rail path. Zero oil accumulation, zero water condensation, zero corrosion inside sealed bores.</p>
+        </div>
+        <div class="p4-phase-card" data-num="3">
+            <h3>Unified Transmission Coupling</h3>
+            <p>All pistons feed into one transmission block. Synchronized power delivery; no individual piston timing issues or imbalance.</p>
+        </div>
+        <div class="p4-phase-card" data-num="4">
+            <h3>Simplified Rail Propulsion</h3>
+            <p>Single moving rail mass is lighter than four moving pistons. Pressure system only needs to accelerate one component repeatedly.</p>
+        </div>
+    </div>
+
+    <!-- ===================================================
+             PHASE 4 MECHANICAL FLOW
+             ===================================================== -->
+    <div class="p4-section-label">Operating Cycle</div>
+    <h2 class="p4-section-title">Phase 4 — Step-by-step piston push sequence</h2>
+
+    <div class="p4-phase-grid">
+        <div class="p4-phase-card" data-num="A">
+            <h3>Step 1: Rail Acceleration</h3>
+            <p>Pressure valve opens. Steam accelerates the moving rail forward (left to right) along its guide rails.</p>
+        </div>
+        <div class="p4-phase-card" data-num="B">
+            <h3>Step 2: Piston Push</h3>
+            <p>As rail moves forward, its leading edge contacts and pushes all stationary pistons simultaneously into the transmission coupling.</p>
+        </div>
+        <div class="p4-phase-card" data-num="C">
+            <h3>Step 3: Transmission Conversion</h3>
+            <p>Transmission block receives linear push force from all pistons. Internal gearing converts linear impulse to rotational wheel drive.</p>
+        </div>
+        <div class="p4-phase-card" data-num="D">
+            <h3>Step 4: Rail Return</h3>
+            <p>Pressure valve closes. Spring return or reverse pressure retracts the rail. Pistons reset to neutral. Cycle repeats at set frequency.</p>
+        </div>
+    </div>
+
+    <!-- ===================================================
+             PHASE 4 DESIGN CONSIDERATIONS
+             ===================================================== -->
+    <div class="p4-section-label">Design Considerations</div>
+    <h2 class="p4-section-title">Phase 4 trade-offs and technical constraints</h2>
+
+    <div class="p4-flaw-grid">
+        <div class="p4-flaw major">
+            <div class="p4-flaw-tag">Major Consideration</div>
+            <h4>Rail Guide Precision</h4>
+            <p>Moving rail must maintain perfect alignment across its entire travel distance. Any binding or misalignment causes uneven piston push.</p>
+        </div>
+        <div class="p4-flaw thermal">
+            <div class="p4-flaw-tag">Thermal Challenge</div>
+            <h4>Reciprocation Speed Limits</h4>
+            <p>Pressure system must achieve high reciprocation frequency (100+ cycles/min) to maintain continuous wheel rotation. Pressure demand increases with speed.</p>
+        </div>
+        <div class="p4-flaw design">
+            <div class="p4-flaw-tag">Design Constraint</div>
+            <h4>Piston Synchronization</h4>
+            <p>All pistons must contact transmission simultaneously. If piston heights vary, force distribution becomes unequal and transmission coupling imbalances.</p>
+        </div>
+        <div class="p4-flaw critical">
+            <div class="p4-flaw-tag">Critical Requirement</div>
+            <h4>Return Mechanism Reliability</h4>
+            <p>Rail must reliably reset for each cycle. Failed return spring or reverse-pressure system halts all motion. Redundancy or predictive monitoring essential.</p>
+        </div>
+    </div>
+
+</div>
+
