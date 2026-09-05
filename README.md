@@ -126,6 +126,64 @@ GhostShell/bin/Debug/net10.0/wwwroot/
 ### 9. Build and Run
 
 Build the solution in Visual Studio and run `GhostShell`. The WinForms window will launch with the DX12 renderer active and the Blazor UI hosted via WebView2.
+---
+
+## Blazor → DX12 Color Bridge
+
+---
+Once the base setup is complete, the following wires up live communication between the Blazor UI and the DirectX 12 engine, allowing the Blazor frontend to control the DX12 clear color in real time.
+
+### 1. `index.html` — Add the JS Bridge
+
+Inside the `<head>` tag, before `blazor.webassembly.js`:
+
+```javascript
+window.ghostBridge = {
+    sendColor: function (colorStr) {
+        window.chrome.webview.postMessage("SetColor:" + colorStr);
+    }
+};
+```
+
+### 2. `Home.razor` — Add a Toggle Button
+
+```razor
+@inject IJSRuntime JS
+
+<button @onclick="ToggleColor">Toggle BG Color</button>
+
+@code {
+    private bool _toggled = false;
+
+    private async Task ToggleColor()
+    {
+        _toggled = !_toggled;
+        await JS.InvokeVoidAsync("ghostBridge.sendColor",
+            _toggled ? "0.2,0.0,0.4" : "0.0,0.0,0.0");
+    }
+}
+```
+
+### 3. `GhostForm.cs` — Wire Up the Message Receiver
+
+Inside `OnToggleGhostUI`, after `CoreWebView2.Navigate()`:
+
+```csharp
+_ghostUI.CoreWebView2.WebMessageReceived += (sender, args) =>
+{
+    var msg = args.TryGetWebMessageAsString();
+    if (msg.StartsWith("SetColor:"))
+    {
+        var parts = msg.Replace("SetColor:", "").Split(',');
+        float r = float.Parse(parts[0]);
+        float g = float.Parse(parts[1]);
+        float b = float.Parse(parts[2]);
+        GhostEngine.GhostEngine_SetClearColor(r, g, b);
+    }
+};
+```
+
+> **Result:** Clicking the toggle button in the Blazor UI sends a message through WebView2 directly to `GhostEngine_SetClearColor`, changing the DX12 background color in real time.
 
 ---
 
