@@ -117,6 +117,19 @@ namespace GhostShell
     "{\"headers\":{\"Cross-Origin-Embedder-Policy\":\"unsafe-none\"}}"
 );
                     _ghostUI.CoreWebView2.Navigate("http://localhost:5050");
+                    // Wire up Blazor → DX12 color bridge
+                    _ghostUI.CoreWebView2.WebMessageReceived += (sender, args) =>
+                    {
+                        var msg = args.TryGetWebMessageAsString();
+                        if (msg.StartsWith("SetColor:"))
+                        {
+                            var parts = msg.Replace("SetColor:", "").Split(',');
+                            float r = float.Parse(parts[0]);
+                            float g = float.Parse(parts[1]);
+                            float b = float.Parse(parts[2]);
+                            GhostEngine.GhostEngine_SetClearColor(r, g, b);
+                        }
+                    };
                     _ghostUI.Visible = true;
                 }
                 else

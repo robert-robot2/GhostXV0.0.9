@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="css/app.css" />
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="GhostBlazorUI.styles.css" rel="stylesheet" /> -->
-
+    <script>window.ghostBridge = {
+            sendColor: function (colorStr) {
+                window.chrome.webview.postMessage("SetColor:" + colorStr);
+            }
+        };</script>
 </head>
 
 <body>
